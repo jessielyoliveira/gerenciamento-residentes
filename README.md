@@ -12,12 +12,12 @@ Que será utilizado por todos os residentes, com categorias estabelecidas, e com
 
 ### TO-DO
 
-[ ] Gerenciar Residência
-[ ] Gerenciar Residente
-[ ] Gerenciar Solicitação
-[ ] Solicitar Material/Serviço
-[ ] Acompanhar Solicitação
-[ ] Avaliar Solicitação
+- [ ] Gerenciar Residência
+- [ ] Gerenciar Residente
+- [ ] Gerenciar Solicitação
+- [ ] Solicitar Material/Serviço
+- [ ] Acompanhar Solicitação
+- [ ] Avaliar Solicitação
 
 
 ### Repositório
