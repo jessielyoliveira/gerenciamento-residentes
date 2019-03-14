@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator=layout>
+
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<title>SGRUF</title>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+		<div class="container">
+			<a class="navbar-brand" href="">UFRN - Sistema de Gerenciamento
+				dos Residentes da UFRN</a>
+		</div>
+	</nav>
+
+	<div class="container" style="margin-top: 60px;">
+		<!-- <div th:if="${success != null}" class="alert alert-success" role="alert"><span th:text="${success}">msg success</span></div>
+		<div th:if="${error != null}" class="alert alert-danger" role="alert"><span th:text="${error}">msg error</span></div> -->
+
+		<div layout:fragment="content">
+
+			<h1 align="center" style="margin: 30px 0;">Residência Cadastradas</h1>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">Nome</th>
+						<th scope="col">Adicionar Residente</th>
+						<th scope="col">Excluir Residente</th>
+						<th scope="col">Alterar</th>
+						<th scope="col">Vagas</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">1</th>
+						<td>Mark</td>
+						<td>Otto</td>
+						<td>@mdo</td>
+					</tr>
+					<tr>
+						<th scope="row">2</th>
+						<td>Jacob</td>
+						<td>Thornton</td>
+						<td>@fat</td>
+					</tr>
+					<tr>
+						<th scope="row">3</th>
+						<td>Larry</td>
+						<td>the Bird</td>
+						<td>@twitter</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+
+</body>
+</html>
