@@ -30,11 +30,9 @@
 
 		<div layout:fragment="content">
 			
-			<h1 th:if="${residencia.id == null}" align="center" style="margin: 30px 0;">Cadastro de Residência</h1>
-			<h1 th:if="${residencia.id == null}" align="center" style="margin: 30px 0;">Editar Residência</h1>
+			<h1 align="center" style="margin: 30px 0;">Cadastro de Residência</h1>
 			
-			<form th:action=@{/residencias} th:method="@{${residencia.id == null} ? 'post' : 'put'}"
-				th:object="${residencia}" >
+			<form th:action="@{/residencias/nova}" th:method="POST" th:object="${residencia}">
 				<div class="form-group">
 					<label for="nome">Nome</label>
 					<input type="text" class="form-control" id="nome" placeholder="Insira um nome">

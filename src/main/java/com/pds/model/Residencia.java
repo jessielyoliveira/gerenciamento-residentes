@@ -21,10 +21,10 @@ public class Residencia implements Serializable {
 	private String cep;
 	private String cidade;
 	private String estado;
-	private int numero;
-	private int quantPisos;
-	private int quantQuartos;
-	private int quantResidentes;
+	private Integer numero;
+	private Integer quantPisos;
+	private Integer quantQuartos;
+	private Integer quantResidentes;
 	
 	public Integer getId() { return id; }
 	public void setId(Integer id) { this.id = id; }
@@ -47,17 +47,17 @@ public class Residencia implements Serializable {
 	public String getEstado() { return estado; }
 	public void setEstado(String estado) { this.estado = estado; }
 	
-	public int getNumero() { return numero; }
-	public void setNumero(int numero) { this.numero = numero; }
+	public Integer getNumero() { return numero; }
+	public void setNumero(Integer numero) { this.numero = numero; }
 	
-	public int getQuantPisos() { return quantPisos; }
-	public void setQuantPisos(int quantPisos) { this.quantPisos = quantPisos; }
+	public Integer getQuantPisos() { return quantPisos; }
+	public void setQuantPisos(Integer quantPisos) { this.quantPisos = quantPisos; }
 	
-	public int getQuantQuartos() { return quantQuartos; }
-	public void setQuantQuartos(int quantQuartos) { this.quantQuartos = quantQuartos; }
+	public Integer getQuantQuartos() { return quantQuartos; }
+	public void setQuantQuartos(Integer quantQuartos) { this.quantQuartos = quantQuartos; }
 	
-	public int getQuantResidentes() { return quantResidentes; }
-	public void setQuantResidentes(int quantResidentes) { this.quantResidentes = quantResidentes; }
+	public Integer getQuantResidentes() { return quantResidentes; }
+	public void setQuantResidentes(Integer quantResidentes) { this.quantResidentes = quantResidentes; }
 	
 	
 }
