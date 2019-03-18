@@ -38,5 +38,4 @@ public class Usuario implements Serializable {
 
 	public String getPapel() { return papel; }
 	public void setPapel(String papel) { this.papel = papel; }
-
 }

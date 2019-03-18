@@ -3,18 +3,18 @@ package com.pds.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.pds.repository.UsuarioRepository;
-import com.pds.model.Usuario;
+
+import com.pds.model.PROAE;
+import com.pds.repository.PROAERepository;
 
 @Service
 @Transactional(readOnly=true)
-public class UsuarioService {
-	
+public class PROAEService {
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private PROAERepository proaeRepository;
 	
 	@Transactional(readOnly = false)
-	public Usuario save(Usuario usuario) {
-		return usuarioRepository.save(usuario);
-	}	
+	public PROAE save(PROAE proae) {
+		return proaeRepository.save(proae);
+	}
 }

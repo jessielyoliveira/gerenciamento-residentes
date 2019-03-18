@@ -18,7 +18,7 @@
 	
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 			<div class="container">
-				<a class="navbar-brand" href="">Gerência de Residentes</a>
+				<a class="navbar-brand" href="">Gerência de Residentes <span style="font-size: 16px; margin-left: 10px;">Portal da PROAE</span></a>
 			</div>
 		</nav>
 	
@@ -28,11 +28,9 @@
 	
 			<div layout:fragment="content">
 			
-				<h1 align="center" style="margin-bottom: 30px">Sistema de Gerenciamento de Residentes</h1>
-				<a th:href="@{/proae/entrar}" class="btn btn-primary" style="margin-left: 20px">Portal da PROAE</a>
-				<br>
-				<br>
-				<a th:href="@{/residentes/entrar}" class="btn btn-primary" style="margin-left: 20px">Portal do Residente</a>
+				<h1 align="center" style="margin-bottom: 30px">Sitema de Gerenciamento de Residentes</h1>
+				<h2 align="center" style="margin-bottom: 20px">Portal da PROAE</h2>
+				<a th:href="@{/proae/gerir-residentes}" class="btn btn-primary" style="margin-left: 20px">Gerir residentes</a>
 			</div>
 		</div>
 	

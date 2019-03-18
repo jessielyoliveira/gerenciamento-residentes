@@ -32,11 +32,16 @@
 			<div th:if="${error != null}" class="alert alert-danger" role="alert"><span th:text="${error}">msg error</span></div> -->
 	
 			<div layout:fragment="content">
-				<h1 align="center" style="margin: 30px 0">Cadastro de Usuário</h1>
+				<h1 align="center" style="margin: 30px 0">Cadastro de Residente</h1>
 				<form method="post">
 					<div class="form-group">
-						<label for="nome">Nome</label>
-						<input type="text" class="form-control" id="nome" placeholder="Insira o nome">
+						<label for="residencia">Residência</label>
+						<select  class="form-control" id="residencia" placeholder="Insira o nome">
+							<option value="central">Residência Central</option>
+							<option value="praca">Residência Praça Cívica</option>
+							<option value="biomedica">Resiência Biomédica</option>	
+						</select> 
+													<input type="text" class="form-control" id="residencia" placeholder="Insira o nome">
 					</div>
 					<div class="form-group">
 						<label for="email">Email</label>

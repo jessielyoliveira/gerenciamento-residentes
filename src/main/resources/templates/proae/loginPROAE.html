@@ -18,7 +18,7 @@
 	
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 			<div class="container">
-				<a class="navbar-brand" href="">Gerência de Residentes</a>
+				<a class="navbar-brand" href="">Gerência de Residentes <span style="font-size: 16px; margin-left: 10px;">Portal da PROAE</span></a>
 			</div>
 		</nav>
 	
@@ -28,11 +28,21 @@
 	
 			<div layout:fragment="content">
 			
-				<h1 align="center" style="margin-bottom: 30px">Sistema de Gerenciamento de Residentes</h1>
-				<a th:href="@{/proae/entrar}" class="btn btn-primary" style="margin-left: 20px">Portal da PROAE</a>
-				<br>
-				<br>
-				<a th:href="@{/residentes/entrar}" class="btn btn-primary" style="margin-left: 20px">Portal do Residente</a>
+				<h1 align="center" style="margin-bottom: 30px">Entrar no Sistema</h1>
+				<form name="formLogin">
+					<div class="form-group">
+						<label for="usuario">Usuário</label>
+						<input type="text" class="form-control" id="usuario" placeholder="Insira o nome de usuário">
+					</div>
+					<div class="form-group" style="margin-bottom: 30px;">
+						<label for="senha">Senha</label> <input type="password"	class="form-control" id="senha" placeholder="Insira a senha">
+					</div>
+					<!-- <a> gambiarra para acessar inicio. consertar para ir pelo get ou post do form -->
+					<!-- <button type="submit" class="btn btn-success" style="float: right;">Entrar</button> -->
+					<a th:href="@{/proae/inicio}"  class="btn btn-success" style="float: right;">Entrar</a>
+					<a th:href="@{/usuarios/novo}" class="btn btn-primary" style="float: right; margin-right: 20px">Não tenho cadastro</a>
+				</form>
+				
 			</div>
 		</div>
 	
