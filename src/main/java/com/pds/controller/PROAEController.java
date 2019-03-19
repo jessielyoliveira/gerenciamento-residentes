@@ -12,8 +12,14 @@ import com.pds.service.PROAEService;
 @Controller
 @RequestMapping("/proae")
 public class PROAEController {
+	
 	@Autowired
 	private PROAEService proaeService;
+	
+	@GetMapping
+	public String homePROAE() {
+		return "proae/portal_proae";
+	}
 	
 	// Abre o formulario de cadastro de funcionario da proae
 	@GetMapping("/novo")

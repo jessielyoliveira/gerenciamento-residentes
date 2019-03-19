@@ -17,7 +17,7 @@ public class UsuarioService {
 	private UsuarioRepository usuarioRepository;
 	
 	@Transactional(readOnly = false)
-	public Usuario save(Usuario entity) {
+	public Usuario save(Usuario entity) { 
 		return usuarioRepository.save(entity);
 	}
 	
