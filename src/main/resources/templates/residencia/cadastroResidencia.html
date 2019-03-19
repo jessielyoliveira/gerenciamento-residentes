@@ -1,86 +1,60 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator=layout >
-	
+<!doctype html>
+<html lang="pt-br" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="" />
-<meta name="author" content="" />
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<meta charset="utf-8">
+</head>
+<body>
+	
+	<section layout:fragment="content">
+		<h1 align="center" style="margin: 30px 0;">Cadastro de Residência</h1>
 		
-<title>SGRUF</title>
-	</head>
-	
-	<body>
-	
-		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-			<div class="container">
-				<a class="navbar-brand" href="">UFRN - Sistema de Gerenciamento dos Residentes da UFRN</a>
+		<form th:action="@{/residencias/nova}" th:method="POST" th:object="${residencia}">
+			<div class="form-group">
+				<label for="nome">Nome</label>
+				<input type="text" class="form-control" id="nome" placeholder="Insira um nome">
 			</div>
-		</nav>
+			<div class="form-group">
+				<label for="endereco">Endereço</label>
+				<input type="text" class="form-control" id="endereco" placeholder="Insira o endereço">
+			</div>
+		  	<div class="form-group">
+		    	<label for="numero">Número</label>
+		    	<input type="text" class="form-control" id="numero" placeholder="Insira o número">
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="bairro">Bairro</label>
+		    	<input type="text" class="form-control" id="bairro" placeholder="Insira o bairro">
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="cep">CEP</label>
+		    	<input type="text" class="form-control" id="cep" placeholder="Insira o CEP">
+		  	</div>
+			<div class="form-group">
+		    	<label for="cidade">Cidade</label>
+		    	<input type="text" class="form-control" id="cidade" placeholder="Insira a cidade">
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="estado">Estado</label>
+		    	<input type="text" class="form-control" id="estado" placeholder="Insira o estado">
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="pisos">Quantidade de pisos</label>
+		    	<input type="number" class="form-control" id="pisos" placeholder="Insira a quantidade de pisos">
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="quartos">Quantidade de quartos por piso</label>
+		    	<input type="number" class="form-control" id="quartos" placeholder="Insira a quantidade de quartos por piso">
+		  	</div>
+		  	<div class="form-group" style="margin-bottom: 30px;">
+		    	<label for="residentes">Quantidade de residentes por quarto</label>
+		    	<input type="number" class="form-control" id="residentes" placeholder="Insira a quantidade de residentes por quarto">
+		  	</div>
+		  	<button type="submit" class="btn btn-success" style="float: right;">Cadastrar</button>
+		  	<a th:href="@{/residencias}" class="btn btn-secondary" style="float: right; margin: 0 20px 30px 0;">Cancelar</a>
 
-	<div class="container" style="margin-top: 60px;">
-		<!-- <div th:if="${success != null}" class="alert alert-success" role="alert"><span th:text="${success}">msg success</span></div>
-		<div th:if="${error != null}" class="alert alert-danger" role="alert"><span th:text="${error}">msg error</span></div> -->
-
-		<div layout:fragment="content">
-			
-			<h1 align="center" style="margin: 30px 0;">Cadastro de Residência</h1>
-			
-			<form th:action="@{/residencias/nova}" th:method="POST" th:object="${residencia}">
-				<div class="form-group">
-					<label for="nome">Nome</label>
-					<input type="text" class="form-control" id="nome" placeholder="Insira um nome">
-				</div>
-				<div class="form-group">
-					<label for="endereco">Endereço</label>
-					<input type="text" class="form-control" id="endereco" placeholder="Insira o endereço">
-				</div>
-			  	<div class="form-group">
-			    	<label for="numero">Número</label>
-			    	<input type="text" class="form-control" id="numero" placeholder="Insira o número">
-			  	</div>
-			  	<div class="form-group">
-			    	<label for="bairro">Bairro</label>
-			    	<input type="text" class="form-control" id="bairro" placeholder="Insira o bairro">
-			  	</div>
-			  	<div class="form-group">
-			    	<label for="cep">CEP</label>
-			    	<input type="text" class="form-control" id="cep" placeholder="Insira o CEP">
-			  	</div>
-				<div class="form-group">
-			    	<label for="cidade">Cidade</label>
-			    	<input type="text" class="form-control" id="cidade" placeholder="Insira a cidade">
-			  	</div>
-			  	<div class="form-group">
-			    	<label for="estado">Estado</label>
-			    	<input type="text" class="form-control" id="estado" placeholder="Insira o estado">
-			  	</div>
-			  	<div class="form-group">
-			    	<label for="pisos">Quantidade de pisos</label>
-			    	<input type="number" class="form-control" id="pisos" placeholder="Insira a quantidade de pisos">
-			  	</div>
-			  	<div class="form-group">
-			    	<label for="quartos">Quantidade de quartos por piso</label>
-			    	<input type="number" class="form-control" id="quartos" placeholder="Insira a quantidade de quartos por piso">
-			  	</div>
-			  	<div class="form-group" style="margin-bottom: 30px;">
-			    	<label for="residentes">Quantidade de residentes por quarto</label>
-			    	<input type="number" class="form-control" id="residentes" placeholder="Insira a quantidade de residentes por quarto">
-			  	</div>
-			  	<button type="submit" class="btn btn-success" style="float: right;">Cadastrar</button>
-			  	<a th:href="@{/residencias}" class="btn btn-secondary" style="float: right; margin: 0 20px 30px 0;">Cancelar</a>
-
-			</form>
-			
-			
-		</div>
-	</div>
+		</form>
+	</section>
 
 
 </body>

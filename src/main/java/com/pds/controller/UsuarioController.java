@@ -29,9 +29,9 @@ public class UsuarioController {
 		return "redirect:/";
 	}
 	
-	// Abre o formulario de login de funcionario da proae
-	@GetMapping("/entrar")
-	public String logarUsuario() {
-		return "proae/loginUsuario";
+	// Fazer login depois
+	@PostMapping("/login")
+	public String loginUsuario() {
+		return "";
 	}
 }
