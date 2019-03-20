@@ -25,10 +25,10 @@ public class ResidenciaController {
 	@Autowired
 	private ResidenciaService residenciaService;
 	
-	@GetMapping
-	public String indexResidencia() {
-		return "residencia/indexResidencia";
-	}
+	/*
+	 * @GetMapping public String indexResidencia() { return
+	 * "residencia/indexResidencia"; }
+	 */
 	
 	// Abre o formulario de cadastro de residencias
 	@GetMapping("/nova")
@@ -40,7 +40,7 @@ public class ResidenciaController {
 	@PostMapping("/nova")
 	public String cadastrarResidencia(Residencia residencia) {
 		residenciaService.save(residencia);
-		return "redirect:/residencias";
+		return "redirect:/proae#residencias";
 	}
 	
 	@GetMapping("/remover")
