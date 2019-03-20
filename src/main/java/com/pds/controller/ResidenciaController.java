@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.h2.util.New;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,15 +33,16 @@ public class ResidenciaController {
 	
 	// Abre o formulario de cadastro de residencias
 	@GetMapping("/nova")
-	public String cadastrarResidencia() {
+	public String residenciaForm(Model model) {
+		model.addAttribute("residencia", new Residencia());
 		return "residencia/cadastroResidencia";
 	}
 	
 	// Envia as informacoes do formulario para a camada de servico
 	@PostMapping("/nova")
-	public String cadastrarResidencia(Residencia residencia) {
+	public String residenciaSubmit(@ModelAttribute Residencia residencia) {
 		residenciaService.save(residencia);
-		return "redirect:/proae#residencias";
+		return "redirect:/proae";
 	}
 	
 	@GetMapping("/remover")

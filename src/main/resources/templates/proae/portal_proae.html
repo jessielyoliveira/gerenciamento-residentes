@@ -12,7 +12,7 @@
 		<!-- Abas de gerenciamento -->
 		<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
 			<li class="nav-item"><a class="nav-link" id="residentes-tab"
-				data-toggle="tab" href="#residentes" role="tab" aria-controls="residentes"
+				data-toggle="tab"  href="#residentes" role="tab" aria-controls="residentes"
 				aria-selected="true">Gerenciar Residentes</a></li>
 			<li class="nav-item"><a class="nav-link" id="residencias-tab"
 				data-toggle="tab" href="#residencias" role="tab" aria-controls="residencias"
@@ -34,10 +34,10 @@
 			</div>
 			
 			<!-- Gerenciar Residências -->
-			<div class="tab-pane fade" id="residencias" role="tabpanel" aria-labelledby="residencias-tab" style="margin-top: 30px;">
-				<a th:href="@{residencias/nova}" class="btn btn-primary btn-block">Cadastrar</a>
-			  	<a th:href="@{residencias/remover}" class="btn btn-primary btn-block">Listar</a>
-			  	<a th:href="@{/}" class="btn btn-primary btn-block">Distribuir Residentes</a>
+			<div class="tab-pane fade" id="residencias" role="tabpanel" aria-labelledby="residencias-tab"
+				 style="margin-top: 30px;" align="center">
+			  	<a th:href="@{/}" class="btn btn-primary" style="margin-right: 10px;">Distribuir Residentes</a>
+			  	<a th:href="@{residencias/nova}" class="btn btn-success">Adicionar Residência</a>
 
 				<table class="table table-striped" style="margin-top: 30px;">
 					<thead>
@@ -71,6 +71,22 @@
 			
 		</div>
 	</section>
+	
+	<script type="text/javascript">
+	
+		$(function() {
+			var hash = window.location.hash;
+			hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+			$('.nav-tabs a').click(function(e) {
+				$(this).tab('show');
+				var scrollmem = $('body').scrollTop();
+				window.location.hash = this.hash;
+				$('html,body').scrollTop(scrollmem);
+			});
+		});
+		
+	</script>
 	 
 </body>
 </html>

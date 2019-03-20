@@ -18,22 +18,27 @@ public class ResidenciaService {
 	private ResidenciaRepository residenciaRepository;
 	
 	@Transactional(readOnly = false)
-	public Residencia save(Residencia residencia) {
-		return residenciaRepository.save(residencia);
+	public Residencia save(Residencia entity) {
+		return residenciaRepository.save(entity);
 	}
 	
 	public List<Residencia> findAll() {
 		return residenciaRepository.findAll();
 	}
 	
-	@Transactional(readOnly=false)
 	public Optional<Residencia> findOne(Integer id) {
 		return residenciaRepository.findById(id);
 	}
 	
 	@Transactional(readOnly=false)
-	public void delete(Residencia residencia) {
-		residenciaRepository.delete(residencia);
+	public void delete(Residencia entity) {
+		residenciaRepository.delete(entity);
 	}
+	
+	/*
+	 * private boolean validaResidencia(Residencia entity) {
+	 * 
+	 * }
+	 */
 	
 }
