@@ -9,7 +9,7 @@ public class IndexController {
 	// Recebe um endereco e retorna a pagina de inicio
 	@RequestMapping("/")
 	public String index() {
-		return "index";
+		return "home";
 	}
 	
 }

@@ -2,12 +2,16 @@ package com.pds.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "residencias")
 public class Residencia implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -15,16 +19,36 @@ public class Residencia implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
+	
+	@NotNull @Column(name = "nome")
 	private String nome;
+	
+	@NotNull @Column(name = "endereco")
 	private String endereco;
+	
+	@NotNull @Column(name = "numero")
+	private String numero;
+	
+	@NotNull @Column(name = "bairro")
 	private String bairro;
+	
+	@NotNull @Column(name = "cep")
 	private String cep;
+	
+	@NotNull @Column(name = "cidade")
 	private String cidade;
+	
+	@NotNull @Column(name = "estado")
 	private String estado;
-	private Integer numero;
+	
+	@NotNull @Column(name = "quantPisos")
 	private Integer quantPisos;
-	private Integer quantQuartos;
-	private Integer quantResidentes;
+	
+	@NotNull @Column(name = "quantQuartosPorPiso")
+	private Integer quantQuartosPorPiso;
+	
+	@NotNull @Column(name = "quantResidentesPorQuarto")
+	private Integer quantResidentesPorQuarto;
 	
 	public Integer getId() { return id; }
 	public void setId(Integer id) { this.id = id; }
@@ -47,17 +71,18 @@ public class Residencia implements Serializable {
 	public String getEstado() { return estado; }
 	public void setEstado(String estado) { this.estado = estado; }
 	
-	public Integer getNumero() { return numero; }
-	public void setNumero(Integer numero) { this.numero = numero; }
+	public String getNumero() { return numero; }
+	public void setNumero(String numero) { this.numero = numero; }
 	
 	public Integer getQuantPisos() { return quantPisos; }
 	public void setQuantPisos(Integer quantPisos) { this.quantPisos = quantPisos; }
 	
-	public Integer getQuantQuartos() { return quantQuartos; }
-	public void setQuantQuartos(Integer quantQuartos) { this.quantQuartos = quantQuartos; }
 	
-	public Integer getQuantResidentes() { return quantResidentes; }
-	public void setQuantResidentes(Integer quantResidentes) { this.quantResidentes = quantResidentes; }
+	public Integer getQuantQuartosPorPiso() { return quantQuartosPorPiso; }
+	public void setQuantQuartosPorPiso(Integer quantQuartosPorPiso) { this.quantQuartosPorPiso = quantQuartosPorPiso; }
 	
+	public Integer getQuantResidentesPorQuarto() { return quantResidentesPorQuarto; }
+	public void setQuantResidentesPorQuarto(Integer quantResidentesPorQuarto) { this.quantResidentesPorQuarto = quantResidentesPorQuarto; }
+		
 	
 }
