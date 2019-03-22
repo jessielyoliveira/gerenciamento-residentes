@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-br" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+
+	<section layout:fragment="content">
+		<h1 align="center" style="margin-bottom: 30px">Entrar no Sistema</h1>
+		<form th:action="@{/usuarios/login}" method="post">
+			<div class="form-group">
+				<label for="usuario">Usuário</label>
+				<input type="text" class="form-control" id="usuario" placeholder="Insira o nome de usuário">
+			</div>
+			<div class="form-group" style="margin-bottom: 30px;">
+				<label for="senha">Senha</label> <input type="password"	class="form-control" id="senha" placeholder="Insira a senha">
+			</div>
+			<button type="submit" class="btn btn-success" style="float: right;">Entrar</button>
+<!-- 			<a th:href="@{/proae/inicio}"  class="btn btn-success" style="float: right;">Entrar</a>
+ -->			<a th:href="@{/usuarios/novo}" class="btn btn-primary" style="float: right; margin-right: 20px">Não tenho cadastro</a>
+		</form>
+	</section>
+	
+</body>
+</html>
