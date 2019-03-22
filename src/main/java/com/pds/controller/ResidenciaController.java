@@ -2,6 +2,8 @@ package com.pds.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +40,7 @@ public class ResidenciaController {
 	}
 	
 	// Envia as informacoes do formulario para a camada de servico
-	@PostMapping("/nova")
+	@PostMapping
 	public String residenciaSubmit(@ModelAttribute Residencia residencia) {
 		residenciaService.save(residencia);
 		return "redirect:/residencias";
@@ -55,15 +57,18 @@ public class ResidenciaController {
 	
 	@GetMapping("/editar/{id}")
 	public String atualizar(Model model, @PathVariable("id") Integer id) {
+		System.out.println(id);
 		if (id != null) {
 			Residencia residencia = residenciaService.findOne(id).get();
 			model.addAttribute("residencia", residencia);
+			System.out.println(residencia.getId());
 		}
 		return "residencia/formResidencia";
 	}
 	
 	@PutMapping
 	public String atualizar(@ModelAttribute Residencia residencia) {
+		System.out.println(residencia.getId());
 		residenciaService.save(residencia);
 		return "redirect:/residencias";
 	}

@@ -7,9 +7,12 @@
 <body>
 	
 	<section layout:fragment="content">
-		<h1 align="center" style="margin: 30px 0;">Cadastro de Residência</h1>
+		<!-- <h1 align="center" style="margin: 30px 0;">Cadastro de Residência</h1> -->
+		<h1 th:if="${residencia.id == null}" align="center" style="margin: 30px 0;">Nova Residência</h1>
+		<h1 th:if="${residencia.id != null}" align="center" style="margin: 30px 0;">Editar Residência</h1>
 		
-		<form th:action="@{/residencias/nova}" th:object="${residencia}" method="post">
+		<form th:action="@{/residencias}" th:object="${residencia}"
+			  th:method="@{${residencia.id == null} ? 'post' : 'put'}">
 			<div class="form-group">
 				<label for="nome">Nome</label>
 				<input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Insira um nome">
@@ -59,7 +62,7 @@
 		    	<input type="number" class="form-control" id="residentes" th:field="*{quantResidentesPorQuarto}"
 		    			placeholder="Insira a quantidade de residentes por quarto">
 		  	</div>
-		  	<button type="submit" class="btn btn-success" style="float: right;">Cadastrar</button>
+		  	<button type="submit" class="btn btn-success" style="float: right;">Salvar</button>
 		  	<a th:href="@{/residencias}" class="btn btn-secondary" style="float: right; margin: 0 20px 30px 0;">Cancelar</a>
 
 		</form>
