@@ -7,13 +7,13 @@
 <body>
 
 	<section layout:fragment="content">
-		<h1 align="center" style="margin: 60px 0;">Gerenciar Solicitação</h1>
+		<h1 align="center" style="margin: 60px 0;">Gerenciar Serviços</h1>
 
 		<div class="form-inline align-items-center">
 			<!-- Busca -->
 			<div class="input-group col-md-6" style="padding: 0">
 				<input type="text" class="form-control"
-					placeholder="Buscar solicitação" aria-label="Buscar solicitação"
+					placeholder="Buscar serviço" aria-label="Buscar servico"
 					aria-describedby="basic-addon2">
 				<div class="input-group-append">
 					<button class="btn btn-secondary" type="button">Buscar</button>
@@ -21,9 +21,9 @@
 			</div>
 			<!-- Botões -->
 			<div style="margin-left: auto;">
-				<a th:href="@{/}" class="btn btn-primary"
-					style="margin-right: 10px;">Distribuir Solicitação</a> <a
-					th:href="@{servicos}" class="btn btn-primary">Gerir Serviços</a>
+				<a th:href="@{solicitacoes}" class="btn btn-primary"
+					style="margin-right: 10px;">Gerir Solicitação</a> <a
+					th:href="@{servicos/novo}" class="btn btn-primary">Adicionar	Serviço</a>
 			</div>
 		</div>
 
@@ -36,13 +36,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="solicitacao : ${listaSolicitacoes}">
-					<td class="col-md-8" th:text="${solicitacao.nome}"></td>
+				<tr th:each="servico : ${listaServicos}">
+					<td class="col-md-8" th:text="${servico.nome}"></td>
 					<td>
 						<a class="btn btn-secondary">Detalhes</a>
 						<a class="btn btn-warning" style="margin: 0 10px"
-							th:href="@{/solicitacoes/editar/{id} (id = ${solicitacao.id})}">Editar</a>
-						<a class="btn btn-danger" th:href="@{/solicitacoes/remover/{id} (id = ${solicitacao.id})}">Remover</a>
+							th:href="@{/servicos/editar/{id} (id = ${servico.id})}">Editar</a>
+						<a class="btn btn-danger" th:href="@{/servicos/remover/{id} (id = ${servico.id})}">Remover</a>
 					</td>
 				</tr>
 			</tbody>

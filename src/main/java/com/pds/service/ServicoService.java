@@ -13,6 +13,7 @@ import com.pds.repository.ServicoRepository;
 @Service
 @Transactional(readOnly=true)
 public class ServicoService {
+	
 	@Autowired
 	private ServicoRepository servicoRepository;
 	
