@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pds.model.Residencia;
@@ -33,7 +34,7 @@ public class ResidenciaController {
 	@GetMapping("/nova")
 	public String residenciaForm(Model model) {
 		model.addAttribute("residencia", new Residencia());
-		return "residencia/cadastroResidencia";
+		return "residencia/formResidencia";
 	}
 	
 	// Envia as informacoes do formulario para a camada de servico
@@ -49,6 +50,21 @@ public class ResidenciaController {
 			Residencia residencia = residenciaService.findOne(id).get();
 			residenciaService.delete(residencia);
 		}
+		return "redirect:/residencias";
+	}
+	
+	@GetMapping("/editar/{id}")
+	public String atualizar(Model model, @PathVariable("id") Integer id) {
+		if (id != null) {
+			Residencia residencia = residenciaService.findOne(id).get();
+			model.addAttribute("residencia", residencia);
+		}
+		return "residencia/formResidencia";
+	}
+	
+	@PutMapping
+	public String atualizar(@ModelAttribute Residencia residencia) {
+		residenciaService.save(residencia);
 		return "redirect:/residencias";
 	}
 	
