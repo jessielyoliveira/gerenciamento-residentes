@@ -2,12 +2,22 @@ package com.pds.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name = "solicitacoes")
@@ -17,12 +27,32 @@ public class Solicitacao implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
+	@NotNull 
+	@JoinColumn(name = "solicitante")
 	private Residente solicitante;
+	
+	//@ManyToOne 
+	@JoinColumn(name = "servico")
 	private Servico servico; //tipo servico solicitado
+	
+	@NotNull @Column(name = "data")
 	private Date data;       //data solicitacao
+	
+	@NotNull @Column(name = "justificativa")
 	private String justificativa;
+	
+	@NotNull @Column(name = "materiais")
 	private String materiais;
+	
+	@ManyToOne
+	@JoinColumn(name = "status")
 	private Status status;
+	
+	
+//	@ManyToMany(mappedBy="solicitacoes", cascade = CascadeType.ALL)
+//    List<Solicitacao> solicitacoes;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -65,4 +95,12 @@ public class Solicitacao implements Serializable {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+	
+//	public List<Solicitacao> getSolicitacoes() {
+//		return solicitacoes; 
+//	}
+//	
+//	public void setSolicitacoes(List<Solicitacao> solicitacoes) {
+//		this.solicitacoes = solicitacoes; 
+//	}
 }

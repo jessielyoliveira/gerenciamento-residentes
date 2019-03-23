@@ -1,12 +1,18 @@
 package com.pds.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "servicos")
@@ -16,6 +22,8 @@ public class Servico implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
+	@NotNull @Column(name = "nome")
 	private String nome;
 	
 	public Integer getId() {
@@ -32,4 +40,15 @@ public class Servico implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+//	@OneToMany(mappedBy="servicos", cascade = CascadeType.ALL)
+//    List<Servico> servicos;
+//	
+//	public List<Servico> getServicos() {
+//		return servicos; 
+//	}
+//	
+//	public void setServicos(List<Servico> servicos) {
+//		this.servicos = servicos; 
+//	}
 }
