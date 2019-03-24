@@ -7,10 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.pds.model.Residencia;
 import com.pds.model.Residente;
 import com.pds.service.ResidenteService;
 
@@ -38,6 +38,15 @@ public class ResidenteController {
 	@PostMapping("/novo")
 	public String residenteSubmit(@ModelAttribute Residente residente) {
 		residenteService.save(residente);
+		return "redirect:/residentes";
+	}
+	
+	@GetMapping("/remover/{id}")
+	public String remover(@PathVariable("id") Integer id) {
+		if (id != null) {
+			Residente residente = residenteService.findOne(id).get();
+			residenteService.delete(residente);
+		}
 		return "redirect:/residentes";
 	}
 }
