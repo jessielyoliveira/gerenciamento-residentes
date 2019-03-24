@@ -24,7 +24,6 @@ public class ResidenciaController {
 	@Autowired
 	private ResidenciaService residenciaService;
 	
-	
 	@GetMapping
 	public String indexResidencia(Model model) {
 		List<Residencia> lista = residenciaService.findAll();
