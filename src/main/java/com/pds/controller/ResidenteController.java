@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pds.model.Residente;
 import com.pds.service.ResidenteService;
@@ -21,7 +22,7 @@ public class ResidenteController {
 	private ResidenteService residenteService;
 	
 	@GetMapping
-	public String indexResidencia(Model model) {
+	public String indexResidente(Model model) {
 		List<Residente> lista = residenteService.findAll();
 		model.addAttribute("listaResidentes", lista);
 		return "residente/homeResidente"; 
@@ -48,5 +49,12 @@ public class ResidenteController {
 			residenteService.delete(residente);
 		}
 		return "redirect:/residentes";
+	}
+	
+	@PostMapping("/busca")
+	public String buscar(Model model, @RequestParam("chave") String chave) {
+		List<Residente> lista = residenteService.search(chave);
+		model.addAttribute("listaResidentes", lista);
+		return "residente/homeResidente"; 
 	}
 }

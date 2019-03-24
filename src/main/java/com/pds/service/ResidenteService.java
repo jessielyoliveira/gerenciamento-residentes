@@ -29,6 +29,10 @@ public class ResidenteService {
 		return residenteRepository.findById(id);
 	}
 	
+	public List<Residente> search(String key) {
+		return residenteRepository.buscarPorNomeOuMatricula(key);
+	}
+	
 	@Transactional(readOnly=false)
 	public void delete(Residente entity) {
 		residenteRepository.delete(entity);
