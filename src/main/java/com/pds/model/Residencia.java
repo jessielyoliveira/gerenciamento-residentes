@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -20,25 +21,25 @@ public class Residencia implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
-	@NotNull @Column(name = "nome")
+	@NotEmpty @Column(name = "nome")
 	private String nome;
 	
-	@NotNull @Column(name = "endereco")
+	@NotEmpty @Column(name = "endereco")
 	private String endereco;
 	
-	@NotNull @Column(name = "numero")
+	@NotEmpty @Column(name = "numero")
 	private String numero;
 	
-	@NotNull @Column(name = "bairro")
+	@NotEmpty @Column(name = "bairro")
 	private String bairro;
 	
-	@NotNull @Column(name = "cep")
+	@NotEmpty @Column(name = "cep")
 	private String cep;
 	
-	@NotNull @Column(name = "cidade")
+	@NotEmpty @Column(name = "cidade")
 	private String cidade;
 	
-	@NotNull @Column(name = "estado")
+	@NotEmpty @Column(name = "estado")
 	private String estado;
 	
 	@NotNull @Column(name = "quantPisos")
@@ -83,6 +84,5 @@ public class Residencia implements Serializable {
 	
 	public Integer getQuantResidentesPorQuarto() { return quantResidentesPorQuarto; }
 	public void setQuantResidentesPorQuarto(Integer quantResidentesPorQuarto) { this.quantResidentesPorQuarto = quantResidentesPorQuarto; }
-		
-	
+
 }
