@@ -11,8 +11,8 @@
 		<h1 th:if="${residencia.id == null}" align="center" style="margin: 30px 0;">Nova Residência</h1>
 		<h1 th:if="${residencia.id != null}" align="center" style="margin: 30px 0;">Editar Residência</h1>
 		
-		<form th:action="@{/residencias}" th:object="${residencia}"
-			  th:method="@{${residencia.id == null} ? 'post' : 'put'}">
+		<form th:action="@{/residencias/salvar}" th:object="${residencia}" method="post">
+			<input type="hidden" th:field="*{id}">
 			<div class="form-group">
 				<label for="nome">Nome</label>
 				<input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Insira um nome">
