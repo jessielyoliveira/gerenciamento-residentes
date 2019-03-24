@@ -29,16 +29,20 @@
 		<table class="table table-striped" style="margin-top: 30px;">
 			<thead>
 				<tr>
+					<th scope="col">Matrícula</th>
 					<th scope="col">Nome</th>
+					<th scope="col">Curso</th>
 					<th scope="col">Ação</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="residencia : ${listaResidentes}">
-					<td class="col-md-8" th:text="${residencia.nome}"></td>
+				<tr th:each="residente : ${listaResidentes}">
+					<td class="col-md-1" th:text="${residente.matricula}"></td>
+					<td class="col-md-4" th:text="${residente.nome}"></td>
+					<td class="col-md-3" th:text="${residente.curso}"></td>
 					<td>
-						<a class="btn btn-secondary">Detalhes</a>
-						<a class="btn btn-warning" style="margin: 0 10px"
+						<a class="btn btn-secondary" style="color: white">Detalhes</a>
+						<a class="btn btn-warning" style="margin: 0 10px; color: white"
 							th:href="@{/residentes/editar/{id} (id = ${residente.id})}">Editar</a>
 						<a class="btn btn-danger" th:href="@{/residentes/remover/{id} (id = ${residente.id})}">Remover</a>
 					</td>
