@@ -45,7 +45,7 @@ public class ResidenteController {
 	@PostMapping("/novo")
 	public String residenteSubmit(@ModelAttribute Residente residente) {
 		residenteService.save(residente);
-		return "redirect:/residentes";
+		return "redirect:/residentes/gerenciar";
 	}
 	
 	@GetMapping("/remover/{id}")
@@ -54,10 +54,10 @@ public class ResidenteController {
 			Residente residente = residenteService.findOne(id).get();
 			residenteService.delete(residente);
 		}
-		return "redirect:/residentes";
+		return "redirect:/residentes/gerenciar";
 	}
 	
-	//bug: se buscar mais de uma vez ele vai para o endereço residentes/residentes/.../busca
+	//bug: se buscar mais de uma vez ele vai para o endereï¿½o residentes/residentes/.../busca
 	@PostMapping("/busca")
 	public String buscar(Model model, @RequestParam("chave") String chave) {
 		List<Residente> lista = residenteService.search(chave);

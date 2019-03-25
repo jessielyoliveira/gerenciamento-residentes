@@ -11,7 +11,7 @@
 
 		<div class="form-inline align-items-center">
 			<!-- Busca -->
-			<form th:action="@{residentes/busca}" method="post"  class="input-group col-md-6" style="padding: 0">
+			<form th:action="@{/residentes/busca}" method="post"  class="input-group col-md-6" style="padding: 0">
 				<input type="text" class="form-control" id="chave" name="chave"
 					placeholder="Buscar residentes por nome ou matrícula" aria-label="Buscar residentes"
 					aria-describedby="basic-addon2">
@@ -21,7 +21,8 @@
 			</form>
 			<!-- Botões -->
 			<div style="margin-left: auto;">
-				<a th:href="@{residentes/novo}" class="btn btn-primary">Adicionar Residente</a>
+				<a th:href="@{/residentes/novo}" class="btn btn-primary" style="margin: 0 10px">Adicionar Residente</a>
+				<a th:href="@{/proae}" class="btn btn-secondary">Voltar</a>
 			</div>
 		</div>
 
