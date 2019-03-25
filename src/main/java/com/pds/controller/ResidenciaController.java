@@ -2,6 +2,8 @@ package com.pds.controller;
 
 import java.util.List;
 import javax.validation.Valid;
+
+import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,9 +67,13 @@ public class ResidenciaController {
 	
 	@GetMapping("/editar/{id}")
 	public String atualizar(@PathVariable Integer id, Model model) {
-		if (id != null) {
-			Residencia residencia = residenciaService.findOne(id).get();
-			model.addAttribute("residencia", residencia);
+		try {
+			if (id != null) {
+				Residencia residencia = residenciaService.findOne(id).get();
+				model.addAttribute("residencia", residencia);
+			}
+		} catch (Exception e) {
+			e.getMessage();
 		}
 		return "residencia/formResidencia";
 	}
