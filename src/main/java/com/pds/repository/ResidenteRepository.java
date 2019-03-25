@@ -13,7 +13,7 @@ import com.pds.model.Residente;
 @Transactional
 public interface ResidenteRepository extends JpaRepository<Residente, Integer> {
 	
-	@Query("SELECT r FROM Residente r WHERE r.nome LIKE %?1% OR r.matricula LIKE %?1%")
+	@Query("SELECT r FROM Residente r WHERE lower(r.nome) LIKE %?1% OR lower(r.matricula) LIKE %?1%")
 	List<Residente> buscarPorNomeOuMatricula(String chave);
 }
 	

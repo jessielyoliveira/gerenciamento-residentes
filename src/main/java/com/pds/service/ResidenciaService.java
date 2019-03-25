@@ -63,8 +63,13 @@ public class ResidenciaService {
 		}
 	}
 	
-	public List<Residencia> buscaporNome(String nome) {
-		return residenciaRepository.buscaPorNome(nome);
+	public List<Residencia> search(String chave) {
+		return residenciaRepository.buscaPorNome(chave);
 	}
+	
+	/*
+	 * public List<Residencia> buscaporNome(String nome) { return
+	 * residenciaRepository.buscaPorNome(nome); }
+	 */
 	
 }
