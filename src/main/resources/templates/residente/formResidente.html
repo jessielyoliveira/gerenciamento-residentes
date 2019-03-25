@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-br" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<head>
+	<meta charset="utf-8">
+
+</head>
+<body>
+	<section layout:fragment="content">
+		<h1 align="center" style="margin: 30px 0">Cadastro de Residente</h1>
+		
+		<form th:action="@{/residentes/novo}" th:object="${residente}" method="post">
+			<!-- parte do  usuário -->
+		  	<div class="form-group">
+		    	<label for="matricula">Matrícula</label>
+		    	<input type="number" class="form-control" id="matricula" th:field="*{matricula}"
+		    			placeholder="Insira a matrícula do residente">
+		  	</div>
+			<div class="form-group">
+				<label for="nome">Nome</label>
+				<input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Insira o nome completo do residente">
+			</div>
+			<div class="form-group">
+		    	<label for="CPF">CPF</label>
+		    	<input type="number" class="form-control" id="CPF" th:field="*{CPF}" placeholder="Insira o CPF do residente">
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="RG">RG</label>
+		    	<input type="number" class="form-control" id="RG" th:field="*{RG}" placeholder="Insira o RG do residente">
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="datan">Data de Nascimento</label>
+		    	<input type="date" class="form-control" id="datan" th:field="*{datanasc}" script="" placeholder="Insira a data de nascimento do residente">
+		  	</div>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Insira o e-mail do residente">
+			</div>		
+		  	<div class="form-group">
+		    	<label for="tel">Telefone</label>
+		    	<input type="number" class="form-control" id="tel" th:field="*{telefone}" placeholder="Insira o telefone do residente">
+		  	</div>
+			<div class="form-group">
+		    	<label for="user">Usuário</label>
+		    	<input type="text" class="form-control" id="user" th:field="*{usuario}" placeholder="Insira o usuário do residente">
+		  	</div>
+		  	
+		  	<!-- parte do  residente -->
+		  	<div class="form-group">
+			  	<label for="bolsaPROAE">Tipo de Bolsa</label>
+			  	<select  class="form-control" id="bolsaPROAE" th:field="*{bolsaPROAE}" placeholder="Selecione o tipo de bolsa">
+							<option value="Bolsa Residência">Bolsa Residência</option>
+				</select>
+		  	</div>
+		  	<div class="form-group">
+			  	<label for="curso">Curso</label>
+			  	<input type="text" class="form-control" id="curso" th:field="*{curso}" placeholder="Insira o curso do residente">
+		  	</div>	
+			<div class="form-group">
+			  	<label for="estadoOrigem">Estado de origem</label>
+		    	<input type="text" class="form-control" id="estadoOrigem" th:field="*{estadoOrigem}" placeholder="Selecione o estado de origem do residente">
+				<!-- <select class="form-control" id="estadoOrigem" th:field="*{estadoOrigem}" placeholder="Selecione o estado de origem do residente">
+				</select> -->
+		  	</div>
+		  	<div class="form-group">
+			  	<label for="cidadeOrigem">Cidade de origem</label>
+		    	<input type="text"  class="form-control" id="cidadeOrigem" th:field="*{cidadeOrigem}" placeholder="Selecione a cidade de origem do residente">
+				<!-- <select  class="form-control" id="cidadeOrigem" th:field="*{cidadeOrigem}" placeholder="Selecione a cidade de origem do residente">
+				</select> -->
+		  	</div>
+		  	<!-- 
+		  	CODIGO QUE PROVAVELMENTE VAI FICAR EM DISTRIBUIR RESIDENTES
+		  	NO PORTAL PROAE
+		  	<div class="form-group">
+			  	<label for="residencia">Residência</label>
+		    	<select  class="form-control" id="residencia" th:field="*{residencia}" placeholder="Selecione a residência para o residente">
+				</select>
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="campus">Número do Campus ou Casa</label>
+		    	<input type="number" class="form-control" id="campus" th:field="*{campus}"
+		    			placeholder="Insira o campus ou casa que o residente assumirá">
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="piso">Número do piso</label>
+		    	<input type="number" class="form-control" id="piso" th:field="*{piso}"
+		    			placeholder="Insira o piso que o residente assumirá">
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="quarto">Número do quarto</label>
+		    	<input type="number" class="form-control" id="quarto" th:field="*{quarto}"
+		    			placeholder="Insira o quarto que o residente assumirá">
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="datat">Data do prevista para o término</label>
+		    	<input type="text" class="form-control" id="datat" th:field="*{data_termino}" placeholder="Insira a data de término da bolsa">
+		  	</div>
+ -->		  	
+		  	<button type="submit" class="btn btn-success" style="float: right;">Cadastrar</button>
+		  	<a th:href="@{/residentes/gerenciar}" class="btn btn-secondary" style="float: right; margin: 0 20px 30px 0;">Cancelar</a>
+
+		</form>		
+	</section>
+	
+</body>
+</html>
