@@ -12,6 +12,7 @@ public class GerenciaderesidentesApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GerenciaderesidentesApplication.class, args);
+		
 	}
 
 }

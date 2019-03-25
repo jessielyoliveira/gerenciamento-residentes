@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -20,25 +21,25 @@ public class Residencia implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
-	@NotNull @Column(name = "nome")
+	@NotEmpty @Column(name = "nome")
 	private String nome;
 	
-	@NotNull @Column(name = "endereco")
+	@NotEmpty @Column(name = "endereco")
 	private String endereco;
 	
-	@NotNull @Column(name = "numero")
+	@NotEmpty @Column(name = "numero")
 	private String numero;
 	
-	@NotNull @Column(name = "bairro")
+	@NotEmpty @Column(name = "bairro")
 	private String bairro;
 	
-	@NotNull @Column(name = "cep")
+	@NotEmpty @Column(name = "cep")
 	private String cep;
 	
-	@NotNull @Column(name = "cidade")
+	@NotEmpty @Column(name = "cidade")
 	private String cidade;
 	
-	@NotNull @Column(name = "estado")
+	@NotEmpty @Column(name = "estado")
 	private String estado;
 	
 	@NotNull @Column(name = "quantPisos")
@@ -49,6 +50,9 @@ public class Residencia implements Serializable {
 	
 	@NotNull @Column(name = "quantResidentesPorQuarto")
 	private Integer quantResidentesPorQuarto;
+		
+	@NotNull @Column(name = "TotalVagas")
+	private Integer totalVagas = 0;
 	
 	public Integer getId() { return id; }
 	public void setId(Integer id) { this.id = id; }
@@ -77,12 +81,12 @@ public class Residencia implements Serializable {
 	public Integer getQuantPisos() { return quantPisos; }
 	public void setQuantPisos(Integer quantPisos) { this.quantPisos = quantPisos; }
 	
-	
 	public Integer getQuantQuartosPorPiso() { return quantQuartosPorPiso; }
 	public void setQuantQuartosPorPiso(Integer quantQuartosPorPiso) { this.quantQuartosPorPiso = quantQuartosPorPiso; }
 	
 	public Integer getQuantResidentesPorQuarto() { return quantResidentesPorQuarto; }
 	public void setQuantResidentesPorQuarto(Integer quantResidentesPorQuarto) { this.quantResidentesPorQuarto = quantResidentesPorQuarto; }
-		
+	
+	public Integer getTotalVagas() { return quantPisos * quantQuartosPorPiso * quantResidentesPorQuarto; }
 	
 }
