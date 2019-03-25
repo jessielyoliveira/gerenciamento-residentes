@@ -29,4 +29,9 @@ public class UsuarioController {
 		return "redirect:/";
 	}
 	
+	// Fazer login depois
+	@PostMapping("/login")
+	public String loginUsuario() {
+		return "";
+	}
 }
