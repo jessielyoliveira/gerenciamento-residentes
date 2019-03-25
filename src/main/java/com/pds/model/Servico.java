@@ -42,13 +42,13 @@ public class Servico implements Serializable {
 	}
 	
 //	@OneToMany(mappedBy="servicos", cascade = CascadeType.ALL)
-//    List<Servico> servicos;
+//    List<Solicitacao> solicitacoes;
 //	
-//	public List<Servico> getServicos() {
-//		return servicos; 
+//	public List<Solicitacao> getSolicitacoes() {
+//		return solicitacoes; 
 //	}
 //	
-//	public void setServicos(List<Servico> servicos) {
-//		this.servicos = servicos; 
+//	public void setSolicitacoes(List<Solicitacao> solicitacoes) {
+//		this.solicitacoes = solicitacoes; 
 //	}
 }
