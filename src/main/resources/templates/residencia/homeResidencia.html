@@ -11,18 +11,19 @@
 
 		<div class="form-inline align-items-center">
 			<!-- Busca -->
-			<div class="input-group col-md-6" style="padding: 0">
-				<input type="text" class="form-control" id="chave"
-					placeholder="Buscar residência por nome" aria-label="Buscar residência"
+			<form th:action="@{/residencias/busca}" method="post"  class="input-group col-md-6" style="padding: 0">
+				<input type="text" class="form-control" id="chave" name="chave"
+					placeholder="Buscar residências por nome" aria-label="Buscar residências"
 					aria-describedby="basic-addon2">
 				<div class="input-group-append">
-					<a th:action="@{residencias/busca/{nome} (nome = ${chave})}" class="btn btn-secondary">Buscar</a>
+					<input class="btn btn-secondary" type="submit" value="Buscar">
+					<a class="btn btn-success" type="button" th:href=@{/residencias}>Todos</a>
 				</div>
-			</div>
+			</form>
 			<!-- Botões -->
 			<div style="margin-left: auto;">
 				<a th:href="@{/}" class="btn btn-primary">Distribuir Residentes</a> 
-				<a th:href="@{residencias/nova}" class="btn btn-primary" style="margin: 0 10px">Adicionar	Residência</a>
+				<a th:href="@{/residencias/nova}" class="btn btn-primary" style="margin: 0 10px">Adicionar	Residência</a>
 				<a th:href="@{/proae}" class="btn btn-secondary">Voltar</a>
 			</div>
 		</div>

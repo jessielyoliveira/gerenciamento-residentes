@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pds.exception.BusinessException;
@@ -103,11 +104,18 @@ public class ResidenciaController {
 		return "residencia/detalhesResidencia";
 	}
 	
-	@GetMapping("/busca/{nome}")
-	public String buscar(Model model, @PathVariable  String nome) {
-		List<Residencia> lista = residenciaService.buscaporNome(nome);
+	@PostMapping("/busca")
+	public String buscar(Model model, @RequestParam("chave") String chave) {
+		List<Residencia> lista = residenciaService.search(chave.toLowerCase());
 		model.addAttribute("listaResidencias", lista);
-		return "redirect:/residencias"; 
+		return "residencia/homeResidencia"; 
 	}
+	
+	/*
+	 * @GetMapping("/busca/{nome}") public String buscar(Model model, @PathVariable
+	 * String nome) { List<Residencia> lista = residenciaService.buscaporNome(nome);
+	 * model.addAttribute("listaResidencias", lista); return
+	 * "redirect:/residencias"; }
+	 */
 
 }

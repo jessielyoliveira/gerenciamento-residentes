@@ -57,7 +57,7 @@ public class ResidenteController {
 		return "redirect:/residentes/gerenciar";
 	}
 	
-	//bug: se buscar mais de uma vez ele vai para o endere�o residentes/residentes/.../busca
+	//bug: se buscar mais de uma vez ele vai para o endere�o residentes/residentes/.../busca [RESOLVIDO]
 	@PostMapping("/busca")
 	public String buscar(Model model, @RequestParam("chave") String chave) {
 		List<Residente> lista = residenteService.search(chave);
