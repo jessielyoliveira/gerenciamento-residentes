@@ -1,5 +1,8 @@
 package com.pds.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,5 +19,22 @@ public class ResidenteService {
 	@Transactional(readOnly = false)
 	public Residente save(Residente residente) {
 		return residenteRepository.save(residente);
-	}	
+	}
+	
+	public List<Residente> findAll() {
+		return residenteRepository.findAll();
+	}
+	
+	public Optional<Residente> findOne(Integer id) {
+		return residenteRepository.findById(id);
+	}
+	
+	public List<Residente> search(String key) {
+		return residenteRepository.buscarPorNomeOuMatricula(key);
+	}
+	
+	@Transactional(readOnly=false)
+	public void delete(Residente entity) {
+		residenteRepository.delete(entity);
+	}
 }

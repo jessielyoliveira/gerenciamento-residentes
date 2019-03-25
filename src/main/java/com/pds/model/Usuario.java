@@ -1,16 +1,17 @@
 package com.pds.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 
-@Entity
-@Table(name = "usuarios")
+import org.springframework.format.annotation.DateTimeFormat;
+
+@MappedSuperclass
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -19,20 +20,33 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
+	@Column(name = "matricula")
+	private Long matricula;
+	
 	@Column(name = "nome")
 	private String nome;
 	
+	@Column(name = "CPF")
+	private Long CPF;
+	
+	@Column(name = "RG")
+	private Long RG;
+	
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	@Column(name = "datanasc")
+	private Date datanasc;
+	
+	@Column(name = "telefone")
+	private String telefone;
+		
 	@Column(name = "email")
 	private String email;
 	
 	@Column(name = "usuario")
 	private String usuario;
 	
-	@Column(name = "senha")
+	@Column(name = "senha") 
 	private String senha;
-	
-	@Column(name = "papel")
-	private String papel;
 
 	public Integer getId() { return id;	}
 	public void setId(Integer id) { this.id = id; }
@@ -48,7 +62,19 @@ public class Usuario implements Serializable {
 
 	public String getSenha() { return senha; }
 	public void setSenha(String senha) { this.senha = senha; }
-
-	public String getPapel() { return papel; }
-	public void setPapel(String papel) { this.papel = papel; }
+	
+	public Long getMatricula() { return matricula; }
+	public void setMatricula(Long matricula) { this.matricula = matricula; }
+	
+	public Long getCPF() { return CPF; }
+	public void setCPF(Long cPF) { CPF = cPF; }
+	
+	public Long getRG() { return RG; }
+	public void setRG(Long rG) { RG = rG; }
+	
+	public Date getDatanasc() { return datanasc; }
+	public void setDatanasc(Date datanasc) { this.datanasc = datanasc; }
+	
+	public String getTelefone() { return telefone; }
+	public void setTelefone(String telefone) { this.telefone = telefone; }
 }
