@@ -21,7 +21,13 @@ public class ResidenteController {
 	@Autowired
 	private ResidenteService residenteService;
 	
+
 	@GetMapping
+	public String portalResidente() {
+		return "residente/portalResidente";
+	}
+	
+	@GetMapping("/gerenciar")
 	public String indexResidente(Model model) {
 		List<Residente> lista = residenteService.findAll();
 		model.addAttribute("listaResidentes", lista);
@@ -51,6 +57,7 @@ public class ResidenteController {
 		return "redirect:/residentes";
 	}
 	
+	//bug: se buscar mais de uma vez ele vai para o endereço residentes/residentes/.../busca
 	@PostMapping("/busca")
 	public String buscar(Model model, @RequestParam("chave") String chave) {
 		List<Residente> lista = residenteService.search(chave);
