@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pds.exception.BusinessException;
+import com.pds.exception.ModelException;
 import com.pds.model.Residencia;
 import com.pds.service.ResidenciaService;
 
@@ -40,11 +41,15 @@ public class ResidenciaController {
 	public String salvar(@Valid Residencia residencia, RedirectAttributes alerta) {
 		try {
 			residenciaService.validar(residencia);
+			residenciaService.existe(residencia);
 			residenciaService.save(residencia);
 			alerta.addFlashAttribute("sucesso", "Residência inserida");
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			alerta.addFlashAttribute("erro", "Erro na inserção da residência [" + e.getMessage() + "]");
+		} catch (ModelException e) {
+			e.printStackTrace();
+			alerta.addFlashAttribute("aviso", "Residência já existe [" + e.getMessage() + "]");
 		}
 		return "redirect:/residencias";
 	}
@@ -72,11 +77,11 @@ public class ResidenciaController {
 		try {
 			residenciaService.validar(residencia);
 			residenciaService.save(residencia);
-			alerta.addFlashAttribute("aviso", "Residência atualizada");
+			alerta.addFlashAttribute("sucesso", "Residência atualizada");
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			alerta.addFlashAttribute("erro", "Erro na atualização da residência [" + e.getMessage() + "]");
-		}
+		} 
 		return "redirect:/residencias";
 	}
 

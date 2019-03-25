@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pds.exception.BusinessException;
+import com.pds.exception.ModelException;
 import com.pds.model.Residencia;
 import com.pds.repository.ResidenciaRepository;
 
@@ -38,6 +39,7 @@ public class ResidenciaService {
 	}
 	
 	public void validar(Residencia residencia) throws BusinessException {
+		System.out.println("entrou na validar");
 		if(residencia.getQuantPisos() < 1 || residencia.getQuantPisos() > 10){
 			throw new BusinessException("Quantidade de pisos inválida");
 		}
@@ -49,14 +51,20 @@ public class ResidenciaService {
 		}
 	}
 	
-	/*public void existe(Residencia residencia) {
+	public void existe(Residencia residencia) throws ModelException {
+		System.out.println("entrou na existe");
 		List<Residencia> residencias = findAll();
-		for(Residencia res : residencias) {
-			if(res.getNome().toLowerCase() == residencia.getNome().toLowerCase()
-			|| res.getNumero() == residencia.getNumero()
-			|| res.)
+		for(Residencia r : residencias) {
+			System.out.println("entrou no for da existe");
+			String nome = r.getNome().toLowerCase();
+			String numero = r.getNumero().toLowerCase();
+			if(nome.equals(residencia.getNome().toLowerCase())) {
+				throw new ModelException("Nome já cadastrado");
+			}
+			if(numero.equals(residencia.getNumero().toLowerCase())) {
+				throw new ModelException("Número já cadastrado");
+			}
 		}
-	}*/
-	
+	}
 	
 }
