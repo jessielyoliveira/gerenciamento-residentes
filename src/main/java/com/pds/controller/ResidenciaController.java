@@ -3,7 +3,6 @@ package com.pds.controller;
 import java.util.List;
 import javax.validation.Valid;
 
-import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pds.exception.BusinessException;
@@ -46,13 +44,13 @@ public class ResidenciaController {
 			residenciaService.validar(residencia);
 			residenciaService.existe(residencia);
 			residenciaService.save(residencia);
-			alerta.addFlashAttribute("sucesso", "Residência inserida");
+			alerta.addFlashAttribute("sucesso", "Residencia inserida");
 		} catch (BusinessException e) {
 			e.printStackTrace();
-			alerta.addFlashAttribute("erro", "Erro na inserção da residência [" + e.getMessage() + "]");
+			alerta.addFlashAttribute("erro", "Erro na insercao da residencia [" + e.getMessage() + "]");
 		} catch (ModelException e) {
 			e.printStackTrace();
-			alerta.addFlashAttribute("aviso", "Residência já existe [" + e.getMessage() + "]");
+			alerta.addFlashAttribute("aviso", "Residencia ja existe [" + e.getMessage() + "]");
 		}
 		return "redirect:/residencias";
 	}
@@ -84,10 +82,10 @@ public class ResidenciaController {
 		try {
 			residenciaService.validar(residencia);
 			residenciaService.save(residencia);
-			alerta.addFlashAttribute("sucesso", "Residência atualizada");
+			alerta.addFlashAttribute("sucesso", "Residencia atualizada");
 		} catch (BusinessException e) {
 			e.printStackTrace();
-			alerta.addFlashAttribute("erro", "Erro na atualização da residência [" + e.getMessage() + "]");
+			alerta.addFlashAttribute("erro", "Erro na atualizacao da residencia [" + e.getMessage() + "]");
 		} 
 		return "redirect:/residencias";
 	}
@@ -105,9 +103,9 @@ public class ResidenciaController {
 		return "residencia/detalhesResidencia";
 	}
 	
-	@PostMapping("/busca")
-	public String buscar(Model model, @RequestParam String chave) {
-		List<Residencia> lista = residenciaService.search(chave);
+	@GetMapping("/busca/{nome}")
+	public String buscar(Model model, @PathVariable  String nome) {
+		List<Residencia> lista = residenciaService.buscaporNome(nome);
 		model.addAttribute("listaResidencias", lista);
 		return "redirect:/residencias"; 
 	}

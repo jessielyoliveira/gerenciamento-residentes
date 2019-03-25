@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.core.EntityInformation;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,37 +37,34 @@ public class ResidenciaService {
 		residenciaRepository.delete(residencia);
 	}
 	
-	public List<Residencia> search(String chave) {
-		return residenciaRepository.buscaPorNome(chave);
-	}
-	
 	public void validar(Residencia residencia) throws BusinessException {
-		System.out.println("entrou na validar");
 		if(residencia.getQuantPisos() < 1 || residencia.getQuantPisos() > 10){
-			throw new BusinessException("Quantidade de pisos inválida");
+			throw new BusinessException("Quantidade de pisos invalida");
 		}
 		if(residencia.getQuantQuartosPorPiso() < 1 || residencia.getQuantPisos() > 15) {
-			throw new BusinessException("Quantidade de quartos por pisos inválida");
+			throw new BusinessException("Quantidade de quartos por pisos invalida");
 		}
 		if(residencia.getQuantResidentesPorQuarto() < 1 || residencia.getQuantPisos() > 8) {
-			throw new BusinessException("Quantidade de residentes por quarto inválida");
+			throw new BusinessException("Quantidade de residentes por quarto invalida");
 		}
 	}
 	
 	public void existe(Residencia residencia) throws ModelException {
-		System.out.println("entrou na existe");
 		List<Residencia> residencias = findAll();
 		for(Residencia r : residencias) {
-			System.out.println("entrou no for da existe");
 			String nome = r.getNome().toLowerCase();
 			String numero = r.getNumero().toLowerCase();
 			if(nome.equals(residencia.getNome().toLowerCase())) {
-				throw new ModelException("Nome já cadastrado");
+				throw new ModelException("Nome ja cadastrado");
 			}
 			if(numero.equals(residencia.getNumero().toLowerCase())) {
-				throw new ModelException("Número já cadastrado");
+				throw new ModelException("Numero ja cadastrado");
 			}
 		}
+	}
+	
+	public List<Residencia> buscaporNome(String nome) {
+		return residenciaRepository.buscaPorNome(nome);
 	}
 	
 }

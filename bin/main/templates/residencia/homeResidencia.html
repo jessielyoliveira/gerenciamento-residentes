@@ -11,14 +11,14 @@
 
 		<div class="form-inline align-items-center">
 			<!-- Busca -->
-			<form th:action="@{residencias/busca}" method="post" class="input-group col-md-6" style="padding: 0">
-				<input type="text" class="form-control"
-					placeholder="Buscar residencia por nome" aria-label="Buscar residência"
+			<div class="input-group col-md-6" style="padding: 0">
+				<input type="text" class="form-control" id="chave"
+					placeholder="Buscar residência por nome" aria-label="Buscar residência"
 					aria-describedby="basic-addon2">
 				<div class="input-group-append">
-					<button class="btn btn-secondary" type="button">Buscar</button>
+					<a th:action="@{residencias/busca/{nome} (nome = ${chave})}" class="btn btn-secondary">Buscar</a>
 				</div>
-			</form>
+			</div>
 			<!-- Botões -->
 			<div style="margin-left: auto;">
 				<a th:href="@{/}" class="btn btn-primary"
