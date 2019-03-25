@@ -42,7 +42,9 @@
 						<a class="btn btn-secondary">Detalhes</a>
 						<a class="btn btn-warning" style="margin: 0 10px"
 							th:href="@{/solicitacoes/editar/{id} (id = ${solicitacao.id})}">Editar</a>
-						<a class="btn btn-danger" th:href="@{/solicitacoes/remover/{id} (id = ${solicitacao.id})}">Remover</a>
+						<a class="btn btn-danger"
+							onclick="return confirm('Tem certeza que deseja remover este registro?')"
+							th:href="@{/solicitacoes/remover/{id} (id = ${solicitacao.id})}">Remover</a>
 					</td>
 				</tr>
 			</tbody>

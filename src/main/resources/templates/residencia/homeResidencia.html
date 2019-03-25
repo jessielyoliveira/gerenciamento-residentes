@@ -43,13 +43,14 @@
 						<a class="btn btn-secondary" th:href="@{/residencias/detalhes/{id} (id = ${residencia.id})}">Detalhes</a>
 						<a class="btn btn-warning" style="margin: 0 10px"
 							th:href="@{/residencias/editar/{id} (id = ${residencia.id})}">Editar</a>
-						<a class="btn btn-danger" th:href="@{/residencias/remover/{id} (id = ${residencia.id})}">Remover</a>
+						<a class="btn btn-danger" 
+							onclick="return confirm('Tem certeza que deseja remover este registro?')"
+							th:href="@{/residencias/remover/{id} (id = ${residencia.id})}">Remover</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
-		
-		
+
 	</section>
 		
 </body>

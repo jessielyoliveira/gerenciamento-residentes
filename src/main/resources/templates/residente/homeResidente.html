@@ -46,11 +46,14 @@
 						<a class="btn btn-secondary" style="color: white">Detalhes</a>
 						<a class="btn btn-warning" style="margin: 0 10px; color: white"
 							th:href="@{/residentes/editar/{id} (id = ${residente.id})}">Editar</a>
-						<a class="btn btn-danger" th:href="@{/residentes/remover/{id} (id = ${residente.id})}">Remover</a>
+						<a class="btn btn-danger" 
+							onclick="return confirm('Tem certeza que deseja remover este registro?')"
+							th:href="@{/residentes/remover/{id} (id = ${residente.id})}">Remover</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+
 	</section>
 	
 </body>
