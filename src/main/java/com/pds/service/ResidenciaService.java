@@ -38,6 +38,10 @@ public class ResidenciaService {
 		residenciaRepository.delete(residencia);
 	}
 	
+	public List<Residencia> search(String chave) {
+		return residenciaRepository.buscaPorNome(chave);
+	}
+	
 	public void validar(Residencia residencia) throws BusinessException {
 		System.out.println("entrou na validar");
 		if(residencia.getQuantPisos() < 1 || residencia.getQuantPisos() > 10){
