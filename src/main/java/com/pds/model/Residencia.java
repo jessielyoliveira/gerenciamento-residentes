@@ -87,5 +87,6 @@ public class Residencia implements Serializable {
 	public Integer getQuantResidentesPorQuarto() { return quantResidentesPorQuarto; }
 	public void setQuantResidentesPorQuarto(Integer quantResidentesPorQuarto) { this.quantResidentesPorQuarto = quantResidentesPorQuarto; }
 	
-	public Integer getTotalVagas() { return quantPisos * quantQuartosPorPiso * quantResidentesPorQuarto; }	
+	public Integer getTotalVagas() { return quantPisos * quantQuartosPorPiso * quantResidentesPorQuarto; }
+	
 }
