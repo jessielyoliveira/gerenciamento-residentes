@@ -90,5 +90,18 @@ public class ResidenciaController {
 		} 
 		return "redirect:/residencias";
 	}
+	
+	@GetMapping("/detalhes/{id}")
+	public String detalhar(@PathVariable Integer id, Model model) {
+		try {
+			if (id != null) {
+				Residencia residencia = residenciaService.findOne(id).get();
+				model.addAttribute("residencia", residencia);
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return "residencia/detalhesResidencia";
+	}
 
 }

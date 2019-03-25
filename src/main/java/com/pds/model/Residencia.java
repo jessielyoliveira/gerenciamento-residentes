@@ -50,6 +50,9 @@ public class Residencia implements Serializable {
 	
 	@NotNull @Column(name = "quantResidentesPorQuarto")
 	private Integer quantResidentesPorQuarto;
+		
+	@NotNull @Column(name = "TotalVagas")
+	private Integer totalVagas = 0;
 	
 	public Integer getId() { return id; }
 	public void setId(Integer id) { this.id = id; }
@@ -78,11 +81,11 @@ public class Residencia implements Serializable {
 	public Integer getQuantPisos() { return quantPisos; }
 	public void setQuantPisos(Integer quantPisos) { this.quantPisos = quantPisos; }
 	
-	
 	public Integer getQuantQuartosPorPiso() { return quantQuartosPorPiso; }
 	public void setQuantQuartosPorPiso(Integer quantQuartosPorPiso) { this.quantQuartosPorPiso = quantQuartosPorPiso; }
 	
 	public Integer getQuantResidentesPorQuarto() { return quantResidentesPorQuarto; }
 	public void setQuantResidentesPorQuarto(Integer quantResidentesPorQuarto) { this.quantResidentesPorQuarto = quantResidentesPorQuarto; }
-
+	
+	public Integer getTotalVagas() { return quantPisos * quantQuartosPorPiso * quantResidentesPorQuarto; }	
 }
