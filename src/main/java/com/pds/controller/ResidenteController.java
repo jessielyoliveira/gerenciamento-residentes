@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.pds.model.Residencia;
 import com.pds.model.Residente;
+import com.pds.service.ResidenciaService;
 import com.pds.service.ResidenteService;
 
 @Controller
@@ -20,6 +22,9 @@ import com.pds.service.ResidenteService;
 public class ResidenteController {
 	@Autowired
 	private ResidenteService residenteService;
+	
+	@Autowired
+	private ResidenciaService residenciaService;
 	
 
 	@GetMapping
@@ -37,6 +42,8 @@ public class ResidenteController {
 	// Abre o formulario de cadastro de residentes
 	@GetMapping("/novo")
 	public String residenteForm(Model model) {
+		List<Residencia> listaResidencias = residenciaService.findAll();
+		model.addAttribute("residencias", listaResidencias);
 		model.addAttribute("residente", new Residente());
 		return "residente/formResidente";
 	}

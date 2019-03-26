@@ -68,7 +68,20 @@
 				<!-- <select  class="form-control" id="cidadeOrigem" th:field="*{cidadeOrigem}" placeholder="Selecione a cidade de origem do residente">
 				</select> -->
 		  	</div>
-		  	<!-- 
+
+
+			<!-- TEMPORÁRIO -->
+			<div class="form-group" th:object="${residencia}">
+				<label for="residencia">Residência</label> 
+				<select name="residencia.id"
+					class="form-control">
+					<option th:each="residencia : ${residencias}"
+						th:value="${residencia.id}" th:text="${residencia.nome}"></option>
+				</select>
+			</div>
+
+
+			<!-- 
 		  	CODIGO QUE PROVAVELMENTE VAI FICAR EM DISTRIBUIR RESIDENTES
 		  	NO PORTAL PROAE
 		  	<div class="form-group">
