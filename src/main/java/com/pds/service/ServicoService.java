@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pds.exception.ModelException;
+import com.pds.model.Residencia;
 import com.pds.model.Servico;
 import com.pds.repository.ServicoRepository;
 
@@ -35,16 +37,19 @@ public class ServicoService {
 		servicoRepository.delete(entity);
 	}
 	
-	public boolean existe(Servico serv) {
+	public void existe(Servico serv) throws ModelException {
 		List<Servico> servicos = findAll();	
 		for (Servico servico : servicos) {
 			Integer id = servico.getId();
 			String nome = servico.getNome().toLowerCase();
-			if(nome.equals(serv.getNome().toLowerCase()) || id.equals(serv.getId())) {
-				return true;
+			if(nome.equals(serv.getNome().toLowerCase())) {
+				throw new ModelException("Nome ja cadastrado");
+			}
+			if(id.equals(serv.getId())) {
+				throw new ModelException("Id ja cadastrado");
 			}
 		}	
-		return false;
+		
 	}
 	
 	public boolean empty() {
@@ -53,5 +58,9 @@ public class ServicoService {
 			return true;
 		}
 		return false;
+	}
+	
+	public List<Servico> search(String chave) {
+		return servicoRepository.buscaPorNome(chave);
 	}
 }
