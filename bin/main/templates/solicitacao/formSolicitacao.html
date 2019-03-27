@@ -7,23 +7,29 @@
 <body>
 	
 	<section layout:fragment="content">
-		<h1 align="center" style="margin: 30px 0;">Cadastro de Solicitação</h1>
+		<!-- <h1 align="center" style="margin: 30px 0;">Cadastro de Residência</h1> -->
+		<h1 th:if="${solicitacao.id == null}" align="center" style="margin: 30px 0;">Nova Solicitação</h1>
+		<h1 th:if="${solicitacao.id != null}" align="center" style="margin: 30px 0;">Editar Solicitação</h1>
 		
-		<form th:action="@{/solicitacoes/nova}" th:object="${solicitacao}" method="post">
+		<form th:action="@{/solicitacoes}" th:object="${solicitacao}" 
+				th:method="@{${solicitacao.id == null} ? 'post' : 'put'}">
+			<input type="hidden" th:field="*{id}">
+			
 			 <div class="form-group" th:object="${servico}">
 			 	<label for="servico">Tipo Serviço</label>
 				 <select name="servico.id" class="form-control">
-			 		 <option th:each="servico : ${servicos}" th:value="${servico.id}" th:text="${servico.nome}"></option>
+			 		 <option th:each="servico : ${servicos}" 
+			 		 th:value="${servico.id}" th:text="${servico.nome}"></option>
 				</select>	
 			 </div>
 			 <div class="form-group">
 				<label for="justificativa">Justificativa</label>
-				<input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Insira uma justificativa">
+				<input type="text" class="form-control" id="justificativa" th:field="*{justificativa}" placeholder="Insira uma justificativa">
 			</div>
 			
 			
-		  	<button type="submit" class="btn btn-success" style="float: right;">Cadastrar</button>
-		  	<a th:href="@{/residencias}" class="btn btn-secondary" style="float: right; margin: 0 20px 30px 0;">Cancelar</a>
+		  	<button type="submit" class="btn btn-success" style="float: right;">Salvar</button>
+		  	<a th:href="@{/residentes}" class="btn btn-secondary" style="float: right; margin: 0 20px 30px 0;">Cancelar</a>
 
 		</form>
 	</section>

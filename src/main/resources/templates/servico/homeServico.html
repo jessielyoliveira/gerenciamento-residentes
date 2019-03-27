@@ -41,7 +41,7 @@
 				<tr th:each="servico : ${listaServicos}">
 					<td class="col-md-8" th:text="${servico.nome}"></td>
 					<td>
-						<a class="btn btn-secondary">Detalhes</a>
+						
 						<a class="btn btn-warning" style="margin: 0 10px"
 							th:href="@{/servicos/editar/{id} (id = ${servico.id})}">Editar</a>
 						<a class="btn btn-danger"
