@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-br" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+
+	<section layout:fragment="content">
+		<h1 align="center" style="margin: 60px 0;">Detalhes da Residência</h1>
+		
+		<div class="row">
+			<div class="col">
+				<div class="form-group">
+					<label class="font-weight-bold" for="nome">Nome: </label>
+					<span th:text="${residencia.nome}"></span>
+				</div>
+				<div class="form-group">
+					<label class="font-weight-bold" for="endereco">Endereço: </label> 
+					<span th:text="${residencia.endereco}"></span>
+				</div>
+				<div class="form-group">
+					<label class="font-weight-bold" for="numero">Número: </label> 
+					<span th:text="${residencia.numero}"></span>
+				</div>
+				<div class="form-group">
+					<label class="font-weight-bold" for="bairro">Bairro: </label> 
+					<span th:text="${residencia.bairro}"></span>
+				</div>
+				<div class="form-group">
+					<label class="font-weight-bold" for="cep">CEP: </label>
+					<span th:text="${residencia.cep}"></span>
+				</div>
+				<div class="form-group">
+					<label class="font-weight-bold" for="cidade">Cidade: </label>
+					<span th:text="${residencia.cidade}"></span>
+				</div>
+				<div class="form-group">
+					<label class="font-weight-bold" for="estado">Estado: </label>
+					<span th:text="${residencia.estado}"></span>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="form-group">
+					<label class="font-weight-bold" for="pisos">Quantidade de pisos: </label>
+					<span th:text="${residencia.quantPisos}"></span>
+				</div>
+				<div class="form-group">
+					<label class="font-weight-bold" for="quartos">Quantidade de	quartos por piso: </label>
+					<span th:text="${residencia.quantQuartosPorPiso}"></span>
+				</div>
+				<div class="form-group">
+					<label class="font-weight-bold" for="residentes">Quantidade de residentes por quarto: </label>
+					<span th:text="${residencia.quantResidentesPorQuarto}"></span>
+				</div>
+				<div class="form-group" style="margin-bottom: 30px;">
+					<label class="font-weight-bold" for="residentes">Total de vagas: </label>
+					<span th:text="${residencia.totalVagas}"></span>
+				</div>
+			</div>
+		</div>
+		 	
+		 <a th:href="@{/residencias}" class="btn btn-secondary" style="float: right; margin-bottom: 30px;">Voltar</a>
+	</section>
+		
+</body>
+</html>
