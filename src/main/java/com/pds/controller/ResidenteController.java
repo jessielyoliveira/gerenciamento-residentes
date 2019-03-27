@@ -1,4 +1,4 @@
-package com.pds.controller;
+Ôªøpackage com.pds.controller;
 
 import java.util.List;
 
@@ -61,11 +61,11 @@ public class ResidenteController {
 			alerta.addFlashAttribute("sucesso", "O Residente foi cadastrado com sucesso");
 		} catch (BusinessException e) {
 			e.printStackTrace();
-			alerta.addFlashAttribute("erro", "Erro na inserÁ„o do residente [" + e.getMessage() + "]");
+			alerta.addFlashAttribute("erro", "Erro na inser√ß√£o do residente [" + e.getMessage() + "]");
 			return "redirect:/residentes/novo";
 		} catch (ModelException e) {
 			e.printStackTrace();
-			alerta.addFlashAttribute("aviso", "Residente j· existe [" + e.getMessage() + "]");
+			alerta.addFlashAttribute("aviso", "Residente j√° existe [" + e.getMessage() + "]");
 			return "redirect:/residentes/novo";
 		}
 		
