@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -23,7 +24,7 @@ public class Servico implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@NotNull @Column(name = "nome")
+	@NotEmpty @Column(name = "nome")
 	private String nome;
 	
 	public Integer getId() {
