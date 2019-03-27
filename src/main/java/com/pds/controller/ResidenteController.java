@@ -1,4 +1,4 @@
-package com.pds.controller;
+﻿package com.pds.controller;
 
 import java.util.List;
 
@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.pds.exception.BusinessException;
+import com.pds.exception.ModelException;
 import com.pds.model.Residencia;
 import com.pds.model.Residente;
 import com.pds.service.ResidenciaService;
@@ -50,9 +53,23 @@ public class ResidenteController {
 	
 	// Envia as informacoes do formulario para a camada de servico
 	@PostMapping("/novo")
-	public String residenteSubmit(@ModelAttribute Residente residente) {
-		residenteService.save(residente);
-		return "redirect:/residentes/gerenciar";
+	public String residenteSubmit(@ModelAttribute Residente residente, RedirectAttributes alerta) {
+		try {
+			residenteService.validate(residente);
+			residenteService.alreadyExists(residente);
+			residenteService.save(residente);
+			alerta.addFlashAttribute("sucesso", "O Residente foi cadastrado com sucesso");
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			alerta.addFlashAttribute("erro", "Erro na inserção do residente [" + e.getMessage() + "]");
+			return "redirect:/residentes/novo";
+		} catch (ModelException e) {
+			e.printStackTrace();
+			alerta.addFlashAttribute("aviso", "Residente já existe [" + e.getMessage() + "]");
+			return "redirect:/residentes/novo";
+		}
+		
+		return "redirect:/residentes/gerenciar";		
 	}
 	
 	@GetMapping("/remover/{id}")
@@ -64,7 +81,6 @@ public class ResidenteController {
 		return "redirect:/residentes/gerenciar";
 	}
 	
-	//bug: se buscar mais de uma vez ele vai para o endere�o residentes/residentes/.../busca [RESOLVIDO]
 	@PostMapping("/busca")
 	public String buscar(Model model, @RequestParam("chave") String chave) {
 		List<Residente> lista = residenteService.search(chave);

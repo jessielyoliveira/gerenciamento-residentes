@@ -13,28 +13,27 @@
 			<!-- parte do  usuário -->
 		  	<div class="form-group">
 		    	<label for="matricula">Matrícula</label>
-		    	<input type="number" class="form-control" id="matricula" th:field="*{matricula}"
-		    			placeholder="Insira a matrícula do residente">
+		    	<input type="number" class="form-control" id="matricula" th:field="*{matricula}" required="required" placeholder="Insira a matrícula do residente">
 		  	</div>
 			<div class="form-group">
 				<label for="nome">Nome</label>
-				<input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Insira o nome completo do residente">
+				<input type="text" class="form-control" id="nome" th:field="*{nome}" required="required" placeholder="Insira o nome completo do residente">
 			</div>
 			<div class="form-group">
 		    	<label for="CPF">CPF</label>
-		    	<input type="number" class="form-control" id="CPF" th:field="*{CPF}" placeholder="Insira o CPF do residente">
+		    	<input type="number" class="form-control" id="CPF" th:field="*{CPF}" required="required" placeholder="Insira o CPF do residente">
 		  	</div>
 		  	<div class="form-group">
 		    	<label for="RG">RG</label>
-		    	<input type="number" class="form-control" id="RG" th:field="*{RG}" placeholder="Insira o RG do residente">
+		    	<input type="number" class="form-control" id="RG" th:field="*{RG}" required="required" placeholder="Insira o RG do residente">
 		  	</div>
 		  	<div class="form-group">
 		    	<label for="datan">Data de Nascimento</label>
-		    	<input type="date" class="form-control" id="datan" th:field="*{datanasc}" script="" placeholder="Insira a data de nascimento do residente">
+		    	<input type="date" class="form-control" id="datan" th:field="*{datanasc}" required="required"placeholder="Insira a data de nascimento do residente">
 		  	</div>
 			<div class="form-group">
 				<label for="email">Email</label>
-				<input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Insira o e-mail do residente">
+				<input type="email" class="form-control" id="email" th:field="*{email}" required="required" placeholder="Insira o e-mail do residente">
 			</div>		
 		  	<div class="form-group">
 		    	<label for="tel">Telefone</label>
@@ -54,17 +53,17 @@
 		  	</div>
 		  	<div class="form-group">
 			  	<label for="curso">Curso</label>
-			  	<input type="text" class="form-control" id="curso" th:field="*{curso}" placeholder="Insira o curso do residente">
+			  	<input type="text" class="form-control" id="curso" th:field="*{curso}" required="required" placeholder="Insira o curso do residente">
 		  	</div>	
 			<div class="form-group">
 			  	<label for="estadoOrigem">Estado de origem</label>
-		    	<input type="text" class="form-control" id="estadoOrigem" th:field="*{estadoOrigem}" placeholder="Selecione o estado de origem do residente">
+		    	<input type="text" class="form-control" id="estadoOrigem" th:field="*{estadoOrigem}" required="required" placeholder="Selecione o estado de origem do residente">
 				<!-- <select class="form-control" id="estadoOrigem" th:field="*{estadoOrigem}" placeholder="Selecione o estado de origem do residente">
 				</select> -->
 		  	</div>
 		  	<div class="form-group">
 			  	<label for="cidadeOrigem">Cidade de origem</label>
-		    	<input type="text"  class="form-control" id="cidadeOrigem" th:field="*{cidadeOrigem}" placeholder="Selecione a cidade de origem do residente">
+		    	<input type="text"  class="form-control" id="cidadeOrigem" th:field="*{cidadeOrigem}" required="required" placeholder="Selecione a cidade de origem do residente">
 				<!-- <select  class="form-control" id="cidadeOrigem" th:field="*{cidadeOrigem}" placeholder="Selecione a cidade de origem do residente">
 				</select> -->
 		  	</div>
