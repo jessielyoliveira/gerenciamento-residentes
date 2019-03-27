@@ -9,7 +9,9 @@
 	<section layout:fragment="content">
 		<h1 align="center" style="margin: 30px 0">Cadastro de Residente</h1>
 		
-		<form th:action="@{/residentes/novo}" th:object="${residente}" method="post">
+		<form th:action="@{/residentes}" th:object="${residente}" 
+				th:method="@{${residente.id == null} ? 'post' : 'put'}">
+				<input type="hidden" th:field="*{id}">
 			<!-- parte do  usuário -->
 		  	<div class="form-group">
 		    	<label for="matricula">Matrícula</label>

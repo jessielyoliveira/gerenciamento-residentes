@@ -26,18 +26,17 @@
 					<label class="font-weight-bold" for="curso">Curso: </label> 
 					<span th:text="${residente.curso}"></span>
 				</div>
-				<div class="form-group">
+				<div class="form-group"><!-- TRATAR DATA DE NASCIMENTO PARA NAO VIR COM HORA -->
 					<label class="font-weight-bold" for="datanasc">Data de Nascimento: </label> 
 					<span th:text="${residente.datanasc}"></span>
 				</div>
 				<div class="form-group">
 					<label class="font-weight-bold" for="cpf">CPF: </label> 
 					<span th:text="${residente.CPF}"></span>
-				</div>
-				<div class="form-group">
+					&nbsp; &nbsp; &nbsp;
 					<label class="font-weight-bold" for="rg">RG: </label>
 					<span th:text="${residente.RG}"></span>
-				</div> 
+				</div>
 				<div class="form-group">
 					<label class="font-weight-bold" for="cidade">Cidade: </label>
 					<span th:text="${residente.cidadeOrigem}"></span>
@@ -45,6 +44,15 @@
 				<div class="form-group">
 					<label class="font-weight-bold" for="estado">Estado: </label>
 					<span th:text="${residente.estadoOrigem}"></span>
+				</div>
+				<div class="form-group">
+					<label class="font-weight-bold" for="tipobolsa">Tipo de bolsa: </label>
+					<span th:text="${residente.bolsaPROAE}"></span>
+				</div>
+				
+				<div class="form-group">
+					<label class="font-weight-bold" for="usuario">Nome de usuário: </label>
+					<span th:text="${residente.usuario}"></span>
 				</div>
 			</div>
 
@@ -59,7 +67,7 @@
 					<label class="font-weight-bold" for="tel">Telefone: </label>
 					<span th:text="${residente.telefone}"></span>
 				</div>
-				<br/><br/>
+				<br/>
 				<h3><strong> Alocação </strong></h3>
 				
 				<!-- estrutura de condição para residente não alocado -->
@@ -80,8 +88,7 @@
 					<div class="form-group">
 						<label class="font-weight-bold" for="piso">Piso: </label>
 						<span th:text="${residente.piso}"></span>
-					</div>
-					<div class="form-group">
+						&nbsp;&nbsp;&nbsp;
 						<label class="font-weight-bold" for="quarto">Quarto: </label>
 						<span th:text="${residente.quarto}"></span>
 					</div>
