@@ -81,4 +81,17 @@ public class ResidenteController {
 		model.addAttribute("listaResidentes", lista);
 		return "residente/homeResidente"; 
 	}
+	
+	@GetMapping("/detalhes/{id}")
+	public String detalhar(@PathVariable Integer id, Model model) {
+		try {
+			if (id != null) {
+				Residente residente = residenteService.findOne(id).get();
+				model.addAttribute("residente", residente);
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return "residente/detalhesResidente";
+	}
 }
