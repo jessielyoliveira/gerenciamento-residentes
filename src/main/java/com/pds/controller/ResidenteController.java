@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pds.exception.BusinessException;
 import com.pds.exception.ModelException;
+import com.pds.model.Residencia;
 import com.pds.model.Residente;
 import com.pds.service.ResidenteService;
 
@@ -54,11 +55,11 @@ public class ResidenteController {
 			alerta.addFlashAttribute("sucesso", "O Residente foi cadastrado com sucesso");
 		} catch (BusinessException e) {
 			e.printStackTrace();
-			alerta.addFlashAttribute("erro", "Erro na inser��o do residente [" + e.getMessage() + "]");
+			alerta.addFlashAttribute("erro", "Erro na inserção do residente [" + e.getMessage() + "]");
 			return "redirect:/residentes/novo";
 		} catch (ModelException e) {
 			e.printStackTrace();
-			alerta.addFlashAttribute("aviso", "Residente j� existe [" + e.getMessage() + "]");
+			alerta.addFlashAttribute("aviso", "Residente já existe [" + e.getMessage() + "]");
 			return "redirect:/residentes/novo";
 		}
 		
@@ -74,7 +75,7 @@ public class ResidenteController {
 		return "redirect:/residentes/gerenciar";
 	}
 	
-	//bug: se buscar mais de uma vez ele vai para o endere�o residentes/residentes/.../busca [RESOLVIDO]
+	//bug: se buscar mais de uma vez ele vai para o endereï¿½o residentes/residentes/.../busca [RESOLVIDO]
 	@PostMapping("/busca")
 	public String buscar(Model model, @RequestParam("chave") String chave) {
 		List<Residente> lista = residenteService.search(chave);
