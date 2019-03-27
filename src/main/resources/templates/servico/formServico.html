@@ -12,7 +12,8 @@
 		<form th:action="@{/servicos/novo}" th:object="${servico}" method="post">
 			<div class="form-group">
 				<label for="nome">Nome</label>
-				<input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Insira um nome">
+				<input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Insira um nome"
+				  style="margin-bottom: 30px;">
 			
 		  	<button type="submit" class="btn btn-success" style="float: right;">Cadastrar</button>
 		  	<a th:href="@{/servicos}" class="btn btn-secondary" style="float: right; margin: 0 20px 30px 0;">Cancelar</a>

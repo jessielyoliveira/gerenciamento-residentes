@@ -11,17 +11,19 @@
 
 		<div class="form-inline align-items-center">
 			<!-- Busca -->
-			<form th:action="@{residentes/busca}" method="post"  class="input-group col-md-6" style="padding: 0">
+			<form th:action="@{/residentes/busca}" method="post"  class="input-group col-md-6" style="padding: 0">
 				<input type="text" class="form-control" id="chave" name="chave"
 					placeholder="Buscar residentes por nome ou matrícula" aria-label="Buscar residentes"
 					aria-describedby="basic-addon2">
 				<div class="input-group-append">
 					<input class="btn btn-secondary" type="submit" value="Buscar">
+					<a class="btn btn-success" type="button" th:href=@{/residentes/gerenciar}>Todos</a>
 				</div>
 			</form>
 			<!-- Botões -->
 			<div style="margin-left: auto;">
-				<a th:href="@{residentes/novo}" class="btn btn-primary">Adicionar Residente</a>
+				<a th:href="@{/residentes/novo}" class="btn btn-primary" style="margin: 0 10px">Adicionar Residente</a>
+				<a th:href="@{/proae}" class="btn btn-secondary">Voltar</a>
 			</div>
 		</div>
 
@@ -44,11 +46,14 @@
 						<a class="btn btn-secondary" style="color: white">Detalhes</a>
 						<a class="btn btn-warning" style="margin: 0 10px; color: white"
 							th:href="@{/residentes/editar/{id} (id = ${residente.id})}">Editar</a>
-						<a class="btn btn-danger" th:href="@{/residentes/remover/{id} (id = ${residente.id})}">Remover</a>
+						<a class="btn btn-danger" 
+							onclick="return confirm('Tem certeza que deseja remover este registro?')"
+							th:href="@{/residentes/remover/{id} (id = ${residente.id})}">Remover</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+
 	</section>
 	
 </body>
