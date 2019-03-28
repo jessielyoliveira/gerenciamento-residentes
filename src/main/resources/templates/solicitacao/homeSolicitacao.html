@@ -31,18 +31,18 @@
 		<table class="table table-striped" style="margin-top: 30px;">
 			<thead>
 				<tr>
-					<th scope="col">Nome</th>
+					<th scope="col">Código</th>
 					<th scope="col">Ação</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="solicitacao : ${listaSolicitacoes}">
-					<td class="col-md-8" th:text="${solicitacao.nome}"></td>
+				<tr th:each="solicitacao : ${listaSolicitacao}">
+					<td class="col-md-8" th:text="${solicitacao.id}"></td>
 					<td>
-						<a class="btn btn-secondary">Detalhes</a>
+						<a class="btn btn-secondary" th:href="@{/solicitacoes/detalhes/{id} (id = ${solicitacao.id})}">Detalhes</a>
 						<a class="btn btn-warning" style="margin: 0 10px"
-							th:href="@{/solicitacoes/editar/{id} (id = ${solicitacao.id})}">Editar</a>
-						<a class="btn btn-danger"
+							th:href="@{/solicitacoes/editar/{id} (id = ${solicitacao.id})}">Alterar Status</a>
+						<a class="btn btn-danger" 
 							onclick="return confirm('Tem certeza que deseja remover este registro?')"
 							th:href="@{/solicitacoes/remover/{id} (id = ${solicitacao.id})}">Remover</a>
 					</td>

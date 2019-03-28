@@ -28,30 +28,30 @@ public class Solicitacao implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@NotNull 
+	//@NotNull 
 	@JoinColumn(name = "solicitante")
 	private Residente solicitante;
 	
-	//@ManyToOne 
+	@ManyToOne 
 	@JoinColumn(name = "servico")
 	private Servico servico; //tipo servico solicitado
 	
-	@NotNull @Column(name = "data")
+	//@NotNull 
+	@Column(name = "data")
 	private Date data;       //data solicitacao
 	
-	@NotNull @Column(name = "justificativa")
+	@NotNull 
+	@Column(name = "justificativa")
 	private String justificativa;
 	
-	@NotNull @Column(name = "materiais")
+	//@NotNull 
+	@Column(name = "materiais")
 	private String materiais;
 	
 	@ManyToOne
 	@JoinColumn(name = "status")
 	private Status status;
 	
-	
-//	@ManyToMany(mappedBy="solicitacoes", cascade = CascadeType.ALL)
-//    List<Solicitacao> solicitacoes;
 	
 	public Integer getId() {
 		return id;
@@ -71,30 +71,30 @@ public class Solicitacao implements Serializable {
 	public void setServico(Servico servico) {
 		this.servico = servico;
 	}
-	public Date getData() {
-		return data;
-	}
-	public void setData(Date data) {
-		this.data = data;
-	}
+//	public Date getData() {
+//		return data;
+//	}
+//	public void setData(Date data) {
+//		this.data = data;
+//	}
 	public String getJustificativa() {
 		return justificativa;
 	}
 	public void setJustificativa(String justificativa) {
 		this.justificativa = justificativa;
 	}
-	public String getMateriais() {
-		return materiais;
-	}
-	public void setMateriais(String materiais) {
-		this.materiais = materiais;
-	}
-	public Status getStatus() {
-		return status;
-	}
-	public void setStatus(Status status) {
-		this.status = status;
-	}
+//	public String getMateriais() {
+//		return materiais;
+//	}
+//	public void setMateriais(String materiais) {
+//		this.materiais = materiais;
+//	}
+//	public Status getStatus() {
+//		return status;
+//	}
+//	public void setStatus(Status status) {
+//		this.status = status;
+//	}
 	
 //	public List<Solicitacao> getSolicitacoes() {
 //		return solicitacoes; 
