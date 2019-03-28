@@ -17,9 +17,12 @@ public interface ResidenteRepository extends JpaRepository<Residente, Integer> {
 	List<Residente> buscarPorNomeOuMatricula(String chave);
 	
 	@Query("SELECT r FROM Residente r WHERE r.matricula=?1")
-	Residente verificarExistenciaPorMat(Long matricula);
+	Residente buscarPorMatricula(Long matricula);
 	
 	@Query("SELECT r FROM Residente r WHERE r.CPF=?1")
-	Residente verificarExistenciaPorCPF(Long cpf);
+	Residente buscarPorCPF(Long cpf);
+	
+	@Query("SELECT r FROM Residente r WHERE r.residencia=null")
+	List<Residente> selectResidentesNaoAlocados();
 }
 	

@@ -1,6 +1,7 @@
 package com.pds.controller;
 
 import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,5 +118,23 @@ public class ResidenciaController {
 	 * model.addAttribute("listaResidencias", lista); return
 	 * "redirect:/residencias"; }
 	 */
-
+	
+	//abre pagina de alocação de residente
+	@GetMapping("/alocar/{id}")
+	public String alocarResidente(@PathVariable Integer id, Model model) {
+		try {
+			if (id != null) {
+				Residencia residencia = residenciaService.findOne(id).get();
+				model.addAttribute("residencia", residencia);
+				
+				/*ResidenteService residenteService = new ResidenteService();
+								
+				List<Residente> residentesNaoAlocados = residenteService.naoAlocados();
+				model.addAttribute("residentesNaoAlocados", residentesNaoAlocados);*/
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return "residencia/alocarNaResidencia";
+	}
 }

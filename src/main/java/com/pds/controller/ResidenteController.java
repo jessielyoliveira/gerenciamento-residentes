@@ -2,6 +2,8 @@
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -45,15 +48,15 @@ public class ResidenteController {
 	// Abre o formulario de cadastro de residentes
 	@GetMapping("/novo")
 	public String residenteForm(Model model) {
-		List<Residencia> listaResidencias = residenciaService.findAll();
-		model.addAttribute("residencias", listaResidencias);
+		//List<Residencia> listaResidencias = residenciaService.findAll();
+		//model.addAttribute("residencias", listaResidencias);
 		model.addAttribute("residente", new Residente());
 		return "residente/formResidente";
 	}
 	
 	// Envia as informacoes do formulario para a camada de servico
-	@PostMapping("/novo")
-	public String residenteSubmit(@ModelAttribute Residente residente, RedirectAttributes alerta) {
+	@PostMapping
+	public String salvar(@ModelAttribute Residente residente, RedirectAttributes alerta) {
 		try {
 			residenteService.validate(residente);
 			residenteService.alreadyExists(residente);
@@ -72,6 +75,32 @@ public class ResidenteController {
 		return "redirect:/residentes/gerenciar";		
 	}
 	
+	@GetMapping("/editar/{id}")
+	public String atualizar(@PathVariable Integer id, Model model) {
+		try {
+			if (id != null) {
+				Residente residente = residenteService.findOne(id).get();
+				model.addAttribute("residente", residente);
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return "residente/formResidente";
+	}
+	
+	@PutMapping
+	public String atualizar(@Valid Residente residente, RedirectAttributes alerta) {
+		try {
+			residenteService.validate(residente);
+			residenteService.save(residente);
+			alerta.addFlashAttribute("sucesso", "Residente atualizado com sucesso");
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			alerta.addFlashAttribute("erro", "Erro na atualiza��o do residente [" + e.getMessage() + "]");
+		} 
+		return "redirect:/residentes/gerenciar";
+	}
+	
 	@GetMapping("/remover/{id}")
 	public String remover(@PathVariable("id") Integer id) {
 		if (id != null) {
@@ -86,5 +115,18 @@ public class ResidenteController {
 		List<Residente> lista = residenteService.search(chave);
 		model.addAttribute("listaResidentes", lista);
 		return "residente/homeResidente"; 
+	}
+	
+	@GetMapping("/detalhes/{id}")
+	public String detalhar(@PathVariable Integer id, Model model) {
+		try {
+			if (id != null) {
+				Residente residente = residenteService.findOne(id).get();
+				model.addAttribute("residente", residente);
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return "residente/detalhesResidente";
 	}
 }

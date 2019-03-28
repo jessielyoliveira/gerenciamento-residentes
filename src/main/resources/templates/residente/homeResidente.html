@@ -43,7 +43,7 @@
 					<td class="col-md-4" th:text="${residente.nome}"></td>
 					<td class="col-md-3" th:text="${residente.curso}"></td>
 					<td>
-						<a class="btn btn-secondary" style="color: white">Detalhes</a>
+						<a class="btn btn-secondary" th:href="@{/residentes/detalhes/{id} (id = ${residente.id})}" style="color: white">Detalhes</a>
 						<a class="btn btn-warning" style="margin: 0 10px; color: white"
 							th:href="@{/residentes/editar/{id} (id = ${residente.id})}">Editar</a>
 						<a class="btn btn-danger" 
