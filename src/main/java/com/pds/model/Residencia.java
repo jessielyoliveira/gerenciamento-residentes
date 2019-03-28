@@ -1,12 +1,15 @@
 package com.pds.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -54,6 +57,9 @@ public class Residencia implements Serializable {
 	@NotNull @Column(name = "TotalVagas")
 	private Integer totalVagas = 0;
 	
+	@OneToMany(mappedBy="residencia", cascade = CascadeType.ALL)
+	List<Residente> residentes;
+	
 	public Integer getId() { return id; }
 	public void setId(Integer id) { this.id = id; }
 	
@@ -89,4 +95,7 @@ public class Residencia implements Serializable {
 	
 	public Integer getTotalVagas() { return quantPisos * quantQuartosPorPiso * quantResidentesPorQuarto; }
 	
+	public List<Residente> getResidentes() { return residentes; }
+	public void setResidentes(List<Residente> residentes) { this.residentes = residentes; }
+		
 }

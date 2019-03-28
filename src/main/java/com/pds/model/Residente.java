@@ -6,7 +6,10 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.websocket.OnOpen;
 
 @Entity
 @Table(name = "residentes")
@@ -22,10 +25,7 @@ public class Residente extends Usuario implements Serializable {
 
 	@Column(name = "bolsaPROAE")
 	private String bolsaPROAE;
-	
-	@JoinColumn(name = "residencia")
-	private Residencia residencia;
-	
+		
 	@Column(name = "campus")
 	private Integer campus;
 	
@@ -37,6 +37,10 @@ public class Residente extends Usuario implements Serializable {
 		
 	@Column(name =  "dataTermino")
 	private Date dataTermino;
+	
+	@ManyToOne
+	@JoinColumn(name = "residencia")
+	private Residencia residencia;
 	
 	public Residencia getResidencia() {
 		return residencia;
