@@ -35,6 +35,10 @@ public class ResidenteService {
 		return residenteRepository.buscarPorNomeOuMatricula(key);
 	}
 	
+	public List<Residente> naoAlocados() {
+		return residenteRepository.selectResidentesNaoAlocados();
+	}
+	
 	@Transactional(readOnly=false)
 	public void delete(Residente entity) {
 		residenteRepository.delete(entity);
@@ -55,13 +59,13 @@ public class ResidenteService {
 	}
 	
 	public void alreadyExists(Residente residente) throws ModelException {
-		Residente r = residenteRepository.verificarExistenciaPorMat(residente.getMatricula());
+		Residente r = residenteRepository.buscarPorMatricula(residente.getMatricula());
 		
 		if(r != null) {
 			throw new ModelException("Matrícula " + r.getMatricula() + " já está cadastrado");
 		}
 
-		r = residenteRepository.verificarExistenciaPorCPF(residente.getCPF());
+		r = residenteRepository.buscarPorCPF(residente.getCPF());
 		
 		if(r != null) {
 			throw new ModelException("CPF " + r.getCPF() + " já está cadastrado");

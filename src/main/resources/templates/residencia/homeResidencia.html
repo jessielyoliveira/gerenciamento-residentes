@@ -22,7 +22,7 @@
 			</form>
 			<!-- Botões -->
 			<div style="margin-left: auto;">
-				<a th:href="@{/}" class="btn btn-primary">Distribuir Residentes</a> 
+				<!-- <a th:href="@{/}" class="btn btn-primary">Distribuir Residentes</a>  -->
 				<a th:href="@{/residencias/nova}" class="btn btn-primary" style="margin: 0 10px">Adicionar	Residência</a>
 				<a th:href="@{/proae}" class="btn btn-secondary">Voltar</a>
 			</div>
@@ -38,8 +38,10 @@
 			</thead>
 			<tbody>
 				<tr th:each="residencia : ${listaResidencias}">
-					<td class="col-md-8" th:text="${residencia.nome}"></td>
+					<td class="col-md-6" th:text="${residencia.nome}"></td>
 					<td>
+						<a class="btn btn-primary" style="margin: 0 10px"
+							th:href="@{/residencias/alocar/{id} (id = ${residencia.id})}">Alocar Residente</a>
 						<a class="btn btn-secondary" th:href="@{/residencias/detalhes/{id} (id = ${residencia.id})}">Detalhes</a>
 						<a class="btn btn-warning" style="margin: 0 10px"
 							th:href="@{/residencias/editar/{id} (id = ${residencia.id})}">Editar</a>

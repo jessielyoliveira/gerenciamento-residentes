@@ -9,7 +9,9 @@
 	<section layout:fragment="content">
 		<h1 align="center" style="margin: 30px 0">Cadastro de Residente</h1>
 		
-		<form th:action="@{/residentes/novo}" th:object="${residente}" method="post">
+		<form th:action="@{/residentes}" th:object="${residente}" 
+				th:method="@{${residente.id == null} ? 'post' : 'put'}">
+				<input type="hidden" th:field="*{id}">
 			<!-- parte do  usuário -->
 		  	<div class="form-group">
 		    	<label for="matricula">Matrícula</label>
@@ -57,17 +59,16 @@
 		  	</div>	
 			<div class="form-group">
 			  	<label for="estadoOrigem">Estado de origem</label>
-		    	<input type="text" class="form-control" id="estadoOrigem" th:field="*{estadoOrigem}" required="required" placeholder="Selecione o estado de origem do residente">
+		    	<input type="text" class="form-control" id="estadoOrigem" th:field="*{estadoOrigem}" required="required" placeholder="Insira o estado de origem do residente">
 				<!-- <select class="form-control" id="estadoOrigem" th:field="*{estadoOrigem}" placeholder="Selecione o estado de origem do residente">
 				</select> -->
 		  	</div>
 		  	<div class="form-group">
 			  	<label for="cidadeOrigem">Cidade de origem</label>
-		    	<input type="text"  class="form-control" id="cidadeOrigem" th:field="*{cidadeOrigem}" required="required" placeholder="Selecione a cidade de origem do residente">
+		    	<input type="text"  class="form-control" id="cidadeOrigem" th:field="*{cidadeOrigem}" required="required" placeholder="Insira a cidade de origem do residente">
 				<!-- <select  class="form-control" id="cidadeOrigem" th:field="*{cidadeOrigem}" placeholder="Selecione a cidade de origem do residente">
 				</select> -->
 		  	</div>
-
 
 			<!-- TEMPORÁRIO -->
 			<div class="form-group" th:object="${residencia}">
@@ -110,7 +111,6 @@
  -->		  	
 		  	<button type="submit" class="btn btn-success" style="float: right;">Cadastrar</button>
 		  	<a th:href="@{/residentes/gerenciar}" class="btn btn-secondary" style="float: right; margin: 0 20px 30px 0;">Cancelar</a>
-
 		</form>		
 	</section>
 	
