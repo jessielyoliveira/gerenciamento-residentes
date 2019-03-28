@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pds.exception.BusinessException;
 import com.pds.exception.ModelException;
+import com.pds.model.Residencia;
 import com.pds.model.Residente;
 import com.pds.service.ResidenciaService;
 import com.pds.service.ResidenteService;
@@ -95,7 +96,7 @@ public class ResidenteController {
 			alerta.addFlashAttribute("sucesso", "Residente atualizado com sucesso");
 		} catch (BusinessException e) {
 			e.printStackTrace();
-			alerta.addFlashAttribute("erro", "Erro na atualização do residente [" + e.getMessage() + "]");
+			alerta.addFlashAttribute("erro", "Erro na atualizaï¿½ï¿½o do residente [" + e.getMessage() + "]");
 		} 
 		return "redirect:/residentes/gerenciar";
 	}
