@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-br" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+
+	<section layout:fragment="content">
+		<h1 align="center" style="margin-bottom: 20px">Alocar Residentes na <span class="font-weight-bold" th:text="${residencia.nome}"></span></h1>
+		<div class="form-group">
+			<p class="font-weight-bold" align="center" > [ descrever quartos vagos para esta residencia ] </p>
+		</div>
+		
+		<h3 style="margin-top: 30px;">Residentes ainda não alocados</h3>
+		
+		<!-- Tabela -->
+		<table class="table table-striped" style="margin-top: 20px;">
+			<thead>
+				<tr>
+					<th scope="col">Matrícula</th>
+					<th scope="col">Nome</th>
+					<th scope="col">Curso</th>
+					<th scope="col">Alocação</th>
+				</tr>
+			</thead>
+ 			<tbody>
+				<tr th:each="residente : ${residentesNaoAlocados}">
+					<td class="col-md-1" th:text="${residente.matricula}"></td>
+					<td class="col-md-4" th:text="${residente.nome}"></td>
+					<td class="col-md-3" th:text="${residente.curso}"></td>
+					<td>
+						<form th:action="@{/}" method="post">
+							<input type="hidden" th:field="*{id}">
+						
+							<input type="number" class="form-control" id="campus" th:field="*{campus}"
+		    			placeholder="Campus">
+		  					<input type="number" class="form-control" id="piso" th:field="*{piso}"
+		    			placeholder="Piso">
+		  					<input type="number" class="form-control" id="quarto" th:field="*{quarto}"
+		    			placeholder="Quarto">
+		    			<input type="text" class="form-control" id="datat" th:field="*{data_termino}" placeholder="Data de término da bolsa">
+		    			
+							<button type="submit" class="btn btn-warning" style="color: white;"
+							onclick="return confirm('Confirmar alocação de residente?')">Alocar</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	
+</body>
+</html>

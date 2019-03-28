@@ -35,6 +35,10 @@ public class ResidenteService {
 		return residenteRepository.buscarPorNomeOuMatricula(key);
 	}
 	
+	public List<Residente> naoAlocados() {
+		return residenteRepository.selectResidentesNaoAlocados();
+	}
+	
 	@Transactional(readOnly=false)
 	public void delete(Residente entity) {
 		residenteRepository.delete(entity);

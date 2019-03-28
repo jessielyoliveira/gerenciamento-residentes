@@ -21,5 +21,8 @@ public interface ResidenteRepository extends JpaRepository<Residente, Integer> {
 	
 	@Query("SELECT r FROM Residente r WHERE r.CPF=?1")
 	Residente buscarPorCPF(Long cpf);
+	
+	@Query("SELECT r FROM Residente r WHERE r.residencia=null")
+	List<Residente> selectResidentesNaoAlocados();
 }
 	
