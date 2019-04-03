@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pds.exception.ModelException;
+import com.pds.model.Residencia;
 import com.pds.model.Solicitacao;
 import com.pds.repository.SolicitacaoRepository;
 
@@ -34,14 +36,17 @@ public class SolicitacaoService {
 		solicitacaoRepository.delete(entity);
 	}
 	
-	public boolean existe(Solicitacao solic) {
+	public void existe(Solicitacao solic) throws ModelException {
 		List<Solicitacao> solicitacoes = findAll();	
 		for (Solicitacao solicitacao : solicitacoes) {
 			Integer Id = solicitacao.getId();
 			if(Id.equals(solic.getId())) {
-				return true;
+				throw new ModelException("Id ja cadastrado");
 			}
 		}	
-		return false;
 	}
+	
+//	public List<Solicitacao> search(String chave) {
+//		return solicitacaoRepository.buscaPorNome(chave);
+//	}
 }

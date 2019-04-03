@@ -9,11 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "servicos")
@@ -42,14 +40,14 @@ public class Servico implements Serializable {
 		this.nome = nome;
 	}
 	
-//	@OneToMany(mappedBy="servicos", cascade = CascadeType.ALL)
-//    List<Servico> servicos;
-//	
-//	public List<Servico> getServicos() {
-//		return servicos; 
-//	}
-//	
-//	public void setServicos(List<Servico> servicos) {
-//		this.servicos = servicos; 
-//	}
+	@OneToMany(mappedBy="servico", cascade = CascadeType.ALL)
+    List<Solicitacao> solicitacoes;
+	
+	public List<Solicitacao> getSolicitacoes() {
+		return solicitacoes; 
+	}
+	
+	public void setSolicitacoes(List<Solicitacao> solicitacoes) {
+		this.solicitacoes = solicitacoes; 
+	}
 }
