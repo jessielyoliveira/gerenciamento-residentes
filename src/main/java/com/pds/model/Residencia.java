@@ -19,83 +19,167 @@ import javax.validation.constraints.NotNull;
 public class Residencia implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
-	@NotEmpty @Column(name = "nome")
+
+	@NotEmpty
+	@Column(name = "nome")
 	private String nome;
-	
-	@NotEmpty @Column(name = "endereco")
+
+	@NotEmpty
+	@Column(name = "endereco")
 	private String endereco;
-	
-	@NotEmpty @Column(name = "numero")
+
+	@NotEmpty
+	@Column(name = "numero")
 	private String numero;
-	
-	@NotEmpty @Column(name = "bairro")
+
+	@NotEmpty
+	@Column(name = "bairro")
 	private String bairro;
-	
-	@NotEmpty @Column(name = "cep")
+
+	@NotEmpty
+	@Column(name = "cep")
 	private String cep;
-	
-	@NotEmpty @Column(name = "cidade")
+
+	@NotEmpty
+	@Column(name = "cidade")
 	private String cidade;
-	
-	@NotEmpty @Column(name = "estado")
+
+	@NotEmpty
+	@Column(name = "estado")
 	private String estado;
-	
-	@NotNull @Column(name = "quantPisos")
+
+	@NotNull
+	@Column(name = "quantPisos")
 	private Integer quantPisos;
-	
-	@NotNull @Column(name = "quantQuartosPorPiso")
+
+	@NotNull
+	@Column(name = "quantQuartosPorPiso")
 	private Integer quantQuartosPorPiso;
-	
-	@NotNull @Column(name = "quantResidentesPorQuarto")
+
+	@NotNull
+	@Column(name = "quantResidentesPorQuarto")
 	private Integer quantResidentesPorQuarto;
-		
-	@NotNull @Column(name = "TotalVagas")
+
+	@NotNull
+	@Column(name = "TotalVagas")
 	private Integer totalVagas = 0;
-	
-	@OneToMany(mappedBy="residencia", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "residencia", cascade = CascadeType.ALL)
 	List<Residente> residentes;
-	
-	public Integer getId() { return id; }
-	public void setId(Integer id) { this.id = id; }
-	
-	public String getNome() { return nome; }
-	public void setNome(String nome) { this.nome = nome; }
-	
-	public String getEndereco() { return endereco; }
-	public void setEndereco(String endereco) { this.endereco = endereco; }
-	
-	public String getBairro() { return bairro; }
-	public void setBairro(String bairro) { this.bairro = bairro; }
-	
-	public String getCep() { return cep; }
-	public void setCep(String cep) { this.cep = cep; }
-	
-	public String getCidade() { return cidade; }
-	public void setCidade(String cidade) { this.cidade = cidade; }
-	
-	public String getEstado() { return estado; }
-	public void setEstado(String estado) { this.estado = estado; }
-	
-	public String getNumero() { return numero; }
-	public void setNumero(String numero) { this.numero = numero; }
-	
-	public Integer getQuantPisos() { return quantPisos; }
-	public void setQuantPisos(Integer quantPisos) { this.quantPisos = quantPisos; }
-	
-	public Integer getQuantQuartosPorPiso() { return quantQuartosPorPiso; }
-	public void setQuantQuartosPorPiso(Integer quantQuartosPorPiso) { this.quantQuartosPorPiso = quantQuartosPorPiso; }
-	
-	public Integer getQuantResidentesPorQuarto() { return quantResidentesPorQuarto; }
-	public void setQuantResidentesPorQuarto(Integer quantResidentesPorQuarto) { this.quantResidentesPorQuarto = quantResidentesPorQuarto; }
-	
-	public Integer getTotalVagas() { return quantPisos * quantQuartosPorPiso * quantResidentesPorQuarto; }
-	
-	public List<Residente> getResidentes() { return residentes; }
-	public void setResidentes(List<Residente> residentes) { this.residentes = residentes; }
-		
+
+	@OneToMany(mappedBy = "quartos", cascade = CascadeType.ALL)
+	List<Quartos> quartos;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public Integer getQuantPisos() {
+		return quantPisos;
+	}
+
+	public void setQuantPisos(Integer quantPisos) {
+		this.quantPisos = quantPisos;
+	}
+
+	public Integer getQuantQuartosPorPiso() {
+		return quantQuartosPorPiso;
+	}
+
+	public void setQuantQuartosPorPiso(Integer quantQuartosPorPiso) {
+		this.quantQuartosPorPiso = quantQuartosPorPiso;
+	}
+
+	public Integer getQuantResidentesPorQuarto() {
+		return quantResidentesPorQuarto;
+	}
+
+	public void setQuantResidentesPorQuarto(Integer quantResidentesPorQuarto) {
+		this.quantResidentesPorQuarto = quantResidentesPorQuarto;
+	}
+
+	public Integer getTotalVagas() {
+		return quantPisos * quantQuartosPorPiso * quantResidentesPorQuarto;
+	}
+
+	public List<Residente> getResidentes() {
+		return residentes;
+	}
+
+	public void setResidentes(List<Residente> residentes) {
+		this.residentes = residentes;
+	}
+
+	public List<Quartos> getQuartos() {
+		return quartos;
+	}
+
+	public void setOcupacao(List<Quartos> quartos) {
+		this.quartos = quartos;
+	}
+
 }

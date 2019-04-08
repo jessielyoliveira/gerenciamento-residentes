@@ -7,15 +7,32 @@
 <body>
 
 	<section layout:fragment="content">
-		<h1 align="center" style="margin-bottom: 20px">Alocar Residentes na <span class="font-weight-bold" th:text="${residencia.nome}"></span></h1>
-		<div class="form-group">
-			<p class="font-weight-bold" align="center" > [ descrever quartos vagos para esta residencia ] </p>
+		<h1 align="center" style="margin-top: 60px;">Alocar Residentes na 
+		<span class="font-weight-bold" th:text="${residencia.nome}"></span>
+		</h1>
+		<h4 align="center">Vagas dispoveis: 
+		<span class="font-weight-bold" th:text="${residencia.totalVagas}"></span></h4>
+		
+		<hr style="margin: 10px 0;">
+		
+		<div class="form-inline align-items-center">
+			<form th:action="@{/}" method="post"  class="input-group col-md-6" style="padding: 0">
+				<div class="form-group" th:object="${quarto}">
+					<label for="piso">Piso</label>
+					<select name="quarto.piso" class="form-control">
+						<option th:each="quarto : ${quartos}"
+							th:value="${quarto.id}" th:text="${quarto.piso}"></option>
+					</select>
+				</div>
+				<input class="btn btn-secondary" type="submit" value="Buscar">
+			</form>
 		</div>
 		
-		<h3 style="margin-top: 30px;">Residentes ainda não alocados</h3>
+		<hr style="margin: 10px 0;">
 		
+		<h3 align="center">Residentes Alocados</h3>
 		<!-- Tabela -->
-		<table class="table table-striped" style="margin-top: 20px;">
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th scope="col">Matrícula</th>
@@ -48,6 +65,7 @@
 				</tr>
 			</tbody>
 		</table>
+		<a th:href="@{/residencias}" class="btn btn-secondary" style="margin-top: 30px; float: right;">Voltar</a>
 	</section>
 	
 </body>
