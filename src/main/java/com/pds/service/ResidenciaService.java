@@ -1,5 +1,6 @@
 package com.pds.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pds.exception.BusinessException;
 import com.pds.exception.ModelException;
+import com.pds.model.Quartos;
 import com.pds.model.Residencia;
 import com.pds.repository.ResidenciaRepository;
 

@@ -1,5 +1,6 @@
 package com.pds.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -47,11 +48,6 @@ public class ResidenciaController {
 			residenciaService.validar(residencia);
 			residenciaService.existe(residencia);
 			residenciaService.save(residencia);
-
-			Quartos quartos = new Quartos(residencia.getId(), residencia.getQuantPisos(), residencia.getQuantQuartosPorPiso(),
-					residencia.getQuantResidentesPorQuarto());
-			model.addAttribute("quarto", quartos);
-
 			alerta.addFlashAttribute("sucesso", "Residencia inserida");
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -122,13 +118,13 @@ public class ResidenciaController {
 		return "residencia/homeResidencia";
 	}
 
-	// abre pagina de aloca��o de residente
 	@GetMapping("/alocar/{id}")
 	public String alocarResidente(@PathVariable Integer id, Model model) {
 		try {
 			if (id != null) {
 				Residencia residencia = residenciaService.findOne(id).get();
 				model.addAttribute("residencia", residencia);
+				model.addAttribute("listaQuartos", residencia.getListaQuartos());
 
 				/*
 				 * ResidenteService residenteService = new ResidenteService();

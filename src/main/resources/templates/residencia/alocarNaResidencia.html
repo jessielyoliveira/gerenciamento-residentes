@@ -20,8 +20,9 @@
 				<div class="form-group" th:object="${quarto}">
 					<label for="piso">Piso</label>
 					<select name="quarto.piso" class="form-control">
-						<option th:each="quarto : ${quartos}"
-							th:value="${quarto.id}" th:text="${quarto.piso}"></option>
+						<option th:each="quarto : ${listaQuartos}"
+							th:value="${quarto.piso}" th:text="${quarto.piso}">
+						</option>
 					</select>
 				</div>
 				<input class="btn btn-secondary" type="submit" value="Buscar">

@@ -1,6 +1,7 @@
 package com.pds.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -54,15 +55,15 @@ public class Residencia implements Serializable {
 
 	@NotNull
 	@Column(name = "quantPisos")
-	private Integer quantPisos;
+	private Integer quantPisos = 0;
 
 	@NotNull
 	@Column(name = "quantQuartosPorPiso")
-	private Integer quantQuartosPorPiso;
+	private Integer quantQuartosPorPiso  = 0;
 
 	@NotNull
 	@Column(name = "quantResidentesPorQuarto")
-	private Integer quantResidentesPorQuarto;
+	private Integer quantResidentesPorQuarto  = 0;
 
 	@NotNull
 	@Column(name = "TotalVagas")
@@ -70,9 +71,8 @@ public class Residencia implements Serializable {
 
 	@OneToMany(mappedBy = "residencia", cascade = CascadeType.ALL)
 	List<Residente> residentes;
-
-	@OneToMany(mappedBy = "quartos", cascade = CascadeType.ALL)
-	List<Quartos> quartos;
+	
+	ArrayList<Quartos> listaQuartos = new ArrayList<Quartos>(quantPisos * quantQuartosPorPiso);;
 
 	public Integer getId() {
 		return id;
@@ -174,12 +174,12 @@ public class Residencia implements Serializable {
 		this.residentes = residentes;
 	}
 
-	public List<Quartos> getQuartos() {
-		return quartos;
+	public ArrayList<Quartos> getListaQuartos() {
+		return listaQuartos;
 	}
 
-	public void setOcupacao(List<Quartos> quartos) {
-		this.quartos = quartos;
+	public void setListaQuartos(ArrayList<Quartos> listaQuartos) {
+		this.listaQuartos = listaQuartos;
 	}
 
 }
