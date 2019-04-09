@@ -47,6 +47,7 @@ public class ResidenciaController {
 		try {
 			residenciaService.validar(residencia);
 			residenciaService.existe(residencia);
+			residenciaService.alocaQuartos(residencia);
 			residenciaService.save(residencia);
 			alerta.addFlashAttribute("sucesso", "Residencia inserida");
 		} catch (BusinessException e) {
@@ -89,6 +90,7 @@ public class ResidenciaController {
 	public String atualizar(@Valid Residencia residencia, RedirectAttributes alerta) {
 		try {
 			residenciaService.validar(residencia);
+			residenciaService.alocaQuartos(residencia);
 			residenciaService.save(residencia);
 			alerta.addFlashAttribute("sucesso", "Residencia atualizada");
 		} catch (BusinessException e) {
@@ -124,8 +126,6 @@ public class ResidenciaController {
 			if (id != null) {
 				Residencia residencia = residenciaService.findOne(id).get();
 				model.addAttribute("residencia", residencia);
-				model.addAttribute("listaQuartos", residencia.getListaQuartos());
-
 				/*
 				 * ResidenteService residenteService = new ResidenteService();
 				 * 

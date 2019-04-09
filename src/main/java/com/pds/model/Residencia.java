@@ -55,15 +55,15 @@ public class Residencia implements Serializable {
 
 	@NotNull
 	@Column(name = "quantPisos")
-	private Integer quantPisos = 0;
+	private Integer quantPisos;
 
 	@NotNull
 	@Column(name = "quantQuartosPorPiso")
-	private Integer quantQuartosPorPiso  = 0;
+	private Integer quantQuartosPorPiso;
 
 	@NotNull
 	@Column(name = "quantResidentesPorQuarto")
-	private Integer quantResidentesPorQuarto  = 0;
+	private Integer quantResidentesPorQuarto;
 
 	@NotNull
 	@Column(name = "TotalVagas")
@@ -72,7 +72,7 @@ public class Residencia implements Serializable {
 	@OneToMany(mappedBy = "residencia", cascade = CascadeType.ALL)
 	List<Residente> residentes;
 	
-	ArrayList<Quartos> listaQuartos = new ArrayList<Quartos>(quantPisos * quantQuartosPorPiso);;
+	Quartos quartos[][] = new Quartos[1][1];
 
 	public Integer getId() {
 		return id;
@@ -173,13 +173,18 @@ public class Residencia implements Serializable {
 	public void setResidentes(List<Residente> residentes) {
 		this.residentes = residentes;
 	}
+	
 
-	public ArrayList<Quartos> getListaQuartos() {
-		return listaQuartos;
+	public Quartos[][] getQuartos() {
+		return quartos;
 	}
 
-	public void setListaQuartos(ArrayList<Quartos> listaQuartos) {
-		this.listaQuartos = listaQuartos;
+	public void setQuartos(Quartos[][] quartos) {
+		this.quartos = quartos;
+	}
+	
+	public void setMatrizQuartos() {
+		this.quartos = new Quartos[quantPisos][quantQuartosPorPiso];
 	}
 
 }

@@ -68,5 +68,12 @@ public class ResidenciaService {
 	public List<Residencia> search(String chave) {
 		return residenciaRepository.buscaPorNome(chave);
 	}
+	
+	/*
+	 * public void alocaQuartos(Residencia residencia) {
+	 * residencia.setMatrizQuartos(); Quartos [][] matriz = residencia.getQuartos();
+	 * for(Integer i = 0; i < residencia.getQuantPisos(); i++) { for (Integer j = 0;
+	 * j < residencia.getQuantQuartosPorPiso(); j++) { matriz[i][j] } } }
+	 */
 
 }

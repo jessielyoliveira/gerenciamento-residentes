@@ -14,20 +14,28 @@
 		<span class="font-weight-bold" th:text="${residencia.totalVagas}"></span></h4>
 		
 		<hr style="margin: 10px 0;">
-		
-		<div class="form-inline align-items-center">
+
+		<div class="form-group" th:object="${residencia}">
+			<label for="residencia">Piso</label> <select name="residencia.id"
+				class="form-control">
+				<option th:each="residencia : ${residencias}"
+					th:value="${residencia.id}" th:text="${residencia.nome}"></option>
+			</select>
+		</div>
+
+		<!-- <div class="form-inline align-items-center">
 			<form th:action="@{/}" method="post"  class="input-group col-md-6" style="padding: 0">
-				<div class="form-group" th:object="${quarto}">
+				<div class="form-group" th:object="${residencia}">
 					<label for="piso">Piso</label>
-					<select name="quarto.piso" class="form-control">
-						<option th:each="quarto : ${listaQuartos}"
-							th:value="${quarto.piso}" th:text="${quarto.piso}">
+					<select name="residencia.quartos.piso" class="form-control">
+						<option th:each="residencia : ${residencias}"
+							th:value="${residencia.quartos.piso}" th:text="${residencia.quartos.piso}">
 						</option>
 					</select>
 				</div>
 				<input class="btn btn-secondary" type="submit" value="Buscar">
 			</form>
-		</div>
+		</div> -->
 		
 		<hr style="margin: 10px 0;">
 		
