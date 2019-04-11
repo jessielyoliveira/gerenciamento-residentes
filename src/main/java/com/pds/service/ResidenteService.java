@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pds.exception.BusinessException;
 import com.pds.exception.ModelException;
+import com.pds.model.Residencia;
 import com.pds.model.Residente;
+import com.pds.repository.ResidenciaRepository;
 import com.pds.repository.ResidenteRepository;
 
 @Service
@@ -17,6 +19,9 @@ import com.pds.repository.ResidenteRepository;
 public class ResidenteService {
 	@Autowired
 	private ResidenteRepository residenteRepository;
+	
+	@Autowired
+	private ResidenciaRepository residenciaRepository;
 	
 	@Transactional(readOnly = false)
 	public Residente save(Residente residente) {
@@ -46,15 +51,15 @@ public class ResidenteService {
 	
 	public void validate(Residente residente) throws BusinessException {
 		if(residente.getNome().equals("") || residente.getNome() == null){
-			throw new BusinessException("Nome inválido ou nulo");
+			throw new BusinessException("Nome invï¿½lido ou nulo");
 		}
 		
 		if(residente.getMatricula() == null || residente.getMatricula() < 1000000000){
-			throw new BusinessException("Matrícula inválida");
+			throw new BusinessException("Matrï¿½cula invï¿½lida");
 		}
 		
 		if(residente.getCPF() == null || residente.getCPF() < 10000000){
-			throw new BusinessException("CPF inválido");
+			throw new BusinessException("CPF invï¿½lido");
 		}
 	}
 	
@@ -62,15 +67,27 @@ public class ResidenteService {
 		Residente r = residenteRepository.buscarPorMatricula(residente.getMatricula());
 		
 		if(r != null) {
-			throw new ModelException("Matrícula " + r.getMatricula() + " já está cadastrado");
+			throw new ModelException("Matrï¿½cula " + r.getMatricula() + " jï¿½ estï¿½ cadastrado");
 		}
 
 		r = residenteRepository.buscarPorCPF(residente.getCPF());
 		
 		if(r != null) {
-			throw new ModelException("CPF " + r.getCPF() + " já está cadastrado");
+			throw new ModelException("CPF " + r.getCPF() + " jï¿½ estï¿½ cadastrado");
 		}
 	}
 	
+	public void alocar(Residente residente, Long matricula, Integer idResidencia, Integer piso, Integer quarto) {
+		Residencia residencia = residenciaRepository.findById(idResidencia).get();
+		System.out.println(residente);
+		//TODO Retornando null, arrumar
+		residente = residenteRepository.buscarPorMatricula(matricula);
+		
+		System.out.println(residente);
+		residente.setResidencia(residencia);
+		residente.setPiso(piso);
+		residente.setQuarto(quarto);
+	}
+	 
 	
 }

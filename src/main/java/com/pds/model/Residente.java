@@ -47,6 +47,7 @@ public class Residente extends Usuario implements Serializable {
 	}
 	
 	public void setResidencia(Residencia residencia) {
+		this.residencia = new Residencia();
 		this.residencia = residencia;
 	}
 	

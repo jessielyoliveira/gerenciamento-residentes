@@ -17,7 +17,7 @@
 
 		<div class="form-inline" th:object="${residencia}">
 			
-			<form th:action="@{/}" method="post"  class="input-group">
+			<form th:action="@{/residencias/alocar/{id} (id = ${residencia.id})}" method="post"  class="input-group">
 
 				<div class="form-group" style="margin-right: 40px;">
 					<label for="piso" style="margin-right: 10px;">Piso</label>

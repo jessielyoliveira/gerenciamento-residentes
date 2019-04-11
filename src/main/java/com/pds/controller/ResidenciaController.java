@@ -103,7 +103,7 @@ public class ResidenciaController {
 		}
 		return "redirect:/residencias";
 	}
-
+	
 	@GetMapping("/detalhes/{id}")
 	public String detalhar(@PathVariable Integer id, Model model) {
 		try {
@@ -146,19 +146,17 @@ public class ResidenciaController {
 		return "residencia/alocarNaResidencia";
 	}
 	
-	@PostMapping
-	public String alocarResidente(@Valid Residencia residencia, @Valid Residente residente, RedirectAttributes alerta, Model model) {
-//		try {
-//			
-//									
-//			alerta.addFlashAttribute("sucesso", "Residencia inserida");
-//		} catch (BusinessException e) {
-//			e.printStackTrace();
-//			alerta.addFlashAttribute("erro", "Erro na insercao da residencia [" + e.getMessage() + "]");
-//		} catch (ModelException e) {
-//			e.printStackTrace();
-//			alerta.addFlashAttribute("aviso", "Residencia ja existe [" + e.getMessage() + "]");
-//		}
-		return "redirect:/residencias";
+	@PostMapping("/alocar/{idResidencia}")
+	public String alocarResidente(@PathVariable Integer idResidencia, Long matricula, 
+			Integer piso, Integer quarto, RedirectAttributes alerta, Model model) {
+		try {
+			Residente residente = new Residente();
+			residenteService.alocar(residente, matricula, idResidencia, piso, quarto);					
+			alerta.addFlashAttribute("sucesso", "Residente alocado");
+		} catch (Exception e) {
+			e.printStackTrace();
+			alerta.addFlashAttribute("erro", "Erro na alocação do residente [" + e.getMessage() + "]");
+		}
+		return "redirect:/residencias/alocar/" + idResidencia;
 	}
 }
