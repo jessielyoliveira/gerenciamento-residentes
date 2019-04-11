@@ -69,11 +69,40 @@ public class ResidenciaService {
 		return residenciaRepository.buscaPorNome(chave);
 	}
 	
-	/*
-	 * public void alocaQuartos(Residencia residencia) {
-	 * residencia.setMatrizQuartos(); Quartos [][] matriz = residencia.getQuartos();
-	 * for(Integer i = 0; i < residencia.getQuantPisos(); i++) { for (Integer j = 0;
-	 * j < residencia.getQuantQuartosPorPiso(); j++) { matriz[i][j] } } }
-	 */
+	public void alocaQuartos(Residencia residencia) {
+		declaraMatrizQuartos(residencia);
+		inicializMatrizQuartos(residencia);
+		imprimeMatriz(residencia);
+	}
+	
+	
+	public void declaraMatrizQuartos(Residencia residencia) {
+		Quartos[][] matriz = new Quartos[residencia.getQuantPisos()][residencia.getQuantQuartosPorPiso()];
+		residencia.setMatrizQuartos(matriz);
+	}
+	
+	public void inicializMatrizQuartos(Residencia residencia) {
+		Quartos[][] matriz = residencia.getMatrizQuartos();
+		for(Integer i = 0; i < residencia.getQuantPisos(); i++) {
+			for(Integer j = 0; j < residencia.getQuantQuartosPorPiso(); j++) {
+				matriz[i][j] = new Quartos();
+				matriz[i][j].setPiso(i);
+				matriz[i][j].setNumeroQuarto(j);
+				matriz[i][j].setTotalVagas(residencia.getTotalVagas());
+			}
+		}
+		residencia.setMatrizQuartos(matriz);
+	}
+	
+	public void imprimeMatriz(Residencia residencia) {
+		Quartos[][] matriz = residencia.getMatrizQuartos();
+		for(Integer i = 0; i < residencia.getQuantPisos(); i++) {
+			for (int j = 0; j < residencia.getQuantQuartosPorPiso(); j++) {
+				System.out.println("[ " + matriz[i][j].getPiso() +
+								   ", " + matriz[i][j].getNumeroQuarto() +
+								   ", " + matriz[i][j].getTotalVagas() + " ]");
+			}
+		}
+	}
 
 }

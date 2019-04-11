@@ -1,6 +1,5 @@
 package com.pds.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pds.exception.BusinessException;
 import com.pds.exception.ModelException;
-import com.pds.model.Quartos;
 import com.pds.model.Residencia;
 import com.pds.service.ResidenciaService;
 
@@ -47,8 +45,9 @@ public class ResidenciaController {
 		try {
 			residenciaService.validar(residencia);
 			residenciaService.existe(residencia);
-			residenciaService.alocaQuartos(residencia);
 			residenciaService.save(residencia);
+			residenciaService.alocaQuartos(residencia);
+									
 			alerta.addFlashAttribute("sucesso", "Residencia inserida");
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -90,8 +89,8 @@ public class ResidenciaController {
 	public String atualizar(@Valid Residencia residencia, RedirectAttributes alerta) {
 		try {
 			residenciaService.validar(residencia);
-			residenciaService.alocaQuartos(residencia);
 			residenciaService.save(residencia);
+			residenciaService.alocaQuartos(residencia);
 			alerta.addFlashAttribute("sucesso", "Residencia atualizada");
 		} catch (BusinessException e) {
 			e.printStackTrace();
