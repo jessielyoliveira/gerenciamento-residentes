@@ -78,11 +78,11 @@ public class ResidenciaService {
 	
 	public void declaraMatrizQuartos(Residencia residencia) {
 		Quartos[][] matriz = new Quartos[residencia.getQuantPisos()][residencia.getQuantQuartosPorPiso()];
-		residencia.setMatrizQuartos(matriz);
+		residencia.setQuartos(matriz);
 	}
 	
 	public void inicializMatrizQuartos(Residencia residencia) {
-		Quartos[][] matriz = residencia.getMatrizQuartos();
+		Quartos[][] matriz = residencia.getQuartos();
 		for(Integer i = 0; i < residencia.getQuantPisos(); i++) {
 			for(Integer j = 0; j < residencia.getQuantQuartosPorPiso(); j++) {
 				matriz[i][j] = new Quartos();
@@ -91,11 +91,11 @@ public class ResidenciaService {
 				matriz[i][j].setTotalVagas(residencia.getTotalVagas());
 			}
 		}
-		residencia.setMatrizQuartos(matriz);
+		residencia.setQuartos(matriz);
 	}
 	
 	public void imprimeMatriz(Residencia residencia) {
-		Quartos[][] matriz = residencia.getMatrizQuartos();
+		Quartos[][] matriz = residencia.getQuartos();
 		for(Integer i = 0; i < residencia.getQuantPisos(); i++) {
 			for (int j = 0; j < residencia.getQuantQuartosPorPiso(); j++) {
 				System.out.println("[ " + matriz[i][j].getPiso() +

@@ -71,4 +71,6 @@ public class ResidenteService {
 			throw new ModelException("CPF " + r.getCPF() + " já está cadastrado");
 		}
 	}
+	
+	
 }

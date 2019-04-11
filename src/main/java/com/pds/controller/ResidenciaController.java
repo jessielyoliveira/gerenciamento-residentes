@@ -18,7 +18,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.pds.exception.BusinessException;
 import com.pds.exception.ModelException;
 import com.pds.model.Residencia;
+import com.pds.model.Residente;
 import com.pds.service.ResidenciaService;
+import com.pds.service.ResidenteService;
 
 @Controller
 @RequestMapping("/residencias")
@@ -26,6 +28,9 @@ public class ResidenciaController {
 
 	@Autowired
 	private ResidenciaService residenciaService;
+	
+	@Autowired
+	private ResidenteService residenteService;
 
 	@GetMapping
 	public String indexResidencia(Model model) {
@@ -124,7 +129,10 @@ public class ResidenciaController {
 		try {
 			if (id != null) {
 				Residencia residencia = residenciaService.findOne(id).get();
+				List<Residente> residentes = residenteService.naoAlocados();
 				model.addAttribute("residencia", residencia);
+				model.addAttribute("residentes", residentes);
+				
 				/*
 				 * ResidenteService residenteService = new ResidenteService();
 				 * 
@@ -136,5 +144,21 @@ public class ResidenciaController {
 			e.getMessage();
 		}
 		return "residencia/alocarNaResidencia";
+	}
+	
+	@PostMapping
+	public String alocarResidente(@Valid Residencia residencia, @Valid Residente residente, RedirectAttributes alerta, Model model) {
+//		try {
+//			
+//									
+//			alerta.addFlashAttribute("sucesso", "Residencia inserida");
+//		} catch (BusinessException e) {
+//			e.printStackTrace();
+//			alerta.addFlashAttribute("erro", "Erro na insercao da residencia [" + e.getMessage() + "]");
+//		} catch (ModelException e) {
+//			e.printStackTrace();
+//			alerta.addFlashAttribute("aviso", "Residencia ja existe [" + e.getMessage() + "]");
+//		}
+		return "redirect:/residencias";
 	}
 }

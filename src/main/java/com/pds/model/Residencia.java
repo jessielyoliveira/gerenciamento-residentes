@@ -73,8 +73,8 @@ public class Residencia implements Serializable {
 	@OneToMany(mappedBy = "residencia", cascade = CascadeType.ALL)
 	List<Residente> residentes;
 	
-	Quartos[][] matrizQuartos;
-		
+	Quartos[][] quartos;
+			
 	public Integer getId() {
 		return id;
 	}
@@ -174,13 +174,15 @@ public class Residencia implements Serializable {
 	public void setResidentes(List<Residente> residentes) {
 		this.residentes = residentes;
 	}
-	
-	public void setMatrizQuartos(Quartos[][] quartos) {
-		this.matrizQuartos = quartos;
+
+	public Quartos[][] getQuartos() {
+		return quartos;
+	}
+
+	public void setQuartos(Quartos[][] quartos) {
+		this.quartos = quartos;
 	}
 	
-	public Quartos[][] getMatrizQuartos() {
-		return this.matrizQuartos;
-	}
+	
 
 }

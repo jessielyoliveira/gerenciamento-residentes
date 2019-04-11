@@ -10,17 +10,53 @@
 		<h1 align="center" style="margin-top: 60px;">Alocar Residentes na 
 		<span class="font-weight-bold" th:text="${residencia.nome}"></span>
 		</h1>
-		<h4 align="center">Vagas dispoveis: 
+		<h4 align="center">Vagas disponíveis: 
 		<span class="font-weight-bold" th:text="${residencia.totalVagas}"></span></h4>
 		
 		<hr style="margin: 10px 0;">
 
-		<div class="form-group" th:object="${residencia}">
-			<label for="residencia">Piso</label> <select name="residencia.id"
-				class="form-control">
-				<option th:each="residencia : ${residencias}"
-					th:value="${residencia.id}" th:text="${residencia.nome}"></option>
-			</select>
+		<div class="form-inline" th:object="${residencia}">
+			
+			<form th:action="@{/}" method="post"  class="input-group">
+
+				<div class="form-group" style="margin-right: 40px;">
+					<label for="piso" style="margin-right: 10px;">Piso</label>
+					<select th:field="*{quartos}"
+						class="form-control">
+						<option
+							th:each="i : ${#numbers.sequence(1, residencia.quantPisos)}"
+							th:value="${i}" th:text="${i}">
+						</option>
+					</select>
+				</div>
+				
+				<div class="form-group" style="margin-right: 40px;">
+					<label for="quarto" style="margin-right: 10px;">Quarto</label>
+					<select
+						th:field="*{quartos}" class="form-control">
+						<option
+							th:each="i : ${#numbers.sequence(1, residencia.quantQuartosPorPiso)}"
+							th:value="${i}" th:text="${i}"></option>
+					</select> 
+				</div>
+				
+				<div class="form-group" th:object="${residente}">
+					<label for="residente" style="margin-right: 10px;">Matrícula</label> 
+					<select name="residente.id" class="form-control" style="width: 300px;">
+						<option th:each="residente : ${residentes}"
+							th:value="${residente.id}" th:text="${residente.matricula}"></option>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<input class="btn btn-primary" type="submit" value="Alocar">
+				</div>
+				
+				
+			</form>
+			
+			
+			
 		</div>
 
 		<!-- <div class="form-inline align-items-center">
