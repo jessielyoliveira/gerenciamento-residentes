@@ -48,8 +48,8 @@ public class ResidenteController {
 	// Abre o formulario de cadastro de residentes
 	@GetMapping("/novo")
 	public String residenteForm(Model model) {
-		List<Residencia> listaResidencias = residenciaService.findAll();
-		model.addAttribute("residencias", listaResidencias);
+//		List<Residencia> listaResidencias = residenciaService.findAll();
+//		model.addAttribute("residencias", listaResidencias);
 		model.addAttribute("residente", new Residente());
 		return "residente/formResidente";
 	}

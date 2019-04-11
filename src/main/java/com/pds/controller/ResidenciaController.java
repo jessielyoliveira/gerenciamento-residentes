@@ -147,11 +147,12 @@ public class ResidenciaController {
 	}
 	
 	@PostMapping("/alocar/{idResidencia}")
-	public String alocarResidente(@PathVariable Integer idResidencia, Long matricula, 
+	public String alocarResidente(@PathVariable Integer idResidencia, Integer residente, 
 			Integer piso, Integer quarto, RedirectAttributes alerta, Model model) {
 		try {
-			Residente residente = new Residente();
-			residenteService.alocar(residente, matricula, idResidencia, piso, quarto);					
+			//Residente residente = residenteService.buscaPorMatricula(matricula);
+			System.out.println("piso = " + piso );
+			//residenteService.alocar(residente, matricula, idResidencia, piso, quarto);					
 			alerta.addFlashAttribute("sucesso", "Residente alocado");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -159,4 +160,20 @@ public class ResidenciaController {
 		}
 		return "redirect:/residencias/alocar/" + idResidencia;
 	}
+	
+	
+//	@PostMapping("/alocar/{idResidencia}")
+//	public String alocarResidente(@PathVariable Integer idResidencia, String matricula, 
+//			Integer piso, Integer quarto, RedirectAttributes alerta, Model model) {
+//		try {
+//			Residente residente = residenteService.buscaPorMatricula(matricula);
+//			System.out.println("residenteService.buscaPorMatricula(matricula) = " + residente.getNome());
+//			residenteService.alocar(residente, matricula, idResidencia, piso, quarto);					
+//			alerta.addFlashAttribute("sucesso", "Residente alocado");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			alerta.addFlashAttribute("erro", "Erro na alocação do residente [" + e.getMessage() + "]");
+//		}
+//		return "redirect:/residencias/alocar/" + idResidencia;
+//	}
 }

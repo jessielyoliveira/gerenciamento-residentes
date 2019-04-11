@@ -54,11 +54,13 @@ public class ResidenteService {
 			throw new BusinessException("Nome inv�lido ou nulo");
 		}
 		
-		if(residente.getMatricula() == null || residente.getMatricula() < 1000000000){
+		//TODO Modificar validação para o tipo String
+		if(residente.getMatricula() == null || residente.getMatricula() == " "){
 			throw new BusinessException("Matr�cula inv�lida");
 		}
 		
-		if(residente.getCPF() == null || residente.getCPF() < 10000000){
+		//TODO Modificar validação para o tipo String
+		if(residente.getCPF() == null || residente.getCPF() == " "){
 			throw new BusinessException("CPF inv�lido");
 		}
 	}
@@ -77,13 +79,18 @@ public class ResidenteService {
 		}
 	}
 	
-	public void alocar(Residente residente, Long matricula, Integer idResidencia, Integer piso, Integer quarto) {
+	public Residente buscaPorMatricula(String matricula) {
+		Residente residente = residenteRepository.buscarPorMatricula(matricula);
+		return residente;
+	}
+	
+	public void alocar(Residente residente, String matricula, Integer idResidencia, Integer piso, Integer quarto) {
 		Residencia residencia = residenciaRepository.findById(idResidencia).get();
-		System.out.println(residente);
+		//System.out.println("RESIDENTE = " + residente);
 		//TODO Retornando null, arrumar
 		residente = residenteRepository.buscarPorMatricula(matricula);
 		
-		System.out.println(residente);
+		//System.out.println("RESIDENTE = " + residente);
 		residente.setResidencia(residencia);
 		residente.setPiso(piso);
 		residente.setQuarto(quarto);

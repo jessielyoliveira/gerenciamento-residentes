@@ -17,11 +17,11 @@
 
 		<div class="form-inline" th:object="${residencia}">
 			
-			<form th:action="@{/residencias/alocar/{id} (id = ${residencia.id})}" method="post"  class="input-group">
+			<form th:action="@{/residencias/alocar/{id} (id = ${residencia.id})}" method="get"  class="input-group">
 
-				<div class="form-group" style="margin-right: 40px;">
+				<div class="form-group" style="margin-right: 40px;" th:object="${quartos}">
 					<label for="piso" style="margin-right: 10px;">Piso</label>
-					<select th:field="*{quartos}"
+					<select th:field="*{quartos.piso}"
 						class="form-control">
 						<option
 							th:each="i : ${#numbers.sequence(1, residencia.quantPisos)}"
@@ -33,7 +33,7 @@
 				<div class="form-group" style="margin-right: 40px;">
 					<label for="quarto" style="margin-right: 10px;">Quarto</label>
 					<select
-						th:field="*{quartos}" class="form-control">
+						th:field="*{quartos.numeroQuarto}" class="form-control">
 						<option
 							th:each="i : ${#numbers.sequence(1, residencia.quantQuartosPorPiso)}"
 							th:value="${i}" th:text="${i}"></option>

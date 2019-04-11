@@ -21,16 +21,16 @@ public class Usuario implements Serializable {
 	private Integer id;
 	
 	@Column(name = "matricula")
-	private Long matricula;
+	private String matricula;
 	
 	@Column(name = "nome")
 	private String nome;
 	
 	@Column(name = "CPF")
-	private Long CPF;
+	private String CPF;
 	
 	@Column(name = "RG")
-	private Long RG;
+	private String RG;
 	
 	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	@Column(name = "datanasc")
@@ -63,14 +63,14 @@ public class Usuario implements Serializable {
 	public String getSenha() { return senha; }
 	public void setSenha(String senha) { this.senha = senha; }
 	
-	public Long getMatricula() { return matricula; }
-	public void setMatricula(Long matricula) { this.matricula = matricula; }
+	public String getMatricula() { return matricula; }
+	public void setMatricula(String matricula) { this.matricula = matricula; }
 	
-	public Long getCPF() { return CPF; }
-	public void setCPF(Long cPF) { CPF = cPF; }
+	public String getCPF() { return CPF; }
+	public void setCPF(String cPF) { CPF = cPF; }
 	
-	public Long getRG() { return RG; }
-	public void setRG(Long rG) { RG = rG; }
+	public String getRG() { return RG; }
+	public void setRG(String rG) { RG = rG; }
 	
 	public Date getDatanasc() { return datanasc; }
 	public void setDatanasc(Date datanasc) { this.datanasc = datanasc; }
