@@ -22,9 +22,11 @@ import com.pds.model.Residencia;
 import com.pds.model.Residente;
 import com.pds.model.Servico;
 import com.pds.model.Solicitacao;
+import com.pds.model.Status;
 import com.pds.service.ResidenciaService;
 import com.pds.service.ServicoService;
 import com.pds.service.SolicitacaoService;
+import com.pds.service.StatusService;
 
 @Controller
 @RequestMapping("/solicitacoes")
@@ -35,6 +37,9 @@ public class SolicitacaoController {
 	
 	@Autowired
 	private ServicoService servicoService;
+	
+	@Autowired
+	private StatusService statusService;
 	
 	
 	@GetMapping
@@ -56,6 +61,11 @@ public class SolicitacaoController {
 	public String criar(Model model) {
 		List<Servico> listaServicos = servicoService.findAll();
 		model.addAttribute("servicos", listaServicos);
+	
+		
+		List<Status> listaStatus = statusService.findAll();
+		model.addAttribute("status", listaStatus);
+		
 		model.addAttribute("solicitacao", new Solicitacao());
 		return "solicitacao/formSolicitacao";
 	}
@@ -106,6 +116,8 @@ public class SolicitacaoController {
 				model.addAttribute("solicitacao", solicitacao);
 				List<Servico> listaServicos = servicoService.findAll();
 				model.addAttribute("servicos", listaServicos);
+				List<Status> listaStatus = statusService.findAll();
+				model.addAttribute("status", listaStatus);
 			}
 		} catch (Exception e) {
 			e.getMessage();

@@ -22,6 +22,14 @@
 			 		 th:value="${servico.id}" th:text="${servico.nome}"></option>
 				</select>	
 			 </div>
+			 
+			 <div class="form-group" th:object="${status}">
+			 	<label for="status">Status</label>
+				 <select name="status.id" class="form-control">
+			 		 <option th:each="status : ${status}" 
+			 		 th:value="${status.id}" th:text="${status.nome}"></option>
+				</select>	
+			 </div>
 			 <div class="form-group">
 				<label for="justificativa">Justificativa</label>
 				<input type="text" class="form-control" id="justificativa" th:field="*{justificativa}" placeholder="Insira uma justificativa">

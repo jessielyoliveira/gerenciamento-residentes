@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-br" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+	
+	<section layout:fragment="content">
+		<!-- <h1 align="center" style="margin: 30px 0;">Cadastro de Serviço</h1> -->
+		<h1 th:if="${status.id == null}" align="center" style="margin: 30px 0;">Novo Status</h1>
+		<h1 th:if="${status.id != null}" align="center" style="margin: 30px 0;">Editar Status</h1>
+		
+		<form th:action="@{/status}" th:object="${status}" 
+				th:method="@{${status.id == null} ? 'post' : 'put'}">
+			<input type="hidden" th:field="*{id}">
+			
+			<div class="form-group">
+				<label for="nome">Nome</label>
+				<input type="text" class="form-control" id="nome" th:field="*{nome}" required="required"
+						placeholder="Insira um nome">
+			</div>
+			<button type="submit" class="btn btn-success" style="float: right;">Salvar</button>
+
+		</form>
+	</section>
+</body>
+</html>

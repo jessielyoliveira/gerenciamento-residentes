@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pds.model.Servico;
 import com.pds.model.Status;
 import com.pds.repository.StatusRepository;
 
@@ -53,4 +54,8 @@ public class StatusService {
 		}
 		return false;
 	}
+	
+//	public List<Status> search(String chave) {
+//		return statusRepository.buscaPorNome(chave);
+//	}
 }

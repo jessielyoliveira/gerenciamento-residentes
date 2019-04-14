@@ -89,13 +89,13 @@ public class Solicitacao implements Serializable {
 //	public void setMateriais(String materiais) {
 //		this.materiais = materiais;
 //	}
-//	public Status getStatus() {
-//		return status;
-//	}
-//	public void setStatus(Status status) {
-//		this.status = status;
-//	}
-	
+	public Status getStatus() {
+		return status;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+//	
 //	public List<Solicitacao> getSolicitacoes() {
 //		return solicitacoes; 
 //	}

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "status")
@@ -20,7 +22,14 @@ public class Status {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
+	@NotEmpty @Column(name = "nome")
+	private String nome;
+	
+	@Column(name = "dataModificado")
 	private Date modificacao;
+	
+	@Column(name = "observacao")
 	private String observacao; 
 	
 		
@@ -29,6 +38,13 @@ public class Status {
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	public Date getModificacao() {
 		return modificacao;

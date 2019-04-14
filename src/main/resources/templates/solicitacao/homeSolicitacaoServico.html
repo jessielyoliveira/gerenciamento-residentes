@@ -31,13 +31,13 @@
 		<table class="table table-striped" style="margin-top: 30px;">
 			<thead>
 				<tr>
-					<th scope="col">Código</th>
+					<th scope="col">Tipo Serviço</th>
 					<th scope="col">Ação</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="solicitacao : ${listaSolicitacao}">
-					<td class="col-md-8" th:text="${solicitacao.id}"></td>
+					<td class="col-md-8" th:text="${solicitacao.servico.nome}"></td>
 					<td>
 						<a class="btn btn-secondary" th:href="@{/solicitacoes/detalhes/{id} (id = ${solicitacao.id})}">Detalhes</a>
 						<a class="btn btn-warning" style="margin: 0 10px"
