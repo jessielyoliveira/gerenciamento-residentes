@@ -7,7 +7,7 @@
 <body>
 
 	<section layout:fragment="content">
-		<h1 align="center" style="margin: 60px 0;">Acompanhar Serviço</h1>
+		<h1 align="center" style="margin: 60px 0;">Avaliar Solicitações</h1>
 
 		<div class="form-inline align-items-center">
 			<!-- Busca -->
@@ -45,7 +45,7 @@
 					<td class="col-md-8" th:text="${solicitacao.dataModificacao}"></td>
 					<td class="col-md-8" th:text="${solicitacao.status.nome}"></td>
 					<td>
-						<a class="btn btn-secondary" th:href="@{/solicitacoes/detalhes/{id} (id = ${solicitacao.id})}">Detalhes</a>
+						<a class="btn btn-secondary" th:href="@{/solicitacoes/novaAvaliacao}">Avaliar</a>
 						
 					</td>
 				</tr>

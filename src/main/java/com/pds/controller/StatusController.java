@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.pds.exception.BusinessException;
 import com.pds.exception.ModelException;
 import com.pds.model.Servico;
 import com.pds.model.Status;
@@ -47,18 +48,18 @@ public class StatusController {
 	// Envia as informacoes do formulario para a camada de servico
 	@PostMapping
 	public String salvar(@Valid Status status, RedirectAttributes alerta) {
-//		try {
-			//servicoService.validar(servico);
+		try {
+			statusService.validar(status);
 			statusService.existe(status);
 			statusService.save(status);
-			alerta.addFlashAttribute("sucesso", "Servico inserido");
-//		} catch (BusinessException e) {
-//			e.printStackTrace();
-//			alerta.addFlashAttribute("erro", "Erro na insercao do servico [" + e.getMessage() + "]");
-//		} catch (ModelException e) {
-//			e.printStackTrace();
-//			alerta.addFlashAttribute("aviso", "Servico ja existe [" + e.getMessage() + "]");
-//		}
+			alerta.addFlashAttribute("sucesso", "Status Inserido");
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			alerta.addFlashAttribute("erro", "Erro na insercao do status [" + e.getMessage() + "]");
+		} catch (ModelException e) {
+			e.printStackTrace();
+			alerta.addFlashAttribute("aviso", "Status ja existe [" + e.getMessage() + "]");
+		}
 		return "redirect:/status";
 	}
 	

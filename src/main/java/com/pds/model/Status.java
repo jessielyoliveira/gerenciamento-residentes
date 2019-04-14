@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "status")
@@ -23,7 +24,8 @@ public class Status {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@NotEmpty @Column(name = "nome")
+	@NotNull
+	@Column(name = "nome")
 	private String nome;
 	
 	@Column(name = "dataModificado")

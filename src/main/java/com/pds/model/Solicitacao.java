@@ -38,6 +38,11 @@ public class Solicitacao implements Serializable {
 	@JoinColumn(name = "servico")
 	private Servico servico; //tipo servico solicitado
 	
+	//s@OneToOne 
+	@JoinColumn(name = "avaliacao")
+	private Avaliacao avaliacao; 
+	
+	
 	//@NotNull 
 	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	@Column(name = "data")
@@ -48,7 +53,7 @@ public class Solicitacao implements Serializable {
 	@Column(name = "dataModificacao")
 	private Date dataModificacao; 
 	
-	@NotNull 
+	//@NotNull 
 	@Column(name = "justificativa")
 	private String justificativa;
 	
@@ -107,6 +112,14 @@ public class Solicitacao implements Serializable {
 	public void setJustificativa(String justificativa) {
 		this.justificativa = justificativa;
 	}
+	
+	public Avaliacao getAvaliacao() {
+		return avaliacao;
+	}
+	public void setAvaliacao(Avaliacao avaliacao) {
+		this.avaliacao = avaliacao;
+	}
+	
 //	public String getMateriais() {
 //		return materiais;
 //	}
