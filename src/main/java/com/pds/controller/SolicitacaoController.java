@@ -49,11 +49,11 @@ public class SolicitacaoController {
 		return "solicitacao/homeSolicitacao"; 
 	}
 	
-	@GetMapping("/solicitarServico")
+	@GetMapping("/acompanharServico")
 	public String indexSolicitacaoServico(Model model) {
 		List<Solicitacao> lista = solicitacaoService.findAll();
 		model.addAttribute("listaSolicitacao", lista);
-		return "solicitacao/homeSolicitacaoServico"; 
+		return "solicitacao/homeAcompanharServico"; 
 	}
 	
 	// Abre o formulario de cadastro de solicitacao
@@ -74,20 +74,21 @@ public class SolicitacaoController {
 	@PostMapping
 	public String salvar(@Valid Solicitacao solicitacao, RedirectAttributes alerta) {
 		try {
-			//solicitacaoService.validar(solicitacao);
+			solicitacaoService.validar(solicitacao);
 			solicitacaoService.existe(solicitacao);
 			solicitacaoService.save(solicitacao);
 			alerta.addFlashAttribute("sucesso", "Solicitação inserida");
-		} 
-		//catch (BusinessException e) {
-//			e.printStackTrace();
-//			alerta.addFlashAttribute("erro", "Erro na insercao da residencia [" + e.getMessage() + "]");
-//		} 
-		catch (ModelException e) {
+		} catch (BusinessException e) {
 			e.printStackTrace();
-			alerta.addFlashAttribute("aviso", "Solicitação ja existe [" + e.getMessage() + "]");
+			alerta.addFlashAttribute("erro", "Erro na inserção da solicitação [" + e.getMessage() + "]");
+			return "redirect:/solicitacoes/nova";
+		} catch (ModelException e) {
+			e.printStackTrace();
+			alerta.addFlashAttribute("aviso", "Solicitação já existe [" + e.getMessage() + "]");
+			return "redirect:/solicitacoes/nova";
 		}
-		return "redirect:/solicitacoes/solicitarServico";
+		
+		return "redirect:/solicitacoes/acompanharServico";
 	}
 	
 	@GetMapping("/remover/{id}")
@@ -105,7 +106,7 @@ public class SolicitacaoController {
 			Solicitacao solicitacao = solicitacaoService.findOne(id).get();
 			solicitacaoService.delete(solicitacao);
 		}
-		return "redirect:/solicitacoes/solicitarServico";
+		return "redirect:/solicitacoes/AcompanharServico";
 	}
 	
 	@GetMapping("/editar/{id}")
@@ -135,11 +136,11 @@ public class SolicitacaoController {
 //			e.printStackTrace();
 //			alerta.addFlashAttribute("erro", "Erro na atualizacao da residencia [" + e.getMessage() + "]");
 //		} 
-		return "redirect:/solicitacoes/solicitarServico";
+		return "redirect:/solicitacoes/AcompanharServico";
 	}
 	
 	@GetMapping("/detalhes/{id}")
-	public String detalhar(@PathVariable Integer id, Model model) {
+	public String detalharProae(@PathVariable Integer id, Model model) {
 		try {
 			if (id != null) {
 				Solicitacao solicitacao = solicitacaoService.findOne(id).get();

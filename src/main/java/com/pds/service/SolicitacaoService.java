@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pds.exception.BusinessException;
 import com.pds.exception.ModelException;
 import com.pds.model.Residencia;
+import com.pds.model.Residente;
 import com.pds.model.Solicitacao;
 import com.pds.repository.SolicitacaoRepository;
 
@@ -44,6 +46,18 @@ public class SolicitacaoService {
 				throw new ModelException("Id ja cadastrado");
 			}
 		}	
+	}
+	
+	public void validar(Solicitacao solicitacao) throws BusinessException {
+		if( solicitacao.getServico().equals("") || solicitacao.getServico() == null){
+			throw new BusinessException("Serviço inválido ou nulo");
+		}
+		
+		if( solicitacao.getStatus().equals("") || solicitacao.getStatus() == null){
+			throw new BusinessException("Status inválido ou nulo");
+		}
+		
+		
 	}
 	
 //	public List<Solicitacao> search(String chave) {
