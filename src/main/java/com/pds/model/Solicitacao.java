@@ -18,6 +18,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name = "solicitacoes")
@@ -37,6 +39,7 @@ public class Solicitacao implements Serializable {
 	private Servico servico; //tipo servico solicitado
 	
 	//@NotNull 
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	@Column(name = "data")
 	private Date data;       //data solicitacao
 	
@@ -71,12 +74,12 @@ public class Solicitacao implements Serializable {
 	public void setServico(Servico servico) {
 		this.servico = servico;
 	}
-//	public Date getData() {
-//		return data;
-//	}
-//	public void setData(Date data) {
-//		this.data = data;
-//	}
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
+	}
 	public String getJustificativa() {
 		return justificativa;
 	}
