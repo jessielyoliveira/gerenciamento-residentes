@@ -7,23 +7,22 @@
 <body>
 
 	<section layout:fragment="content">
-		<h1 align="center" style="margin: 60px 0;">Gerenciar Solicitação</h1>
+		<h1 align="center" style="margin: 60px 0;">Acompanhar Serviço</h1>
 
 		<div class="form-inline align-items-center">
 			<!-- Busca -->
-			<div class="input-group col-md-6" style="padding: 0">
-				<input type="text" class="form-control"
-					placeholder="Buscar solicitação" aria-label="Buscar solicitação"
+			<form th:action="@{/solicitacoes/busca}" method="post"  class="input-group col-md-6" style="padding: 0">
+				<input type="text" class="form-control" id="chave" name="chave"
+					placeholder="Buscar solicitacoes por nome" aria-label="Buscar solicitacoes"
 					aria-describedby="basic-addon2">
 				<div class="input-group-append">
-					<button class="btn btn-secondary" type="button">Buscar</button>
+					<input class="btn btn-secondary" type="submit" value="Buscar">
+					<a class="btn btn-success" type="button" th:href=@{/solicitacoes}>Todos</a>
 				</div>
-			</div>
+			</form>
 			<!-- Botões -->
 			<div style="margin-left: auto;">
-				<a th:href="@{status}" class="btn btn-primary"
-					style="margin-right: 10px;">Gerir Status</a> <a
-					th:href="@{servicos}" class="btn btn-primary">Gerir Serviços</a>
+				<a th:href="@{/residentes}" class="btn btn-secondary">Voltar</a>
 			</div>
 		</div>
 
@@ -33,7 +32,7 @@
 				<tr>
 					<th scope="col">Tipo Serviço</th>
 					<th scope="col">Data da Solicitação</th>
-					<th scope="col">Data da Modificaçao</th>
+					<th scope="col">Data da Modificação</th>
 					<th scope="col">Status</th>
 					
 					<th scope="col">Ação</th>
@@ -47,15 +46,12 @@
 					<td class="col-md-8" th:text="${solicitacao.status.nome}"></td>
 					<td>
 						<a class="btn btn-secondary" th:href="@{/solicitacoes/detalhes/{id} (id = ${solicitacao.id})}">Detalhes</a>
-						<a class="btn btn-warning" style="margin: 0 10px"
-							th:href="@{/solicitacoes/editar/{id} (id = ${solicitacao.id})}">Alterar Status</a>
-						<a class="btn btn-danger" 
-							onclick="return confirm('Tem certeza que deseja remover este registro?')"
-							th:href="@{/solicitacoes/remover/{id} (id = ${solicitacao.id})}">Remover</a>
+						
 					</td>
 				</tr>
 			</tbody>
 		</table>
+
 	</section>
 		
 </body>

@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pds.exception.BusinessException;
+import com.pds.exception.ModelException;
+import com.pds.model.Servico;
+import com.pds.model.Solicitacao;
 import com.pds.model.Status;
 import com.pds.repository.StatusRepository;
 
@@ -35,15 +39,18 @@ public class StatusService {
 		statusRepository.delete(entity);
 	}
 	
-	public boolean existe(Status statuss) {
+	public void existe(Status statuss) throws ModelException{
 		List<Status> Status = findAll();	
 		for (Status status : Status) {
 			Integer Id = status.getId();
+			String nome = status.getNome();
 			if(Id.equals(statuss.getId())) {
-				return true;
+				throw new ModelException("Id ja cadastrado");
+			}
+			if(nome.equals(statuss.getNome().toLowerCase())) {
+				throw new ModelException("Nome ja cadastrado");
 			}
 		}	
-		return false;
 	}
 	
 	public boolean empty() {
@@ -53,4 +60,15 @@ public class StatusService {
 		}
 		return false;
 	}
+	
+	public void validar(Status status) throws BusinessException {
+		if( status.getNome().equals("") || status.getNome() == null){
+			throw new BusinessException("Serviço inválido ou nulo");
+		}
+		
+	}
+	
+//	public List<Status> search(String chave) {
+//		return statusRepository.buscaPorNome(chave);
+//	}
 }

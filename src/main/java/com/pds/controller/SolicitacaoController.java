@@ -22,9 +22,11 @@ import com.pds.model.Residencia;
 import com.pds.model.Residente;
 import com.pds.model.Servico;
 import com.pds.model.Solicitacao;
+import com.pds.model.Status;
 import com.pds.service.ResidenciaService;
 import com.pds.service.ServicoService;
 import com.pds.service.SolicitacaoService;
+import com.pds.service.StatusService;
 
 @Controller
 @RequestMapping("/solicitacoes")
@@ -36,6 +38,9 @@ public class SolicitacaoController {
 	@Autowired
 	private ServicoService servicoService;
 	
+	@Autowired
+	private StatusService statusService;
+	
 	
 	@GetMapping
 	public String indexSolicitacao(Model model) {
@@ -44,11 +49,11 @@ public class SolicitacaoController {
 		return "solicitacao/homeSolicitacao"; 
 	}
 	
-	@GetMapping("/solicitarServico")
+	@GetMapping("/acompanharServico")
 	public String indexSolicitacaoServico(Model model) {
 		List<Solicitacao> lista = solicitacaoService.findAll();
 		model.addAttribute("listaSolicitacao", lista);
-		return "solicitacao/homeSolicitacaoServico"; 
+		return "solicitacao/homeAcompanharServico"; 
 	}
 	
 	// Abre o formulario de cadastro de solicitacao
@@ -56,6 +61,11 @@ public class SolicitacaoController {
 	public String criar(Model model) {
 		List<Servico> listaServicos = servicoService.findAll();
 		model.addAttribute("servicos", listaServicos);
+	
+		
+		List<Status> listaStatus = statusService.findAll();
+		model.addAttribute("status", listaStatus);
+		
 		model.addAttribute("solicitacao", new Solicitacao());
 		return "solicitacao/formSolicitacao";
 	}
@@ -64,20 +74,21 @@ public class SolicitacaoController {
 	@PostMapping
 	public String salvar(@Valid Solicitacao solicitacao, RedirectAttributes alerta) {
 		try {
-			//solicitacaoService.validar(solicitacao);
+			solicitacaoService.validar(solicitacao);
 			solicitacaoService.existe(solicitacao);
 			solicitacaoService.save(solicitacao);
 			alerta.addFlashAttribute("sucesso", "Solicitação inserida");
-		} 
-		//catch (BusinessException e) {
-//			e.printStackTrace();
-//			alerta.addFlashAttribute("erro", "Erro na insercao da residencia [" + e.getMessage() + "]");
-//		} 
-		catch (ModelException e) {
+		} catch (BusinessException e) {
 			e.printStackTrace();
-			alerta.addFlashAttribute("aviso", "Solicitação ja existe [" + e.getMessage() + "]");
+			alerta.addFlashAttribute("erro", "Erro na inserção da solicitação [" + e.getMessage() + "]");
+			return "redirect:/solicitacoes/nova";
+		} catch (ModelException e) {
+			e.printStackTrace();
+			alerta.addFlashAttribute("aviso", "Solicitação já existe [" + e.getMessage() + "]");
+			return "redirect:/solicitacoes/nova";
 		}
-		return "redirect:/solicitacoes/solicitarServico";
+		
+		return "redirect:/solicitacoes/acompanharServico";
 	}
 	
 	@GetMapping("/remover/{id}")
@@ -95,7 +106,7 @@ public class SolicitacaoController {
 			Solicitacao solicitacao = solicitacaoService.findOne(id).get();
 			solicitacaoService.delete(solicitacao);
 		}
-		return "redirect:/solicitacoes/solicitarServico";
+		return "redirect:/solicitacoes/AcompanharServico";
 	}
 	
 	@GetMapping("/editar/{id}")
@@ -106,11 +117,13 @@ public class SolicitacaoController {
 				model.addAttribute("solicitacao", solicitacao);
 				List<Servico> listaServicos = servicoService.findAll();
 				model.addAttribute("servicos", listaServicos);
+				List<Status> listaStatus = statusService.findAll();
+				model.addAttribute("status", listaStatus);
 			}
 		} catch (Exception e) {
 			e.getMessage();
 		}
-		return "solicitacao/formSolicitacao";
+		return "solicitacao/formEditarSolicitacao";
 	}
 	
 	@PutMapping
@@ -118,16 +131,16 @@ public class SolicitacaoController {
 		//try {
 			//solicitacaoService.validar(solicitacao);
 			solicitacaoService.save(solicitacao);
-			alerta.addFlashAttribute("sucesso", "Solicitacao atualizada");
+			alerta.addFlashAttribute("sucesso", "Solicitacao Modificada!");
 //		} catch (BusinessException e) {
 //			e.printStackTrace();
 //			alerta.addFlashAttribute("erro", "Erro na atualizacao da residencia [" + e.getMessage() + "]");
 //		} 
-		return "redirect:/solicitacoes/solicitarServico";
+		return "redirect:/solicitacoes";
 	}
 	
 	@GetMapping("/detalhes/{id}")
-	public String detalhar(@PathVariable Integer id, Model model) {
+	public String detalharProae(@PathVariable Integer id, Model model) {
 		try {
 			if (id != null) {
 				Solicitacao solicitacao = solicitacaoService.findOne(id).get();

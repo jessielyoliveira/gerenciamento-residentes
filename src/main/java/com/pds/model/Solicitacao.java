@@ -18,6 +18,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name = "solicitacoes")
@@ -36,13 +38,28 @@ public class Solicitacao implements Serializable {
 	@JoinColumn(name = "servico")
 	private Servico servico; //tipo servico solicitado
 	
+	//s@OneToOne 
+	@JoinColumn(name = "avaliacao")
+	private Avaliacao avaliacao; 
+	
+	
 	//@NotNull 
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	@Column(name = "data")
 	private Date data;       //data solicitacao
 	
-	@NotNull 
+	//@NotNull 
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	@Column(name = "dataModificacao")
+	private Date dataModificacao; 
+	
+	//@NotNull 
 	@Column(name = "justificativa")
 	private String justificativa;
+	
+	//@NotNull 
+	@Column(name = "observacao")
+	private String observacao;
 	
 	//@NotNull 
 	@Column(name = "materiais")
@@ -68,34 +85,54 @@ public class Solicitacao implements Serializable {
 	public Servico getServico() {
 		return servico;
 	}
+	public Date getDataModificacao() {
+		return dataModificacao;
+	}
+	public void setDataModificacao(Date dataModificacao) {
+		this.dataModificacao = dataModificacao;
+	}
+	public String getObservacao() {
+		return observacao;
+	}
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
 	public void setServico(Servico servico) {
 		this.servico = servico;
 	}
-//	public Date getData() {
-//		return data;
-//	}
-//	public void setData(Date data) {
-//		this.data = data;
-//	}
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
+	}
 	public String getJustificativa() {
 		return justificativa;
 	}
 	public void setJustificativa(String justificativa) {
 		this.justificativa = justificativa;
 	}
+	
+	public Avaliacao getAvaliacao() {
+		return avaliacao;
+	}
+	public void setAvaliacao(Avaliacao avaliacao) {
+		this.avaliacao = avaliacao;
+	}
+	
 //	public String getMateriais() {
 //		return materiais;
 //	}
 //	public void setMateriais(String materiais) {
 //		this.materiais = materiais;
 //	}
-//	public Status getStatus() {
-//		return status;
-//	}
-//	public void setStatus(Status status) {
-//		this.status = status;
-//	}
-	
+	public Status getStatus() {
+		return status;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+//	
 //	public List<Solicitacao> getSolicitacoes() {
 //		return solicitacoes; 
 //	}

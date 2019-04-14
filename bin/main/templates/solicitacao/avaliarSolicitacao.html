@@ -9,7 +9,7 @@
 	<section layout:fragment="content">
 		<!-- <h1 align="center" style="margin: 30px 0;">Cadastro de Residência</h1> -->
 		<h1 th:if="${solicitacao.id == null}" align="center" style="margin: 30px 0;">Nova Solicitação</h1>
-		<h1 th:if="${solicitacao.id != null}" align="center" style="margin: 30px 0;">Editar Solicitação</h1>
+		<h1 th:if="${solicitacao.id != null}" align="center" style="margin: 30px 0;">Avaliar Solicitação</h1>
 		
 		<form th:action="@{/solicitacoes}" th:object="${solicitacao}" 
 				th:method="@{${solicitacao.id == null} ? 'post' : 'put'}">
@@ -39,10 +39,20 @@
 		    	<label for="data">Data de solicitação</label>
 		    	<input type="date" class="form-control" id="data" th:field="*{data}" required="required"placeholder="Insira a data">
 		  	</div>
+		  	
+		  	<div class="form-group">
+		    	<label for="data">Data de Modificação</label>
+		    	<input type="date" class="form-control" id="dataModificacao" th:field="*{dataModificacao}" required="required"placeholder="Insira a data">
+		  	</div>
+		  	
+		  	<div class="form-group">
+				<label for="justificativa">Observaçao</label>
+				<input type="text" class="form-control" id="observacao" th:field="*{observacao}" placeholder="Insira uma observacao">
+			</div>
 			
 			
 		  	<button type="submit" class="btn btn-success" style="float: right;">Salvar</button>
-		  	<a th:href="@{/residentes}" class="btn btn-secondary" style="float: right; margin: 0 20px 30px 0;">Cancelar</a>
+		  	<a th:href="@{/solicitacoes}" class="btn btn-secondary" style="float: right; margin: 0 20px 30px 0;">Cancelar</a>
 
 		</form>
 	</section>

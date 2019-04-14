@@ -21,8 +21,8 @@
 			</div>
 			<!-- Botões -->
 			<div style="margin-left: auto;">
-				<a th:href="@{/}" class="btn btn-primary"
-					style="margin-right: 10px;">Distribuir Solicitação</a> <a
+				<a th:href="@{status}" class="btn btn-primary"
+					style="margin-right: 10px;">Gerir Status</a> <a
 					th:href="@{servicos}" class="btn btn-primary">Gerir Serviços</a>
 			</div>
 		</div>
@@ -31,13 +31,20 @@
 		<table class="table table-striped" style="margin-top: 30px;">
 			<thead>
 				<tr>
-					<th scope="col">Código</th>
+					<th scope="col">Tipo Serviço</th>
+					<th scope="col">Data da Solicitação</th>
+					<th scope="col">Data da Modificaçao</th>
+					<th scope="col">Status</th>
+					
 					<th scope="col">Ação</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="solicitacao : ${listaSolicitacao}">
-					<td class="col-md-8" th:text="${solicitacao.id}"></td>
+					<td class="col-md-8" th:text="${solicitacao.servico.nome}"></td>
+					<td class="col-md-8" th:text="${solicitacao.data}"></td>
+					<td class="col-md-8" th:text="${solicitacao.dataModificacao}"></td>
+					<td class="col-md-8" th:text="${solicitacao.status.nome}"></td>
 					<td>
 						<a class="btn btn-secondary" th:href="@{/solicitacoes/detalhes/{id} (id = ${solicitacao.id})}">Detalhes</a>
 						<a class="btn btn-warning" style="margin: 0 10px"

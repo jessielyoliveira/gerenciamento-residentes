@@ -7,7 +7,7 @@
 <body>
 
 	<section layout:fragment="content">
-		<h1 align="center" style="margin: 60px 0;">Solicitar Serviço</h1>
+		<h1 align="center" style="margin: 60px 0;">Avaliar Solicitações</h1>
 
 		<div class="form-inline align-items-center">
 			<!-- Busca -->
@@ -22,7 +22,6 @@
 			</form>
 			<!-- Botões -->
 			<div style="margin-left: auto;">
-				<a th:href="@{/solicitacoes/nova}" class="btn btn-primary" style="margin: 0 10px">Adicionar	Solicitação</a>
 				<a th:href="@{/residentes}" class="btn btn-secondary">Voltar</a>
 			</div>
 		</div>
@@ -31,20 +30,23 @@
 		<table class="table table-striped" style="margin-top: 30px;">
 			<thead>
 				<tr>
-					<th scope="col">Código</th>
+					<th scope="col">Tipo Serviço</th>
+					<th scope="col">Data da Solicitação</th>
+					<th scope="col">Data da Modificação</th>
+					<th scope="col">Status</th>
+					
 					<th scope="col">Ação</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="solicitacao : ${listaSolicitacao}">
-					<td class="col-md-8" th:text="${solicitacao.id}"></td>
+					<td class="col-md-8" th:text="${solicitacao.servico.nome}"></td>
+					<td class="col-md-8" th:text="${solicitacao.data}"></td>
+					<td class="col-md-8" th:text="${solicitacao.dataModificacao}"></td>
+					<td class="col-md-8" th:text="${solicitacao.status.nome}"></td>
 					<td>
-						<a class="btn btn-secondary" th:href="@{/solicitacoes/detalhes/{id} (id = ${solicitacao.id})}">Detalhes</a>
-						<a class="btn btn-warning" style="margin: 0 10px"
-							th:href="@{/solicitacoes/editar/{id} (id = ${solicitacao.id})}">Editar</a>
-						<a class="btn btn-danger" 
-							onclick="return confirm('Tem certeza que deseja remover este registro?')"
-							th:href="@{/solicitacoes/removerSolicitacaoServico/{id} (id = ${solicitacao.id})}">Remover</a>
+						<a class="btn btn-secondary" th:href="@{/solicitacoes/novaAvaliacao}">Avaliar</a>
+						
 					</td>
 				</tr>
 			</tbody>
