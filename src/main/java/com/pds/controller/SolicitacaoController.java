@@ -123,7 +123,7 @@ public class SolicitacaoController {
 		} catch (Exception e) {
 			e.getMessage();
 		}
-		return "solicitacao/formSolicitacao";
+		return "solicitacao/formEditarSolicitacao";
 	}
 	
 	@PutMapping
@@ -131,12 +131,12 @@ public class SolicitacaoController {
 		//try {
 			//solicitacaoService.validar(solicitacao);
 			solicitacaoService.save(solicitacao);
-			alerta.addFlashAttribute("sucesso", "Solicitacao atualizada");
+			alerta.addFlashAttribute("sucesso", "Solicitacao Modificada!");
 //		} catch (BusinessException e) {
 //			e.printStackTrace();
 //			alerta.addFlashAttribute("erro", "Erro na atualizacao da residencia [" + e.getMessage() + "]");
 //		} 
-		return "redirect:/solicitacoes/AcompanharServico";
+		return "redirect:/solicitacoes";
 	}
 	
 	@GetMapping("/detalhes/{id}")

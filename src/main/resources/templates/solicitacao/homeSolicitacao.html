@@ -32,7 +32,8 @@
 			<thead>
 				<tr>
 					<th scope="col">Tipo Serviço</th>
-					<th scope="col">Data da solicitação</th>
+					<th scope="col">Data da Solicitação</th>
+					<th scope="col">Data da Modificaçao</th>
 					<th scope="col">Status</th>
 					
 					<th scope="col">Ação</th>
@@ -42,6 +43,7 @@
 				<tr th:each="solicitacao : ${listaSolicitacao}">
 					<td class="col-md-8" th:text="${solicitacao.servico.nome}"></td>
 					<td class="col-md-8" th:text="${solicitacao.data}"></td>
+					<td class="col-md-8" th:text="${solicitacao.dataModificacao}"></td>
 					<td class="col-md-8" th:text="${solicitacao.status.nome}"></td>
 					<td>
 						<a class="btn btn-secondary" th:href="@{/solicitacoes/detalhes/{id} (id = ${solicitacao.id})}">Detalhes</a>

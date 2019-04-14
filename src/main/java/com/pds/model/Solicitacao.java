@@ -43,9 +43,18 @@ public class Solicitacao implements Serializable {
 	@Column(name = "data")
 	private Date data;       //data solicitacao
 	
+	//@NotNull 
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	@Column(name = "dataModificacao")
+	private Date dataModificacao; 
+	
 	@NotNull 
 	@Column(name = "justificativa")
 	private String justificativa;
+	
+	//@NotNull 
+	@Column(name = "observacao")
+	private String observacao;
 	
 	//@NotNull 
 	@Column(name = "materiais")
@@ -70,6 +79,18 @@ public class Solicitacao implements Serializable {
 	}
 	public Servico getServico() {
 		return servico;
+	}
+	public Date getDataModificacao() {
+		return dataModificacao;
+	}
+	public void setDataModificacao(Date dataModificacao) {
+		this.dataModificacao = dataModificacao;
+	}
+	public String getObservacao() {
+		return observacao;
+	}
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 	public void setServico(Servico servico) {
 		this.servico = servico;
