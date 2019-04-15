@@ -186,8 +186,9 @@ public class Residencia implements Serializable {
 		return quartos;
 	}
 
-	public void setQuartos(ArrayList<Quartos> quartos) {
-		this.quartos = quartos;
+	public void adicionarQuarto(Quartos quarto) {
+		this.quartos.add(quarto);
+		System.out.println(quartos.size());
 	}
 	
 

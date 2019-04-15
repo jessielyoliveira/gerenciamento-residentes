@@ -7,6 +7,19 @@ public class Quartos {
 	Integer totalVagas;
 	Integer vagasDisponiveis;
 	
+	
+	
+	public Quartos() {
+		super();
+	}
+
+	public Quartos(Integer piso, Integer numeroQuarto, Integer totalVagas) {
+		super();
+		this.piso = piso;
+		this.numeroQuarto = numeroQuarto;
+		this.totalVagas = totalVagas;
+	}
+
 	public Integer getPiso() {
 		return piso;
 	}

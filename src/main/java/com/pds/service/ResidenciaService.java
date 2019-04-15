@@ -69,31 +69,24 @@ public class ResidenciaService {
 		return residenciaRepository.buscaPorNome(chave);
 	}
 	
-	public void alocaQuartos(Residencia residencia) {
-		inicializaQuartos(residencia);
-	}
-	
 	public void inicializaQuartos(Residencia residencia) {
-		ArrayList<Quartos> quartos = new ArrayList<Quartos>();
 		for(Integer i = 0; i < residencia.getQuantPisos(); i++) {
 			for(Integer j = 0; j < residencia.getQuantQuartosPorPiso(); j++) {
-				Quartos quarto = new Quartos();
-				quarto.setPiso(i);
-				quarto.setNumeroQuarto(j);
-				quarto.setTotalVagas(residencia.getTotalVagas());
-				quartos.add(quarto);
+				Quartos quarto = new Quartos(i, j, residencia.getTotalVagas());
+				residencia.adicionarQuarto(quarto);
 			}
-		}
-		residencia.setQuartos(quartos);
+		}	
 	}
 	
 	public void imprimeMatriz(Residencia residencia) {
-		if(residencia == null) {
-			System.out.println("RESIDENCIA NULA");
+		if(residencia.getQuartos() == null) {
+			System.out.println("QUARTOS NULOS ");
 		} else {
-			System.out.println("RESIDENCIA NAo NULA");
-			int tamListaQuartos = residencia.getQuartos().size();
-			for (int i = 0; i < tamListaQuartos; i++) {
+			ArrayList<Quartos> lista = new ArrayList<Quartos>();
+			lista = residencia.getQuartos();
+			System.out.println("RESIDENCIA = " + lista);
+			System.out.println("residencia.getQuartos().size() = " + residencia.getQuartos().size());
+			for (int i = 0; i < residencia.getQuartos().size(); i++) {
 				System.out.println(residencia.getQuartos().get(i));
 			}
 		}

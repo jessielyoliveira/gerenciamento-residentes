@@ -51,8 +51,9 @@ public class ResidenciaController {
 		try {
 			residenciaService.validar(residencia);
 			residenciaService.existe(residencia);
+			residenciaService.inicializaQuartos(residencia);
 			residenciaService.save(residencia);
-			residenciaService.alocaQuartos(residencia);
+			
 									
 			alerta.addFlashAttribute("sucesso", "Residencia inserida");
 		} catch (BusinessException e) {
@@ -96,7 +97,7 @@ public class ResidenciaController {
 		try {
 			residenciaService.validar(residencia);
 			residenciaService.save(residencia);
-			residenciaService.alocaQuartos(residencia);
+			residenciaService.inicializaQuartos(residencia);
 			alerta.addFlashAttribute("sucesso", "Residencia atualizada");
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -133,7 +134,7 @@ public class ResidenciaController {
 				List<Residente> residentes = residenteService.naoAlocados();
 				model.addAttribute("residencia", residencia);
 				model.addAttribute("residentes", residentes);
-				
+				System.out.println("residencia = " + residencia.getNome());
 				residenciaService.imprimeMatriz(residencia);
 				
 				/*
