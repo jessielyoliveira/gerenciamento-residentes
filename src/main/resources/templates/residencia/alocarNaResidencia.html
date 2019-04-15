@@ -15,13 +15,34 @@
 		
 		<hr style="margin: 10px 0;">
 
-		<div class="form-inline" th:object="${residencia}">
+
+		<table class="table table-sm">
+			<thead>
+				<tr>
+					<th scope="col">Piso</th>
+					<th scope="col">Quarto</th>
+					<th scope="col">Vagas Disponíveis</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="quarto : ${residencia.quartos}">
+					<td th:text="${quarto.piso}"></td>
+					<td th:text="${quarto.numeroQuarto}"></td>
+					<td th:text="${quarto.totalVagas}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+
+
+		<!--<div class="form-inline" th:object="${residencia}">
 			
-			<form th:action="@{/residencias/alocar/{id} (id = ${residencia.id})}" method="get"  class="input-group">
+			 <form th:action="@{/residencias/alocar/{id} (id = ${residencia.id})}" method="get"  class="input-group">
 
 				<div class="form-group" style="margin-right: 40px;" th:object="${quartos}">
 					<label for="piso" style="margin-right: 10px;">Piso</label>
-					<select th:field="*{quartos.piso}"
+					<select th:field="*{quartos[i][].piso}"
 						class="form-control">
 						<option
 							th:each="i : ${#numbers.sequence(1, residencia.quantPisos)}"
@@ -33,7 +54,7 @@
 				<div class="form-group" style="margin-right: 40px;">
 					<label for="quarto" style="margin-right: 10px;">Quarto</label>
 					<select
-						th:field="*{quartos.numeroQuarto}" class="form-control">
+						th:field="*{quartos}" class="form-control">
 						<option
 							th:each="i : ${#numbers.sequence(1, residencia.quantQuartosPorPiso)}"
 							th:value="${i}" th:text="${i}"></option>
@@ -57,7 +78,7 @@
 			
 			
 			
-		</div>
+		</div> -->
 
 		<!-- <div class="form-inline align-items-center">
 			<form th:action="@{/}" method="post"  class="input-group col-md-6" style="padding: 0">

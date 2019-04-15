@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pds.exception.BusinessException;
 import com.pds.exception.ModelException;
+import com.pds.model.Quartos;
 import com.pds.model.Residencia;
 import com.pds.model.Residente;
 import com.pds.service.ResidenciaService;
@@ -132,6 +133,8 @@ public class ResidenciaController {
 				List<Residente> residentes = residenteService.naoAlocados();
 				model.addAttribute("residencia", residencia);
 				model.addAttribute("residentes", residentes);
+				
+				residenciaService.imprimeMatriz(residencia);
 				
 				/*
 				 * ResidenteService residenteService = new ResidenteService();
