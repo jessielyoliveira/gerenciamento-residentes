@@ -16,4 +16,5 @@ public interface ResidenciaRepository extends JpaRepository<Residencia, Integer>
 	@Query("SELECT r FROM Residencia r WHERE lower(r.nome) LIKE %?1%")
 	List<Residencia> buscaPorNome(String chave);
 	
+	
 }

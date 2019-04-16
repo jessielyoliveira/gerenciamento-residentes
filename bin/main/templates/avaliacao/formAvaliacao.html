@@ -1,10 +1,89 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="pt-br" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="utf-8">
 </head>
 <body>
+	
+	<section layout:fragment="content">
+		<!-- <h1 align="center" style="margin: 30px 0;">Cadastro de Residência</h1> -->
+		<h1 th:if="${avaliacao.id == null}" align="center" style="margin: 30px 0;">Nova Solicitação</h1>
+		<h1 th:if="${avaliacao.id != null}" align="center" style="margin: 30px 0;">Modificar Status de Solicitação</h1>
+		
+		<form th:action="@{/avaliacoes}" th:object="${avaliacao}" 
+				th:method="@{${avaliacao.id == null} ? 'post' : 'put'}">
+			<input type="hidden" th:field="*{id}">
+			
+			 <div class="form-group" th:object="${servico}">
+			 	<label for="servico">Tipo Serviço</label>
+				 <select name="servico.id" class="form-control">
+			 		 <option th:each="servico : ${servicos}" 
+			 		 th:value="${servico.id}" th:text="${servico.nome}"></option>
+				</select>	
+			 </div>
+			 
+			 <div class="form-group" th:object="${status}">
+			 	<label for="status">Status</label>
+				 <select name="status.id" class="form-control">
+			 		 <option th:each="status : ${status}" 
+			 		 th:value="${status.id}" th:text="${status.nome}"></option>
+				</select>	
+			 </div>
+			 <div class="form-group">
+				<label for="justificativa">Justificativa</label>
+				<input type="text" class="form-control" id="justificativa" th:field="*{justificativa}" placeholder="Insira uma justificativa">
+			</div>
+			
+			<div class="form-group">
+		    	<label for="data">Data de solicitação</label>
+		    	<input type="date" class="form-control" id="data" th:field="*{data}" required="required"placeholder="Insira a data">
+		  	</div>
+		  	
+		  	<div class="form-group">
+		    	<label for="data">Data de Modificação</label>
+		    	<input type="date" class="form-control" id="dataModificacao" th:field="*{dataModificacao}" required="required"placeholder="Insira a data">
+		  	</div>
+		  	
+		  	<div class="form-group">
+				<label for="justificativa">Observaçao</label>
+				<input type="text" class="form-control" id="observacao" th:field="*{observacao}" placeholder="Insira uma observacao">
+			</div>
+			
+			<div>
+				<h3><strong> Avaliação  </strong></h3>
+				<br/>
+				
+				<div class="form-group">
+		    	<label for="grauSatisfacaoSolicitacao">Qual o grau de satisfação desse serviço?</label>
+		    	<input type="number" class="form-control" id="grauSatisfacaoSolicitacao" th:field="*{grauSatisfacaoSolicitacao}" required="required"
+		    		   placeholder="Insira um inteiro" min="1" max="5">
+		  		</div>
+				
+				<div class="form-group">
+				<label for="justificativa">Comentário:</label>
+				<input type="text" class="form-control" id="comentarioSoliciacao" th:field="*{comentarioSoliciacao}" placeholder="Insira um comentário">
+				</div>
+				
+				<div class="form-group">
+		    	<label for="notaFuncionario">Qual a nota que você dá o funcionário que prestou esse serviço?</label>
+		    	<input type="number" class="form-control" id="notaFuncionario" th:field="*{notaFuncionario}" required="required"
+		    		   placeholder="Insira um inteiro" min="1" max="5">
+		  		</div>
+				
+				<div class="form-group">
+				<label for="justificativa">Comentário</label>
+				<input type="text" class="form-control" id="comentarioFuncionario" th:field="*{comentarioFuncionario}" placeholder="Insira um comentário">
+				</div>
+						
+			</div>
+			
+		  	<button type="submit" class="btn btn-success" style="float: right;">Salvar</button>
+		  	<a th:href="@{/solicitacoes}" class="btn btn-secondary" style="float: right; margin: 0 20px 30px 0;">Cancelar</a>
+
+		</form>
+	</section>
+
 
 </body>
 </html>

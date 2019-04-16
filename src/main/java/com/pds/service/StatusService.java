@@ -63,12 +63,12 @@ public class StatusService {
 	
 	public void validar(Status status) throws BusinessException {
 		if( status.getNome().equals("") || status.getNome() == null){
-			throw new BusinessException("Serviço inválido ou nulo");
+			throw new BusinessException("Status inválido ou nulo");
 		}
 		
 	}
 	
-//	public List<Status> search(String chave) {
-//		return statusRepository.buscaPorNome(chave);
-//	}
+	public List<Status> search(String chave) {
+		return statusRepository.buscaPorNome(chave);
+	}
 }

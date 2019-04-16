@@ -56,7 +56,6 @@ public class SolicitacaoController {
 		return "solicitacao/homeAcompanharServico"; 
 	}
 	
-	// Abre o formulario de cadastro de solicitacao
 	@GetMapping("/nova")
 	public String criar(Model model) {
 		List<Servico> listaServicos = servicoService.findAll();
@@ -70,7 +69,6 @@ public class SolicitacaoController {
 		return "solicitacao/formSolicitacao";
 	}
 	
-	// Envia as informacoes do formulario para a camada de servico
 	@PostMapping
 	public String salvar(@Valid Solicitacao solicitacao, RedirectAttributes alerta) {
 		try {
@@ -128,14 +126,14 @@ public class SolicitacaoController {
 	
 	@PutMapping
 	public String atualizar(@Valid Solicitacao solicitacao, RedirectAttributes alerta) {
-		//try {
-			//solicitacaoService.validar(solicitacao);
+		try {
+			solicitacaoService.validar(solicitacao);
 			solicitacaoService.save(solicitacao);
 			alerta.addFlashAttribute("sucesso", "Solicitacao Modificada!");
-//		} catch (BusinessException e) {
-//			e.printStackTrace();
-//			alerta.addFlashAttribute("erro", "Erro na atualizacao da residencia [" + e.getMessage() + "]");
-//		} 
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			alerta.addFlashAttribute("erro", "Erro na atualizacao da residencia [" + e.getMessage() + "]");
+		} 
 		return "redirect:/solicitacoes";
 	}
 	

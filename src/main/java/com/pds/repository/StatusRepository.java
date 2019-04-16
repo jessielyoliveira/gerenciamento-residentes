@@ -11,6 +11,6 @@ import com.pds.model.Status;
 @Repository
 public interface StatusRepository extends JpaRepository<Status, Integer>{
 	
-//	@Query("SELECT r FROM Status r WHERE lower(r.nome) LIKE %?1%")
-//	List<Status> buscaPorNome(String chave);
+	@Query("SELECT r FROM Status r WHERE lower(r.nome) LIKE %?1%")
+	List<Status> buscaPorNome(String chave);
 }

@@ -47,10 +47,10 @@
 		  	
 		  	<div class="form-group">
 				<label for="justificativa">Observaçao</label>
-				<input type="text" class="form-control" id="observacao" th:field="*{observacao}" placeholder="Insira uma observacao">
+				<input type="text" class="form-control" id="observacao" th:field="*{observacao}" required="required" placeholder="Insira uma observacao">
 			</div>
 			
-			
+				
 		  	<button type="submit" class="btn btn-success" style="float: right;">Salvar</button>
 		  	<a th:href="@{/solicitacoes}" class="btn btn-secondary" style="float: right; margin: 0 20px 30px 0;">Cancelar</a>
 

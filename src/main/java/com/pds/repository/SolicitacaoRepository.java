@@ -13,4 +13,7 @@ public interface SolicitacaoRepository extends JpaRepository<Solicitacao, Intege
 	
 //	@Query("SELECT s FROM Solicitacao s WHERE lower(s.nome) LIKE %?1%")
 //	List<Solicitacao> buscaPorNome(String chave);
+	
+//	@Query ("SELECT status FROM Solicitacao status WHERE lower(status.nome) LIKE 'finalizada' ")
+//	List<Solicitacao> buscarFinalizada();
 }

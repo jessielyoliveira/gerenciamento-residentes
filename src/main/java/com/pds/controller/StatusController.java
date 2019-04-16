@@ -38,14 +38,14 @@ public class StatusController {
 		return "status/homeStatus"; 
 	}
 	
-	// Abre o formulario de cadastro de status
+	
 	@GetMapping("/novo")
 	public String criar(Model model) {
 		model.addAttribute("status", new Status());
 		return "status/formStatus";
 	}
 	
-	// Envia as informacoes do formulario para a camada de servico
+	
 	@PostMapping
 	public String salvar(@Valid Status status, RedirectAttributes alerta) {
 		try {
@@ -87,14 +87,14 @@ public class StatusController {
 	
 	@PutMapping
 	public String atualizar(@Valid Status status, RedirectAttributes alerta) {
-		//try {
-			//servicoService.validar(servico);
+		try {
+			statusService.validar(status);
 			statusService.save(status);
 			alerta.addFlashAttribute("sucesso", "Servico atualizado");
-//		} catch (BusinessException e) {
-//			e.printStackTrace();
-//			alerta.addFlashAttribute("erro", "Erro na atualizacao do servico [" + e.getMessage() + "]");
-//		} 
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			alerta.addFlashAttribute("erro", "Erro na atualizacao do servico [" + e.getMessage() + "]");
+		} 
 		return "redirect:/status";
 	}
 	
@@ -111,10 +111,10 @@ public class StatusController {
 		return "status/detalhesStatus";
 	}
 	
-//	@PostMapping("/busca")
-//	public String buscar(Model model, @RequestParam("chave") String chave) {
-//		List<Status> lista = statusService.search(chave.toLowerCase());
-//		model.addAttribute("listaStatus", lista);
-//		return "servico/homeServico"; 
-//	}
+	@PostMapping("/busca")
+	public String buscar(Model model, @RequestParam("chave") String chave) {
+		List<Status> lista = statusService.search(chave.toLowerCase());
+		model.addAttribute("listaStatus", lista);
+		return "status/homeStatus"; 
+	}
 }

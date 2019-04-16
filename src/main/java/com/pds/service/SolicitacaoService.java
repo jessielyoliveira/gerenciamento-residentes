@@ -12,6 +12,7 @@ import com.pds.exception.ModelException;
 import com.pds.model.Residencia;
 import com.pds.model.Residente;
 import com.pds.model.Solicitacao;
+import com.pds.model.Status;
 import com.pds.repository.SolicitacaoRepository;
 
 @Service
@@ -52,15 +53,18 @@ public class SolicitacaoService {
 		if( solicitacao.getServico().equals("") || solicitacao.getServico() == null){
 			throw new BusinessException("Serviço inválido ou nulo");
 		}
-		
 		if( solicitacao.getStatus().equals("") || solicitacao.getStatus() == null){
 			throw new BusinessException("Status inválido ou nulo");
 		}
-		
+			
 		
 	}
 	
 //	public List<Solicitacao> search(String chave) {
 //		return solicitacaoRepository.buscaPorNome(chave);
+//	}
+	
+//	public List<Solicitacao> finalizada() {
+//		return solicitacaoRepository.buscarFinalizada();
 //	}
 }

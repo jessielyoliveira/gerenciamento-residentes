@@ -38,24 +38,24 @@ public class ServicoController {
 		return "servico/homeServico"; 
 	}
 	
-	// Abre o formulario de cadastro de servico
+	
 	@GetMapping("/novo")
 	public String criar(Model model) {
 		model.addAttribute("servico", new Servico());
 		return "servico/formServico";
 	}
 	
-	// Envia as informacoes do formulario para a camada de servico
+	
 	@PostMapping
 	public String salvar(@Valid Servico servico, RedirectAttributes alerta) {
 		try {
-			//servicoService.validar(servico);
+			servicoService.validar(servico);
 			servicoService.existe(servico);
 			servicoService.save(servico);
 			alerta.addFlashAttribute("sucesso", "Servico inserido");
-//		} catch (BusinessException e) {
-//			e.printStackTrace();
-//			alerta.addFlashAttribute("erro", "Erro na insercao do servico [" + e.getMessage() + "]");
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			alerta.addFlashAttribute("erro", "Erro na insercao do servico [" + e.getMessage() + "]");
 		} catch (ModelException e) {
 			e.printStackTrace();
 			alerta.addFlashAttribute("aviso", "Servico ja existe [" + e.getMessage() + "]");
@@ -87,14 +87,14 @@ public class ServicoController {
 	
 	@PutMapping
 	public String atualizar(@Valid Servico servico, RedirectAttributes alerta) {
-		//try {
-			//servicoService.validar(servico);
+		try {
+			servicoService.validar(servico);
 			servicoService.save(servico);
 			alerta.addFlashAttribute("sucesso", "Servico atualizado");
-//		} catch (BusinessException e) {
-//			e.printStackTrace();
-//			alerta.addFlashAttribute("erro", "Erro na atualizacao do servico [" + e.getMessage() + "]");
-//		} 
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			alerta.addFlashAttribute("erro", "Erro na atualizacao do servico [" + e.getMessage() + "]");
+		} 
 		return "redirect:/servicos";
 	}
 	
