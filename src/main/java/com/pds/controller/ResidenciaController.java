@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pds.exception.BusinessException;
 import com.pds.exception.ModelException;
-import com.pds.model.Quartos;
 import com.pds.model.Residencia;
 import com.pds.model.Residente;
 import com.pds.service.ResidenciaService;
@@ -51,9 +50,7 @@ public class ResidenciaController {
 		try {
 			residenciaService.validar(residencia);
 			residenciaService.existe(residencia);
-			residenciaService.inicializaQuartos(residencia);
 			residenciaService.save(residencia);
-			
 									
 			alerta.addFlashAttribute("sucesso", "Residencia inserida");
 		} catch (BusinessException e) {
@@ -97,7 +94,7 @@ public class ResidenciaController {
 		try {
 			residenciaService.validar(residencia);
 			residenciaService.save(residencia);
-			residenciaService.inicializaQuartos(residencia);
+			
 			alerta.addFlashAttribute("sucesso", "Residencia atualizada");
 		} catch (BusinessException e) {
 			e.printStackTrace();

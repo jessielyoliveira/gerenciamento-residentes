@@ -2,7 +2,6 @@ package com.pds.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -73,9 +72,9 @@ public class Residencia implements Serializable {
 	@OneToMany(mappedBy = "residencia", cascade = CascadeType.ALL)
 	List<Residente> residentes;
 	
-	ArrayList<Quartos> quartos = new ArrayList<Quartos>();
-	//Quartos[][] quartos;
-			
+	@OneToMany(mappedBy = "residencia", cascade = CascadeType.ALL)
+	List<Quartos> quartos = new ArrayList<Quartos>();
+		
 	public Integer getId() {
 		return id;
 	}
@@ -182,13 +181,13 @@ public class Residencia implements Serializable {
 	 * public void setQuartos(Quartos[][] quartos) { this.quartos = quartos; }
 	 */
 	
-	public ArrayList<Quartos> getQuartos() {
+	public List<Quartos> getQuartos() {
 		return quartos;
 	}
 
 	public void adicionarQuarto(Quartos quarto) {
 		this.quartos.add(quarto);
-		System.out.println(quartos.size());
+		System.out.println("LISTA DE QUARTOS = " + this.quartos + "\nQUANT DE QUARTOS = " + quartos.size() );
 	}
 	
 

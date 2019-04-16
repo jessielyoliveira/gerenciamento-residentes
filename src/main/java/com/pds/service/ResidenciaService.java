@@ -1,6 +1,5 @@
 package com.pds.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +22,8 @@ public class ResidenciaService {
 
 	@Transactional(readOnly = false)
 	public Residencia save(Residencia residencia) {
+		residenciaRepository.save(residencia);
+		inicializaQuartos(residencia);	
 		return residenciaRepository.save(residencia);
 	}
 
@@ -72,18 +73,18 @@ public class ResidenciaService {
 	public void inicializaQuartos(Residencia residencia) {
 		for(Integer i = 0; i < residencia.getQuantPisos(); i++) {
 			for(Integer j = 0; j < residencia.getQuantQuartosPorPiso(); j++) {
-				Quartos quarto = new Quartos(i, j, residencia.getTotalVagas());
+				Quartos quarto = new Quartos(residencia.getId(), i, j, residencia.getTotalVagas());
 				residencia.adicionarQuarto(quarto);
+				System.out.println("ID QUARTO = " + quarto.getId());
 			}
-		}	
+		}
 	}
 	
 	public void imprimeMatriz(Residencia residencia) {
 		if(residencia.getQuartos() == null) {
 			System.out.println("QUARTOS NULOS ");
 		} else {
-			ArrayList<Quartos> lista = new ArrayList<Quartos>();
-			lista = residencia.getQuartos();
+			List<Quartos> lista = residencia.getQuartos();
 			System.out.println("RESIDENCIA = " + lista);
 			System.out.println("residencia.getQuartos().size() = " + residencia.getQuartos().size());
 			for (int i = 0; i < residencia.getQuartos().size(); i++) {
