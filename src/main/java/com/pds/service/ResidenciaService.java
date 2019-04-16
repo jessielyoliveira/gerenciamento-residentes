@@ -1,5 +1,6 @@
 package com.pds.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,11 +20,15 @@ public class ResidenciaService {
 
 	@Autowired
 	private ResidenciaRepository residenciaRepository;
+	
+	@Autowired
+	private QuartosService quartosService;
+	
 
 	@Transactional(readOnly = false)
-	public Residencia save(Residencia residencia) {
+	public Residencia save(Residencia residencia, ArrayList<Quartos> quartos) {
 		residenciaRepository.save(residencia);
-		inicializaQuartos(residencia);	
+		inicializaQuartos(residencia, quartos);	
 		return residenciaRepository.save(residencia);
 	}
 
@@ -70,26 +75,23 @@ public class ResidenciaService {
 		return residenciaRepository.buscaPorNome(chave);
 	}
 	
-	public void inicializaQuartos(Residencia residencia) {
+	public void inicializaQuartos(Residencia residencia, ArrayList<Quartos> quartos) {
 		for(Integer i = 0; i < residencia.getQuantPisos(); i++) {
 			for(Integer j = 0; j < residencia.getQuantQuartosPorPiso(); j++) {
 				Quartos quarto = new Quartos(residencia.getId(), i, j, residencia.getTotalVagas());
-				residencia.adicionarQuarto(quarto);
-				System.out.println("ID QUARTO = " + quarto.getId());
+				quartosService.save(quarto);
+				quartos.add(quarto);
 			}
 		}
+		residencia.setQuartos(quartos);
 	}
 	
 	public void imprimeMatriz(Residencia residencia) {
 		if(residencia.getQuartos() == null) {
 			System.out.println("QUARTOS NULOS ");
 		} else {
-			List<Quartos> lista = residencia.getQuartos();
-			System.out.println("RESIDENCIA = " + lista);
-			System.out.println("residencia.getQuartos().size() = " + residencia.getQuartos().size());
-			for (int i = 0; i < residencia.getQuartos().size(); i++) {
-				System.out.println(residencia.getQuartos().get(i));
-			}
+			System.out.println("RESIDENCIA ID = " + residencia.getId());
+			System.out.println("QUARTOS DA RESIDENCIA = " + residencia.getQuartos());
 		}
 		
 	}

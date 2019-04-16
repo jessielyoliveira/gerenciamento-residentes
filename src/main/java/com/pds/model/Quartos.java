@@ -14,11 +14,11 @@ public class Quartos implements Serializable {
 	
 	@Id
 	String id;
-	
-	private Integer idResidencia;
+
 	private Integer piso;
 	private Integer numeroQuarto;
 	private Integer totalVagas;
+	private Integer vagasOcupadas;
 	private Integer vagasDisponiveis;
 	
 	@ManyToOne
@@ -35,8 +35,19 @@ public class Quartos implements Serializable {
 		this.piso = piso;
 		this.numeroQuarto = numeroQuarto;
 		this.totalVagas = totalVagas;
+		this.vagasOcupadas = 0;
+		this.vagasDisponiveis = this.totalVagas - vagasOcupadas;
 	}
 	
+	public void imprimeQuarto() {
+		System.out.println(this.id);
+		System.out.println(this.piso);
+		System.out.println(this.numeroQuarto);
+		System.out.println(this.totalVagas);
+		System.out.println(this.vagasOcupadas);
+		System.out.println(this.vagasDisponiveis);
+		
+	}
 	
 	public String getId() {
 		return id;
@@ -44,14 +55,6 @@ public class Quartos implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public Integer getIdResidencia() {
-		return idResidencia;
-	}
-
-	public void setIdResidencia(Integer idResidencia) {
-		this.idResidencia = idResidencia;
 	}
 
 	public Integer getPiso() {

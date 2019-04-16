@@ -1,5 +1,6 @@
 package com.pds.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pds.exception.BusinessException;
 import com.pds.exception.ModelException;
+import com.pds.model.Quartos;
 import com.pds.model.Residencia;
 import com.pds.model.Residente;
 import com.pds.service.ResidenciaService;
@@ -33,7 +35,7 @@ public class ResidenciaController {
 	private ResidenteService residenteService;
 
 	@GetMapping
-	public String indexResidencia(Model model) {
+	public String indexResidencia(Model model, Residencia residencia) {
 		List<Residencia> lista = residenciaService.findAll();
 		model.addAttribute("listaResidencias", lista);
 		return "residencia/homeResidencia";
@@ -42,15 +44,19 @@ public class ResidenciaController {
 	@GetMapping("/nova")
 	public String criar(Model model) {
 		model.addAttribute("residencia", new Residencia());
+		model.addAttribute("residencia", new ArrayList<Quartos>());
 		return "residencia/formResidencia";
 	}
 
 	@PostMapping
-	public String salvar(@Valid Residencia residencia, RedirectAttributes alerta, Model model) {
+	public String salvar(@Valid Residencia residencia, @Valid ArrayList<Quartos> quartos, RedirectAttributes alerta, Model model) {
 		try {
 			residenciaService.validar(residencia);
 			residenciaService.existe(residencia);
-			residenciaService.save(residencia);
+			residenciaService.save(residencia, quartos);
+			
+			System.out.println("LISTA DE QUARTOS = " + residencia.getQuartos() + 
+					 "\nQUANT DE QUARTOS = " + residencia.getQuartos().size() );
 									
 			alerta.addFlashAttribute("sucesso", "Residencia inserida");
 		} catch (BusinessException e) {
@@ -90,10 +96,12 @@ public class ResidenciaController {
 	 * existência não edita mais. Tentar uma solução depois.
 	 */
 	@PutMapping
-	public String atualizar(@Valid Residencia residencia, RedirectAttributes alerta) {
+public String atualizar(@Valid Residencia residencia, @Valid ArrayList<Quartos> quartos, RedirectAttributes alerta) {
 		try {
 			residenciaService.validar(residencia);
-			residenciaService.save(residencia);
+			residenciaService.save(residencia, quartos);
+			System.out.println("LISTA DE QUARTOS = " + residencia.getQuartos() + 
+							 "\nQUANT DE QUARTOS = " + residencia.getQuartos().size() );
 			
 			alerta.addFlashAttribute("sucesso", "Residencia atualizada");
 		} catch (BusinessException e) {
@@ -123,16 +131,20 @@ public class ResidenciaController {
 		return "residencia/homeResidencia";
 	}
 
-	@GetMapping("/alocar/{id}")
-	public String alocarResidente(@PathVariable Integer id, Model model) {
+	@GetMapping("/alocar/{idResidencia}")
+	public String alocarResidente(@PathVariable Integer idResidencia, Model model) {
 		try {
-			if (id != null) {
-				Residencia residencia = residenciaService.findOne(id).get();
-				List<Residente> residentes = residenteService.naoAlocados();
+			if (idResidencia != null) {
+				Residencia residencia = residenciaService.findOne(idResidencia).get();
 				model.addAttribute("residencia", residencia);
-				model.addAttribute("residentes", residentes);
-				System.out.println("residencia = " + residencia.getNome());
+				
+				System.out.println("RESIDENCIA = " + residencia.getNome() + "\nID = " + residencia.getId());
 				residenciaService.imprimeMatriz(residencia);
+				
+				List<Residente> residentes = residenteService.naoAlocados();
+				model.addAttribute("residentes", residentes);
+				
+				
 				
 				/*
 				 * ResidenteService residenteService = new ResidenteService();
